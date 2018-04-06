@@ -1,0 +1,67 @@
+﻿@model FAQCheckpoint2.Models.Accounts
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="container-fluid">
+
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <span><i class="fas fa-home"></i> / dashboard / accounts/ account information</span>
+                <h2>Account Information</h2>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.fullname)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.fullname)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.username)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.username)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.password)
+                    </dt>
+
+                    <dd>
+                        **********
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.email)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.role)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.role)
+                    </dd>
+
+                </dl>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.id }, htmlAttributes: new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Go Back", "Index", "Accounts", htmlAttributes: new { @class = "btn btn-info" })
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

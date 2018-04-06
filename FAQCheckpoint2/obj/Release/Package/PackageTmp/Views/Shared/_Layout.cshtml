@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - DRHC Hospital Project</title>
+
+
+    @Styles.Render("~/Content/themes/base/css")
+    <link rel='stylesheet prefetch' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+    @Styles.Render("~/Content/fontawesome-all.min.css")
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Styles.Render("~/Content/slick.css")
+    @Styles.Render("~/Content/slick-theme.css")
+    @Styles.Render("~/Content/admin_style.css")
+    @Styles.Render("~/Content/style.css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+    @Scripts.Render("~/Scripts/slick.min.js")
+    @Scripts.Render("~/Scripts/nav.js")
+    @Scripts.Render("~/Scripts/faq.js")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#"><img class="site-logo" src="~/images/logo.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","FAQs")">HOME</a>
+                    </li>
+                    <li class="nav-item nav-parent">
+                        <a class="nav-link" href="#">SERVICE</a>
+                    </li>
+                    <li class="nav-item nav-parent">
+                        <a class="nav-link" href="#">PROGRAMS</a>
+                    </li>
+                    <li class="nav-item nav-parent">
+                        <a class="nav-link" href="#">JOIN OUR TEAM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CONTACT</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+    <footer>
+        <div class="footer-nav">
+            <div class="row">
+                <div class="col-lg-2">
+                    <h2>SERVICES</h2>
+                    <ul>
+                        <li><a href="#">Emergency</a></li>
+                        <li><a href="#">Food Services</a></li>
+                        <li><a href="#">Oncology</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2">
+                    <h2>PROGRAMS</h2>
+                    <ul>
+                        <li><a href="#">Palliative Care</a></li>
+                        <li><a href="#">Spiritual Care</a></li>
+                        <li><a href="#">Rehabilitation</a></li>
+                        <li><a href="#">Mental Health</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2">
+                    <h2>JOIN OUR TEAM</h2>
+                    <ul>
+                        <li><a href="#">Why DRHC</a></li>
+                        <li><a href="#">Job Postings</a></li>
+                        <li><a href="#">Volunteer Program</a></li>
+                        <li><a href="#">Physician Recruitment</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2">
+                    <h2>ABOUT</h2>
+                    <ul>
+                        <li><a href="#">Meet The Board</a></li>
+                        <li><a href="@Url.Action("Index","FAQs")">FAQs</a></li>
+                        <li><a href="#">Public Reports</a></li>
+                        <li><a href="#">Strategic Plan</a></li>
+                        <li><a href="#">Patient Relations</a></li>
+                        <li><a href="#">Community Partners</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2">
+                    <h2>CONTACT</h2>
+                    <ul>
+                        <li><a href="#">Physician Recruitement</a></li>
+                        <li><a href="#">Employment Opportunities</a></li>
+                        <li><a href="#">Work With Us</a></li>
+                        <li><a href="#">How To Apply</a></li>
+                        <li><a href="#">Volunteer Program</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2">
+                    <a href="@Url.Action("Login","Accounts")" class="btn btn-warning">STAFF LOGIN</a>
+                </div>
+            </div>
+            <span class="disclaimer">THIS IS NOT A REAL HOSPITAL - JUST A COLLEGE PROJECT</span>
+        </div>
+    </footer>
+    <div id="backToTop">
+        <a href="#"><i class="fas fa-caret-up"></i></a>
+    </div>
+</body>
+</html>

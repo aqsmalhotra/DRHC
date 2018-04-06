@@ -1,0 +1,28 @@
+﻿@model IEnumerable<FAQCheckpoint2.Models.FAQ>
+
+@if (Model.Count() <= 0)
+{
+    <p>No question found. Please try again</p>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Faq_question)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Faq_category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Faq_last_update)
+            </td>
+            <td>
+                <button type="button" class="btn btn-sm btn-success"> @Html.ActionLink("Edit", "Edit", new { id = item.Faq_id }) </button> 
+                <button type="button" class="btn btn-sm btn-info"> @Html.ActionLink("Details", "Details", new { id = item.Faq_id }) </button>
+                <button type="button" class="btn btn-sm btn-danger"> @Html.ActionLink("Delete", "Delete", new { id = item.Faq_id })</button>
+</td>
+        </tr>
+    }
+}

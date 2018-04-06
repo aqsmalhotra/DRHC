@@ -1,0 +1,98 @@
+﻿@model IEnumerable<FAQCheckpoint2.Models.FAQ>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / faqs</span>
+                    <h2>FAQ Management</h2>
+                    <p>Welcome to the admin section of DRHC FAQ Repository.</p>
+                    <button type="button" class="btn btn-success">
+                        @Html.ActionLink("Add New FAQ", "Create")
+                    </button>
+                    <div>
+                        <form action="#" method="post" role="search" id="faq-seach-frm" class="search-form">
+                            <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
+                            <input type="search" name="search" id="search" class="search-text" placeholder="Search question..." autocomplete="off">
+                        </form>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Faq_question)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Faq_category)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Faq_last_update)
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="search-results">
+                            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="td-question">
+                        @Html.DisplayFor(modelItem => item.Faq_question)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Faq_category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Faq_last_update)
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Faq_id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Details", "Details", new { id = item.Faq_id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Faq_id }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+}
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+                $("#faq-seach-frm").submit(function (event) {
+            var search = $("#search").val();
+            if (search == null || search == "") {
+                alert("Please enter question to search...");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Search_By_Question_Admin", "FAQs")',
+                    data: { search: search },
+                    success: function (data) {
+                    $("#search-results").html(data);
+                    }
+                    });
+                    }
+                    event.preventDefault();
+                    });
+    });
+</script>

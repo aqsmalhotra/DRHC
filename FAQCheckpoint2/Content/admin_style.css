@@ -1,0 +1,177 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Lato:300,600');
+
+
+/* Admin Link */
+.btn a {
+color: #FBFBFB !important;
+}
+
+/*Btn*/
+.btn-success, .btn-info, .btn-danger, .btn-back {
+margin-bottom: 0.2em !important;
+}
+
+
+.fas {
+padding-right: 0.5em !important;
+}
+
+
+.td-question {
+text-align: left !important;
+}
+
+
+/* Admin H2 Styling */
+.admin-head {
+    font-family: 'Lato', sans-serif !important;
+    color: #111 !important;
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+/* Admin LI Styling */
+.feature-content ul li {
+    font-family: "Lato", sans-serif !important;
+}
+
+/* Admin Boxes Styling */
+.container.faq_admin {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+/* Admin Form Styling */
+input[type=text], input[type=date], select, textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical
+}
+
+
+/*Admin Navigation Styling*/
+.admin-links {
+    list-style: none;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    max-width: 400px;
+}
+
+    .admin-links li {
+        flex: 1 1 0;
+        border-bottom: 1px solid #d3d3d3;
+        padding: 1em;
+        margin-right: 2em;
+        text-transform: uppercase;
+        color: #428bca;
+    }
+
+        .admin-links li a {
+            font-weight: bold;
+        }
+
+            .admin-links li a:hover {
+            }
+
+/* Admin Tables Styling */
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table td {
+    font-weight: 600;
+}
+
+
+label {
+    font-weight: bold !important;
+}
+
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+table tr {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 1024px) {
+
+    table {
+        border: 0;
+    }
+
+        table caption {
+            font-size: 1.3em;
+        }
+
+        table thead {
+            border: none;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        table tr {
+            border-bottom: 3px solid #ddd;
+            display: block;
+            margin-bottom: .625em;
+        }
+
+        table td {
+            border-bottom: 1px solid #ddd;
+            display: block;
+            font-size: .8em;
+            text-align: right;
+        }
+
+            table td:before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            table td:last-child {
+                border-bottom: 0;
+            }
+}
+
+/* Admin Action Button Styling */
+.faq-action-btn {
+    margin-bottom: 0.2em;
+}
+

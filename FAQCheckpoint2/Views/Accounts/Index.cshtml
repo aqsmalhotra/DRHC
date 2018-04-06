@@ -1,0 +1,95 @@
+﻿@model IEnumerable<FAQCheckpoint2.Models.Accounts>
+
+
+@{
+    ViewBag.Title = "Admin Page";
+}
+
+<div class="container-fluid">
+
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / accounts</span>
+                    <h2>FAQ User Role Management</h2>
+                    <p>Welcome to the admin section of DRHC FAQ Repository.</p>
+                    <button type="button" class="btn btn-success">
+                        @Html.ActionLink("Add New Staff", "Create")
+                    </button>
+                    <div>
+                        <form action="#" method="post" role="search" id="account-seach-frm" class="search-form">
+                            <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
+                            <input type="search" name="search" id="search" class="search-text" placeholder="Search user..." autocomplete="off">
+                        </form>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.username)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.role)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="search-results">
+                            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.role)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Details", "Details", new { id = item.id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+}
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+        $("#account-seach-frm").submit(function (event) {
+            var search = $("#search").val();
+            if (search == null || search == "") {
+                alert("Please enter username to search...");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Search_By_User", "Accounts")',
+                    data: { search: search },
+                    success: function (data) {
+                        $("#search-results").html(data);
+                    }
+                });
+            }
+            event.preventDefault();
+        });
+    });
+</script>

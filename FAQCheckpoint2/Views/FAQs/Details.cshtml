@@ -1,0 +1,71 @@
+﻿@model FAQCheckpoint2.Models.FAQ
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / faqs/ info</span>
+                    <h2>Details</h2>
+
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Faq_question)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Faq_question)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Faq_answer)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Faq_answer)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Faq_last_update)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Faq_last_update)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Faq_author)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Faq_author)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Faq_category)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Faq_category)
+                            </dd>
+
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Update", "Edit", new { id = Model.Faq_id }, htmlAttributes: new { @class = "btn btn-primary btn-back" })
+                         @Html.ActionLink("Go Back", "Admin", "FAQs", htmlAttributes: new { @class = "btn btn-primary btn-back" })
+</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

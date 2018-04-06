@@ -1,0 +1,78 @@
+﻿@model FAQCheckpoint2.Models.FAQ
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / faqs/ delete</span>
+                    <h2>Delete</h2>
+
+                    <h3>Are you sure you want to delete this?</h3>
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Faq_question)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Faq_question)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Faq_answer)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Faq_answer)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Faq_last_update)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Faq_last_update)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Faq_author)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Faq_author)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Faq_category)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Faq_category)
+                            </dd>
+
+                        </dl>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Delete" class="btn btn-default btn-danger" />
+                                @Html.ActionLink("Go Back", "Admin", "FAQs", htmlAttributes: new { @class = "btn btn-primary btn-back" })
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

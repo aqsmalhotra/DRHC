@@ -1,0 +1,106 @@
+﻿@model IEnumerable<FAQCheckpoint2.Models.FAQ>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="faq-banner">
+    <div class="headliner">
+        <div class="headliner-content">
+            <h1>We are here to help</h1>
+            <p class="related">
+                Need to know about parking? billing? policies? find answers to most frequently
+                asked questions in the section below!
+                <a class="gold-btn" href="#desc">CHECK IT OUT&nbsp;<i class="fas fa-angle-right arrow"></i></a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-regular">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / about / faqs</span>
+                    <h2 id="desc">Frequently Asked Questions</h2>
+                    <p>
+                        Here is a list of most frequently asked questions (FAQs)
+                        about DRHC. We have covered a range
+                        of aspects like health policies, visitation, patient care,
+                        general rules etc.
+                    </p>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                           
+    <form action="#" method="post" role="search" id="faq-seach-frm" class="search-form">
+        <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
+        <input type="search" name="search" id="search" class="search-text" placeholder="Search question..." autocomplete="off">
+    </form>
+
+                            <ul class="list-group">
+                                @foreach (var item in ViewBag.services as SelectList)
+        {
+                        <a href="#"><li class="list-group-item faq_cat">@item.Value</li></a>
+}
+                            </ul>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12">
+                            <div class="accordion" id="search-results">
+                                @foreach (var item in Model)
+                                {
+                                <div class="accordion-item">
+                                    <a>@Html.DisplayFor(modelItem => item.Faq_question)</a>
+                                    <div class="content">
+                                        <p>@Html.DisplayFor(modelItem => item.Faq_answer)</p>
+                                    </div>
+                                </div>
+                                 }
+
+                            </div>
+                            </div>
+                        </div>
+                    <p class="end-p">
+                        We are open 24*7 seven days a week, please contact us at
+                        +1-(807)-223-8200 for more information. Visit our online feedback
+                        and contact portal to submit a query or review.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("ul.list-group .faq_cat").on('click', function () {
+            var cate = $(this).text();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Search_By_Category", "FAQs")',
+                data: { category: cate },
+                success: function (data) {
+                    $("#search-results").html(data);
+                }
+            });
+            return false;
+        });
+
+        $("#faq-seach-frm").submit(function (event) {
+            var search = $("#search").val();
+            if (search == null || search == "") {
+                alert("Please enter question to search...");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Search_By_Question", "FAQs")',
+                    data: { search: search },
+                    success: function (data) {
+                        $("#search-results").html(data);
+                    }
+                });
+            }
+            event.preventDefault();
+        });
+    });
+</script>
