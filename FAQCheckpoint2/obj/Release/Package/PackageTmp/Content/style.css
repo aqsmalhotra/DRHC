@@ -211,7 +211,6 @@ header {
 
 
 footer {
-    /*background-image: url(../images/blue-green-bkg.jpg);*/
     background-color: #FBFBFB;
     background-size: cover;
     background-position: center;
@@ -356,7 +355,6 @@ footer {
     .navbar-light .navbar-nav .nav-link {
         width: 100% !important;
         text-align: left !important;
-        border-bottom: 1px solid #d3d3d3;
     }
 
 }
@@ -387,7 +385,7 @@ footer {
 /* FAQ */
 
 .faq-banner {
-    background-image: url(../images/faq-banner.png); /*Pictures taken from www.pexels.com */
+    background-image: url(../images/faq-banner.jpg); /*Picture taken from www.pexels.com */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -425,7 +423,7 @@ footer {
 
     .faq-banner .headliner {
         top: 230px;
-        padding: 1em;
+        padding: 0.5em;
     }
 
     .headliner {

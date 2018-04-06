@@ -17,7 +17,7 @@
                     <span><i class="fas fa-home"></i> / dashboard / accounts</span>
                     <h2>FAQ User Role Management</h2>
                     <p>Welcome to the admin section of DRHC FAQ Repository.</p>
-                    <button type="button" class="btn btn-success">
+                    <button type="button" class="btn btn-dark">
                         @Html.ActionLink("Add New Staff", "Create")
                     </button>
                     <div>
@@ -38,7 +38,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.role)
                                 </th>
-                                <th></th>
+                                <th>
+                                    ACTION
+                                </th>
                             </tr>
                         </thead>
 

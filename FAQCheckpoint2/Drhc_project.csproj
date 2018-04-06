@@ -159,7 +159,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\FAQsController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,8 +234,7 @@
     <Content Include="fonts\slick.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\style.css" />
-    <Content Include="images\faq-banner.png" />
-    <Content Include="images\favicon.ico" />
+    <Content Include="images\faq-banner.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

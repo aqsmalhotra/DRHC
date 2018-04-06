@@ -6,12 +6,6 @@
 color: #FBFBFB !important;
 }
 
-/*Btn*/
-.btn-success, .btn-info, .btn-danger, .btn-back {
-margin-bottom: 0.2em !important;
-}
-
-
 .fas {
 padding-right: 0.5em !important;
 }
