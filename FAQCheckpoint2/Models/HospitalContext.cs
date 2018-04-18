@@ -10,5 +10,6 @@ namespace FAQCheckpoint2.Models
     {
         public DbSet<FAQ> FAQS { get; set; }
         public DbSet<Accounts> Accounts { get; set; }
+        public DbSet<Volunteers> Volunteers { get; set; }
     }
 }
