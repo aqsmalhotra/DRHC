@@ -1,0 +1,99 @@
+﻿@model IEnumerable<FAQCheckpoint2.Models.Volunteers>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / volunteers</span>
+                    <h2>Volunteers Management</h2>
+                    <p>Welcome to the admin section of DRHC Volunteer Repository.</p>
+                    <div>
+                        <form action="#" method="post" role="search" id="volunteer-seach-frm" class="search-form">
+                            <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
+                            <input type="search" name="search" id="search" class="search-text" placeholder="Search by name..." autocomplete="off">
+                        </form>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.volunteer_name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.volunteer_email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.volunteer_cv)
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="search-results">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="td-question">
+                                        @Html.DisplayFor(modelItem => item.volunteer_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.volunteer_email)
+                                    </td>
+                                    <td>
+                                        @if (item.volunteer_cv != null)
+    {
+                                     <a href="@Url.Content("~/resumes/"+ item.volunteer_cv)">Watch</a>
+}
+
+                                    </td>
+                                    <td>
+
+                                        @Html.ActionLink("Update", "Edit", new { id = item.volunteer_id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Details", "Details", new { id = item.volunteer_id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.volunteer_id }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+        $("#volunteer-seach-frm").submit(function (event) {
+            var search = $("#search").val();
+            if (search == null || search == "") {
+                alert("Please enter name to search...");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Search_By_Name", "Volunteers")',
+                    data: { search: search },
+                    success: function (data) {
+                    $("#search-results").html(data);
+                    }
+                    });
+                    }
+                    event.preventDefault();
+                    });
+    });
+</script>

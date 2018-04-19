@@ -1,0 +1,83 @@
+﻿@model FAQCheckpoint2.Models.Volunteers
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <h2>Details</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_dob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_dob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_interests)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_interests)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_shifts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_shifts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_cv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_cv)
+        </dd>
+
+    </dl>
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.volunteer_id }, htmlAttributes: new { @class = "btn btn-primary" }) 
+        @Html.ActionLink("Go Back", "Admin", "Volunteers", htmlAttributes: new { @class = "btn btn-info" })
+    </div>
+</div>
+

@@ -218,8 +218,6 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="Content\slick.css" />
-    <Content Include="Content\slick-theme.css" />
     <Content Include="docs\MySqlCommand.xml" />
     <Content Include="docs\MySqlCommandBuilder.xml" />
     <Content Include="docs\MySqlConnection.xml" />
@@ -249,8 +247,7 @@
     <Content Include="fonts\slick.eot" />
     <Content Include="fonts\slick.ttf" />
     <Content Include="fonts\slick.woff" />
-    <None Include="Properties\PublishProfiles\drhc-test - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\Drhcproject - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\Drhcproject2018 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\faq.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />

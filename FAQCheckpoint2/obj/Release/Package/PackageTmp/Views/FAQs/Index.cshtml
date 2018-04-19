@@ -48,8 +48,8 @@
                             <div class="accordion" id="search-results">
                                 @foreach (var item in Model)
                                 {
-                                <div class="accordion-item">
-                                    <a>@Html.DisplayFor(modelItem => item.Faq_question)</a>
+                                <div class="accordion">
+                                    <a href="">@Html.DisplayFor(modelItem => item.Faq_question)</a>
                                     <div class="content">
                                         <p>@Html.DisplayFor(modelItem => item.Faq_answer)</p>
                                     </div>

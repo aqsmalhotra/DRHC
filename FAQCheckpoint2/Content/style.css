@@ -436,12 +436,16 @@ footer {
     padding: 1em;
 }
 
+
+/* ACCORDION EFFECT*/
+
+
+
+
+
 .accordion a {
     font-family: 'Lato', sans-serif;
     position: relative;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -454,6 +458,7 @@ footer {
     font-size: 1.1rem;
     font-weight: 600;
     border-bottom: 1px solid #e5e5e5;
+    cursor:pointer;
 }
 
     .accordion a:hover,
@@ -524,6 +529,8 @@ footer {
         -o-transition: all 0.35s ease 0.15s;
         transition: all 0.35s ease 0.15s;
     }
+
+  
 
 .faq_cat {
     background-color: #f8f8f8 !important;

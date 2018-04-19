@@ -1,0 +1,34 @@
+﻿
+@model IEnumerable<FAQCheckpoint2.Models.Volunteers>
+
+@if (Model.Count() <= 0)
+{
+    <tr><td colspan="4">No volunteer found. Please try again!</td></tr>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td class="td-question">
+                @Html.DisplayFor(modelItem => item.volunteer_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.volunteer_email)
+            </td>
+            <td>
+                @if (item.volunteer_cv != null)
+                {
+                    <a href="@Url.Content("~/resumes/"+ item.volunteer_cv)">Watch</a>
+                }
+
+            </td>
+            <td>
+
+                @Html.ActionLink("Update", "Edit", new { id = item.volunteer_id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
+                @Html.ActionLink("Details", "Details", new { id = item.volunteer_id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.volunteer_id }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+}

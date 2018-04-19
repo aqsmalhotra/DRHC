@@ -1,0 +1,89 @@
+﻿@model FAQCheckpoint2.Models.Volunteers
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Volunteers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_dob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_dob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_interests)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_interests)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_shifts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_shifts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volunteer_cv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volunteer_cv)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> 
+        @Html.ActionLink("Go Back", "Admin", "Volunteers", htmlAttributes: new { @class = "btn btn-info" })
+    </div>
+    }
+</div>

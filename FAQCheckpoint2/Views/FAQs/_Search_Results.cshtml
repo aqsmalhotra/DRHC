@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<FAQCheckpoint2.Models.FAQ>
-
 @if (Model.Count() <= 0)
 {
     <p>No Question found. Please try again!</p>
@@ -8,13 +7,12 @@ else
 {
     foreach (var item in Model)
     {
-        <div class="accordion-item">
-            <a>@Html.DisplayFor(modelItem => item.Faq_question)</a>
+        <div class="accordion">
+            <a href="">@Html.DisplayFor(modelItem => item.Faq_question)</a>
             <div class="content">
                 <p>@Html.DisplayFor(modelItem => item.Faq_answer)</p>
             </div>
         </div>
     }
 }
-
 
