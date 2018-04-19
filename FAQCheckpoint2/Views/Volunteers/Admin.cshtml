@@ -17,6 +17,9 @@
                     <span><i class="fas fa-home"></i> / dashboard / volunteers</span>
                     <h2>Volunteers Management</h2>
                     <p>Welcome to the admin section of DRHC Volunteer Repository.</p>
+                    <button type="button" class="btn btn-dark">
+                        @Html.ActionLink("Register as Volunteer", "Index")
+                    </button>
                     <div>
                         <form action="#" method="post" role="search" id="volunteer-seach-frm" class="search-form">
                             <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
@@ -43,29 +46,33 @@
 
                         <tbody id="search-results">
                             @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td class="td-question">
-                                        @Html.DisplayFor(modelItem => item.volunteer_name)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.volunteer_email)
-                                    </td>
-                                    <td>
-                                        @if (item.volunteer_cv != null)
-    {
-                                     <a href="@Url.Content("~/resumes/"+ item.volunteer_cv)">Watch</a>
+            {
+                <tr>
+                    <td class="td-question">
+                        @Html.DisplayFor(modelItem => item.volunteer_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.volunteer_email)
+                    </td>
+                    <td>
+                        @if (item.volunteer_cv != null)
+        {
+                <a href="@Url.Content("~/resumes/"+ item.volunteer_cv)">Download CV</a>
+}
+                        @if (item.volunteer_cv == null)
+        {
+                <p class="text-center">N.A.</p>
 }
 
-                                    </td>
-                                    <td>
+                    </td>
+                    <td>
 
-                                        @Html.ActionLink("Update", "Edit", new { id = item.volunteer_id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
-                                        @Html.ActionLink("Details", "Details", new { id = item.volunteer_id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.volunteer_id }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
-                                    </td>
-                                </tr>
-                            }
+                        @Html.ActionLink("Edit", "Edit", new { id = item.volunteer_id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Details", "Details", new { id = item.volunteer_id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.volunteer_id }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+}
                         </tbody>
 
                     </table>

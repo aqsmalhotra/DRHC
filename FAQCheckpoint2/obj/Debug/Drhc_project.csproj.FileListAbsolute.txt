@@ -333,3 +333,4 @@ C:\Users\Aqs\Downloads\aqs_second_feature-master\aqs_second_feature-master\FAQCh
 \\Mac\Home\Downloads\testdrhc-master\FAQCheckpoint2\bin\Microsoft.AI.ServerTelemetryChannel.xml
 \\Mac\Home\Downloads\testdrhc-master\FAQCheckpoint2\bin\Microsoft.AI.WindowsServer.xml
 \\Mac\Home\Downloads\testdrhc-master\FAQCheckpoint2\bin\Microsoft.AI.Web.xml
+C:\Users\Aqs\Desktop\dotNetDRHC\FAQCheckpoint2\obj\Debug\Drhc_project.csprojResolveAssemblyReference.cache

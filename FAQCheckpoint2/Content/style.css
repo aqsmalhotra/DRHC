@@ -22,13 +22,7 @@ textarea {
 
 body {
     font-family: 'Lato', sans-serif;
-    color: #111;
-    -webkit-font-smoothing: antialiased;
-    font-size: 1rem;
-    padding: 0;
-    margin: 0;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
+    color: #000;
 }
 
 a, a:link, a:visited, a:active {
@@ -211,7 +205,7 @@ header {
 
 
 footer {
-    background-color: #FBFBFB;
+    background-color: #daf4fd;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

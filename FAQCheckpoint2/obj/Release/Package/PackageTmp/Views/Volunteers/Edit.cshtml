@@ -4,90 +4,103 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container">
-
-    <h2>Edit</h2>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Volunteers</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.volunteer_id)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.volunteer_name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.volunteer_name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.volunteer_name, "", new { @class = "text-danger" })
-                </div>
+<div class="container-fluid">
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
             </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / volunteer/ edit</span>
+                    <h2 class="admin-head">EDIT</h2>
+                    <p>
+                        This section will allow you to update details of the specific volunteer form.
+                    </p>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.volunteer_dob, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.volunteer_dob, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                    @Html.ValidationMessageFor(model => model.volunteer_dob, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                        <div class="form-horizontal">
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.volunteer_id)
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.volunteer_email, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.volunteer_email, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.volunteer_email, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.volunteer_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.volunteer_name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.volunteer_name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.volunteer_phone, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.volunteer_phone, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.volunteer_phone, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.volunteer_dob, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.volunteer_dob, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.volunteer_dob, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.volunteer_interests, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.volunteer_interests, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.volunteer_interests, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.volunteer_email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.volunteer_email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.volunteer_email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.volunteer_shifts, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.volunteer_shifts, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.volunteer_shifts, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.volunteer_phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.volunteer_phone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.volunteer_phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.volunteer_message, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.volunteer_message, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.volunteer_message, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.volunteer_interests, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.volunteer_interests, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.volunteer_interests, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.volunteer_cv, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.volunteer_cv, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.volunteer_cv, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.volunteer_shifts, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.volunteer_shifts, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.volunteer_shifts, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" id="btn_submit" value="Save" class="btn btn-default" />
-                    @Html.ActionLink("Go Back", "Admin", "Volunteers", htmlAttributes: new { @class = "btn btn-info" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.volunteer_message, htmlAttributes: new { @class = "control-label col-md-5" })
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.volunteer_message, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.volunteer_message, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.volunteer_cv, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.volunteer_cv, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.volunteer_cv, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" id="btn_submit" value="Update" class="btn btn-default btn-success" />
+                                    @Html.ActionLink("Go Back", "Admin", "Volunteers", htmlAttributes: new { @class = "btn btn-primary btn-back" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+
                 </div>
             </div>
         </div>
-    }
-
+    </div>
 </div>
