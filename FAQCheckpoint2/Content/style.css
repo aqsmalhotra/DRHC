@@ -1,8 +1,12 @@
-﻿﻿@import url('https://fonts.googleapis.com/css?family=Lato:300,400,600');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,600');
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 html {
     box-sizing: border-box;
+}
+
+h1 {
+    font-size: 24px;
 }
 
 ul {
@@ -21,7 +25,7 @@ textarea {
 }
 
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: #000;
 }
 
@@ -34,112 +38,34 @@ a, a:link, a:visited, a:active {
     text-transform: uppercase;
 }
 
-/*Logo*/
+
 .site-logo {
     max-width: 59px;
 }
 
-/* HOME PAGE STYLING */
+
 header {
     position: relative;
 }
 
 .navbar-light .navbar-nav .nav-link {
-    width: 165px !important;
-    font-weight: 600;
-}
 
-.second-navbar-xs {
-    display: none;
 }
 
 
-.top-box {
-    display: flex;
-    background-color: #fff;
-    justify-content: space-evenly;
-}
 
 .logo {
     flex: 2 1 0;
     text-align: left;
 }
 
-    .logo img {
-        width: 100px;
-        position: relative;
-        left: 30%;
-        right: 50%;
-        padding-top: .4em;
-    }
-
-.second-navbar {
-    flex: 1 1 0;
-    text-align: center;
-}
-
-    .second-navbar ul {
-        display: flex;
-        justify-content: center;
-        list-style-type: none;
-    }
-
-        .second-navbar ul li {
-            flex: 1 1 0;
-            padding-top: .4em;
-        }
-
-            .second-navbar ul li a {
-                color: #00415f;
-                font-size: .85rem;
-            }
-
-
-
-.headliner-content h1 {
-    font-family: "Lato",Helvetica,Arial,sans-serif;
-    font-size: 1.5rem;
-}
-
-.headliner-content p {
-    font-family: 'Lato',sans-serif;
-    font-size: 1rem;
-}
-
-
-
-.gold-btn {
-    font-family: 'Lato',sans-serif;
-    text-decoration: none;
+.logo img {
+    width: 100px;
     position: relative;
-    border: none;
-    display: block;
-    font-size: 1rem;
-    text-shadow: none;
-    border-radius: 8px;
-    background: #D78B1F;
-    text-align: left;
-    color: #000;
-    background-image: -webkit-linear-gradient(top, #fcd532 0%, #f7c804 85%);
-    background-image: -o-linear-gradient(top, #fcd532 0%, #f7c804 85%);
-    background-image: linear-gradient(to bottom, #fcd532 0%, #f7c804 85%);
-    background-repeat: repeat-x;
-    margin: .5em;
-    width: 200px;
-    text-align: left;
-    padding-left: 2em;
-    padding-top: .8em;
-    padding-bottom: .8em;
-    z-index: 999;
+    left: 30%;
+    right: 50%;
+    padding-top: .4em;
 }
-
-    .gold-btn:hover {
-        color: #000;
-        background-image: -webkit-linear-gradient(#f7c804 0%, #fcd532 85%);
-        background-image: -o-linear-gradient(#f7c804 0%, #fcd532 85%);
-        background-image: linear-gradient(#f7c804 0%, #fcd532 85%);
-        background-repeat: repeat-x;
-    }
 
 
 .feature-event {
@@ -147,39 +73,14 @@ header {
     position: relative;
 }
 
-    .feature-event span {
-        color: #A451A7;
-        font-weight: 100;
-    }
-
-
-    .feature-event p {
-        font-size: .8125rem;
-        text-align: justify;
-    }
-
-    .feature-event .event-btn {
-        position: absolute;
-        padding-left: 1em;
-        bottom: 0;
-    }
-
-    .feature-event .feature-content {
-        padding: 1em;
-    }
-
-.feature-block {
-    text-align: center;
+.feature-event span {
+    color: #A451A7;
+    font-weight: 100;
 }
 
-    .feature-block h3 {
-        color: #00415f;
-    }
-
-    .feature-block p {
-        font-size: .8125rem;
-        text-align: justify;
-    }
+.feature-event .feature-content {
+    padding: 1em;
+}
 
 
 
@@ -241,41 +142,16 @@ footer {
         color: #666;
     }
 
-#backToTop {
-    position: fixed;
-    right: 30px;
-    bottom: 30px;
-    z-index: 1;
-}
-
-    #backToTop a {
-        min-width: 50px;
-        padding: .3em;
-        vertical-align: bottom;
-        background-color: #f9f9f9;
-        font-size: 2em;
-        line-height: 0;
-        color: #303030;
-        text-align: center;
-        display: inline-block;
-        border: 1px solid #303030;
-    }
 
 .feature-event h2 {
     color: #0EA3D4;
-    font-weight: 600;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
     .feature-event h2:hover {
         color: #A451A7;
     }
 
-.feature-event p {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 1em;
-    color: #696b6a;
-}
 
 .feature-event-heading {
     font-family: 'Montserrat', sans-serif;
@@ -303,8 +179,8 @@ footer {
 
 
 
-
 /* ARROW SLIDING */
+
 .arrow {
     color: #FFFCF3;
 }
@@ -433,12 +309,8 @@ footer {
 
 /* ACCORDION EFFECT*/
 
-
-
-
-
 .accordion a {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
     position: relative;
     display: flex;
     -webkit-box-orient: vertical;
@@ -448,17 +320,18 @@ footer {
     flex-direction: column;
     width: 100%;
     padding: 1rem 3rem 1rem 1rem;
-    color: #7288a2;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-bottom: 1px solid #e5e5e5;
-    cursor:pointer;
+    color: #111e2d;
+    background-color: #daf4fd;
+    font-size: 1rem;
+    font-weight: 300;
+    border: 1px solid #e5e5e5;
+    cursor: pointer;
 }
 
     .accordion a:hover,
     .accordion a:hover::after {
         cursor: pointer;
-        color: #03b5d2;
+        color: #536c88;
     }
 
         .accordion a:hover::after {
@@ -507,9 +380,7 @@ footer {
     transition: all 0.2s ease 0.15s;
 }
 
-
-
-    .accordion .content p {
+.accordion .content p {
         font-size: 1rem;
         font-weight: 400;
     }
@@ -517,7 +388,7 @@ footer {
     .accordion .content.active {
         opacity: 1;
         padding: 1rem;
-        background-color: #FBFBFB;
+        background-color: #dee2e6;
         max-height: 100%;
         -webkit-transition: all 0.35s ease 0.15s;
         -o-transition: all 0.35s ease 0.15s;
@@ -528,7 +399,6 @@ footer {
 
 .faq_cat {
     background-color: #f8f8f8 !important;
-    font-weight: 600 !important;
 }
 
 .faq_cat:hover {
@@ -547,20 +417,15 @@ footer {
     padding-top: 1em !important;
 }
 
-.footer-nav h2 {
-    font-weight: 600;
-}
-
 .footer-nav ul li a {
-    font-size: 0.9em;
-    font-weight: 600;
+    font-size: 14px;
 }
 
 
 /*LOGIN FORM*/
 .inner-form h1 {
     font-weight: 300;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 2rem;
     text-transform: capitalize;
     text-align: center;

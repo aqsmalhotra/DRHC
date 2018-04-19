@@ -1,10 +1,9 @@
 ﻿<ul class="admin-links">
     @if (User.IsInRole("admin"))
     {
-        <li><i class="fas fa-user-circle"></i> @Html.ActionLink("Staff", "Index", "Accounts")</li>
-
+    <li class="btn-block"><i class="fas fa-user-circle"></i> @Html.ActionLink("Staff", "Index", "Accounts")</li>
     }
-    <li><i class='fas fa-hands-helping'></i> @Html.ActionLink("Volunteers", "Admin", "Volunteers")</li>
-    <li><i class='fas fa-question-circle'></i> @Html.ActionLink("Faqs", "Admin", "FAQs")</li>
-    <li><i class="fas fa-sign-out-alt"></i> @Html.ActionLink("Sign out", "Logout", "Accounts")</li>
+    <li class="btn-block"><i class='fas fa-blind'></i> @Html.ActionLink("Volunteers", "Admin", "Volunteers")</li>
+    <li class="btn-block"><i class='fas fa-question-circle'></i> @Html.ActionLink("Faqs", "Admin", "FAQs")</li>
+    <li class="btn-block"><i class="fas fa-sign-out-alt"></i> @Html.ActionLink("Sign out", "Logout", "Accounts")</li>
 </ul>

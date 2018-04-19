@@ -1,9 +1,9 @@
-﻿@import url('https://fonts.googleapis.com/css?family=Lato:300,600');
-
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 /* Admin Link */
 .btn a {
-color: #FBFBFB !important;
+color: #FBFBFB;
 }
 
 .fas {
@@ -11,24 +11,17 @@ padding-right: 0.5em !important;
 }
 
 
-.td-question {
-text-align: left !important;
-}
-
-
-/* Admin H2 Styling */
 .admin-head {
-    font-family: 'Lato', sans-serif !important;
-    color: #111 !important;
-    padding-top: 0.5em !important;
-    padding-bottom: 0.5em !important;
-    font-size: 1.5em;
-    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #0EA3D4;
+    padding: 10px 0 10px 0;
 }
 
 /* Admin LI Styling */
 .feature-content ul li {
-    font-family: "Lato", sans-serif !important;
+    font-family: "Roboto", sans-serif !important;
 }
 
 /* Admin Boxes Styling */
@@ -39,7 +32,7 @@ text-align: left !important;
 }
 
 /* Admin Form Styling */
-input[type=text], input[type=date], select, textarea {
+input[type=text], input[type=date], input[type=password], input[type=email], select, textarea {
     width: 100%;
     padding: 5px;
     border: 1px solid #ccc;
@@ -85,11 +78,6 @@ table {
     width: 100%;
     table-layout: fixed;
 }
-
-table td {
-    font-weight: 600;
-}
-
 
 label {
     font-weight: bold !important;

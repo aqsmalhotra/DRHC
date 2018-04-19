@@ -15,10 +15,10 @@
             <div class="col-lg-9 col-md-9 col-sm-12">
                 <div class="feature-content">
                     <span><i class="fas fa-home"></i> / dashboard / volunteers</span>
-                    <h2>Volunteers Management</h2>
+                    <h1 class="admin-head">Volunteers Management</h1>
                     <p>Welcome to the admin section of DRHC Volunteer Repository.</p>
-                    <button type="button" class="btn btn-dark">
-                        @Html.ActionLink("Register as Volunteer", "Index")
+                    <button type="button" class="btn btn-success">
+                        @Html.ActionLink("ADD VOLUNTEER", "Index")
                     </button>
                     <div>
                         <form action="#" method="post" role="search" id="volunteer-seach-frm" class="search-form">
@@ -48,7 +48,7 @@
                             @foreach (var item in Model)
             {
                 <tr>
-                    <td class="td-question">
+                    <td class="td-left">
                         @Html.DisplayFor(modelItem => item.volunteer_name)
                     </td>
                     <td>
