@@ -1,0 +1,153 @@
+﻿@model FAQCheckpoint2.Models.Article
+@Styles.Render("~/Content/stylesheets/articles.css")
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="col-xs-12 col-md-9">
+    @if (User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id}, new { @class = "" })
+        <span>|</span>
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new {@class = ""})
+        <span>|</span>
+
+        @Html.ActionLink("Back to List", "Index")
+
+    }
+    <div class="col-xs-12 shadow">
+        <div>
+            <div>
+                <h1>@Html.DisplayFor(model => model.Title) </h1>
+            </div>
+            <div>
+                <div><span>@Model.Timestamp_publiched</span></div>
+                <div><span>By: @Model.User.Username</span></div>
+
+            </div>
+        </div>
+        <div id="image_containter">
+            <img src="@Url.Content("~/Images/Articles/" + Model.Id + "/" + Model.image_url)" alt="Flag image for @Model.Title" class="image-prev" />
+        </div>
+        <div>
+            <p>@Model.Body</p>
+        </div>
+
+    </div>
+    <div>
+        <div class="col-xs-12 shadow" id="comment-section">
+            <div>
+                <div>
+                    <h5>Comments</h5>
+                </div>
+                <div id="formMessage">
+
+                </div>
+                <div class="form-group">
+                    <input type="hidden" value="@Model.Id" name="Id" />
+                    @Html.AntiForgeryToken()
+                    <label for="new_comment">Add Comment:</label>
+                    <textarea class="form-control" rows="5" id="new_comment" value="test content"></textarea>
+                </div>
+                <div>
+                    <div>
+                        <button id="newBtn" onclick="newCommentClick()" class="btn btn-default">Add Comment</button>
+                    </div>
+                </div>
+                <div id="commentList">
+                    @foreach (FAQCheckpoint2.Models.Comment comment in Model.Comments)
+                    {
+                        <div>
+                            <div>
+                                <label>@comment.User.Username</label>
+                            </div>
+                            <div>
+                                <p>@comment.Body</p>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xs-3 aside-content shadow">
+        <h4>Trending News</h4>
+    </div>
+<div>
+    
+    
+</div>
+
+
+<script type="text/javascript">
+    AddAntiForgeryToken = function (data) {
+        data.__RequestVerificationToken = $('[name="__RequestVerificationToken"]').val();
+        return data;
+    };
+    function commentAdded(data) {
+        console.log(data);
+        if (data.comment) {
+            $("#formMessage").html(data["message"]);
+            $("#formMessage").css("color", "green");
+            $.ajax({
+                type: 'GET',
+                contentType: "application/json; charset=utf-8",
+                url: '/Ajax/GetCommentList/' + $("[name='Id'").val(),
+                success: function (data) {
+                    $("#formMessage").html(data["message"]);
+                    $("#formMessage").css("color", "green");
+                    renderComments(data["comments"])
+                },
+                fail: function (data) {
+                    $("#formMessage").html(data["message"]);
+                    $("#formMessage").css("color", "red");
+                }
+            });
+        }
+        else {
+            $("#formMessage").html(data["message"]);
+            $("#formMessage").css("color", "red");
+        };
+
+    };
+    function errorCommentAdded(data) {
+        console.log(data);
+        $("#formMessage").html(data["message"]);
+        $("#formMessage").css("color", "red");
+        $("#newBtn").prop("disabled", false);
+    };
+
+    function newCommentClick() {
+        $("#newBtn").prop("disabled", true);
+        var comment = { Body: $("#new_comment").val(), Article_id: $("[name='Id'").val() };
+        $.ajax({
+            data: JSON.stringify(comment),
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            url: '/Ajax/AddComment',
+            success: commentAdded,
+            fail: errorCommentAdded
+        });
+    };
+
+    function renderComments(comments) {
+        console.log(comments);
+        var innerhtml = "";
+        for (var comment in comments) {
+
+            innerhtml += renderComment(comments[comment]);
+        }
+        $("#commentList").html(innerhtml);
+    }
+    function renderComment(comment) {
+        console.log(comment);
+        return "<div><div>" +
+            "<label>" + comment.Username + "</label>" +
+            "</div><div>" +
+            "<p>" + comment.Body + "</p>" +
+            "</div></div>";
+    }
+</script>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Hospital.Staff_Members>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Breaf_Bio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Working_From)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created_At)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image_Url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.First_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Breaf_Bio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Working_From)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created_At)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image_Url)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
