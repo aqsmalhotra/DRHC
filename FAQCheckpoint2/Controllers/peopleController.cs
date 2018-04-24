@@ -69,8 +69,11 @@ namespace FAQCheckpoint2.Controllers
                         user.Password = passwordInput;
                         user.Role_id = 3;
                         db.Users.Add(user);
+
+                        Session["role"] = user.Role_id;
+                        Session["username"] = user.Username;
+                        Session["id"] = user.person_id;
                         return RedirectToAction("Details/"+user.person_id.ToString(), user.person_id);
-                        //return RedirectToAction("Index");
                     }
                     ViewBag.passwordErrorMsg = "Passwords must match.";
                     return View(person);
@@ -80,63 +83,6 @@ namespace FAQCheckpoint2.Controllers
             }
 
             return View(person);
-        }
-
-        // GET: people/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            person person = db.persons.Find(id);
-            if (person == null)
-            {
-                return HttpNotFound();
-            }
-            return View(person);
-        }
-
-        // POST: people/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,first_name,middle_name,last_name,email,gender,health_card")] person person)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(person).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(person);
-        }
-
-        // GET: people/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            person person = db.persons.Find(id);
-            if (person == null)
-            {
-                return HttpNotFound();
-            }
-            return View(person);
-        }
-
-        // POST: people/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            person person = db.persons.Find(id);
-            db.persons.Remove(person);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
