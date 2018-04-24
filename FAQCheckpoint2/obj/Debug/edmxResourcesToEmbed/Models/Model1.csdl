@@ -45,6 +45,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Staff_Members" Relationship="aqsmalhotraModel.FK_Staff_Members_Departments" FromRole="Department" ToRole="Staff_Members" />
+    <NavigationProperty Name="Job_Postings" Relationship="aqsmalhotraModel.FK_JOB_DEPARTMENT" FromRole="Department" ToRole="Job_Postings" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -149,6 +150,17 @@
       <End Role="person" EntitySet="persons" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="Applications" EntityType="aqsmalhotraModel.Application" />
+    <EntitySet Name="Events" EntityType="aqsmalhotraModel.Event" />
+    <EntitySet Name="Job_Postings" EntityType="aqsmalhotraModel.Job_Postings" />
+    <AssociationSet Name="FK_APPLICATION_JOB" Association="aqsmalhotraModel.FK_APPLICATION_JOB">
+      <End Role="Job_Postings" EntitySet="Job_Postings" />
+      <End Role="Application" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JOB_DEPARTMENT" Association="aqsmalhotraModel.FK_JOB_DEPARTMENT">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Job_Postings" EntitySet="Job_Postings" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Staff_Members">
     <Key>
@@ -246,6 +258,73 @@
       </Principal>
       <Dependent Role="User">
         <PropertyRef Name="person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="app_id" />
+    </Key>
+    <Property Name="app_id" Type="Int32" Nullable="false" />
+    <Property Name="app_first_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="app_last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="app_address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="app_city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="app_province" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="app_postal_code" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="app_phone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="app_email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="app_comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="app_submission_date" Type="DateTime" Precision="0" />
+    <Property Name="job_posting" Type="Int32" />
+    <NavigationProperty Name="Job_Postings" Relationship="aqsmalhotraModel.FK_APPLICATION_JOB" FromRole="Application" ToRole="Job_Postings" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="ev_id" />
+    </Key>
+    <Property Name="ev_id" Type="Int32" Nullable="false" />
+    <Property Name="ev_title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ev_description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ev_start_date" Type="DateTime" Precision="0" />
+    <Property Name="ev_end_date" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Job_Postings">
+    <Key>
+      <PropertyRef Name="job_id" />
+    </Key>
+    <Property Name="job_id" Type="Int32" Nullable="false" />
+    <Property Name="job_title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="job_description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="job_type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="job_openings" Type="Int32" />
+    <Property Name="job_posted_date" Type="DateTime" Precision="0" />
+    <Property Name="job_closing_date" Type="DateTime" Precision="0" />
+    <Property Name="dept" Type="Int32" />
+    <NavigationProperty Name="Applications" Relationship="aqsmalhotraModel.FK_APPLICATION_JOB" FromRole="Job_Postings" ToRole="Application" />
+    <NavigationProperty Name="Department" Relationship="aqsmalhotraModel.FK_JOB_DEPARTMENT" FromRole="Job_Postings" ToRole="Department" />
+  </EntityType>
+  <Association Name="FK_APPLICATION_JOB">
+    <End Type="aqsmalhotraModel.Job_Postings" Role="Job_Postings" Multiplicity="0..1" />
+    <End Type="aqsmalhotraModel.Application" Role="Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job_Postings">
+        <PropertyRef Name="job_id" />
+      </Principal>
+      <Dependent Role="Application">
+        <PropertyRef Name="job_posting" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JOB_DEPARTMENT">
+    <End Type="aqsmalhotraModel.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="aqsmalhotraModel.Job_Postings" Role="Job_Postings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Job_Postings">
+        <PropertyRef Name="dept" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

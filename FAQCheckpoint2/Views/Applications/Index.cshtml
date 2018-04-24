@@ -1,0 +1,94 @@
+﻿@model IEnumerable<FAQCheckpoint2.Models.Application>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.app_first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.app_last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.app_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.app_city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.app_province)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.app_postal_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.app_phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.app_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.app_comments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.app_submission_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Job_Postings.job_title)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_first_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_last_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_city)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_province)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_postal_code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_comments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_submission_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Job_Postings.job_title)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.app_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.app_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.app_id })
+        </td>
+    </tr>
+}
+
+</table>

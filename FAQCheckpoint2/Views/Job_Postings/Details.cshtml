@@ -1,0 +1,75 @@
+﻿@model FAQCheckpoint2.Models.Job_Postings
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Job_Postings</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.job_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_openings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_openings)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_posted_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_posted_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_closing_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_closing_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.job_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

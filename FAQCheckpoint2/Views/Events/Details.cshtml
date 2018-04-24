@@ -1,0 +1,51 @@
+﻿@model FAQCheckpoint2.Models.Event
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ev_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ev_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ev_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ev_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ev_start_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ev_start_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ev_end_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ev_end_date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ev_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

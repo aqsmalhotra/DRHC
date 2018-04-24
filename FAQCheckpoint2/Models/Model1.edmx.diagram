@@ -22,6 +22,11 @@
         <AssociationConnector Association="aqsmalhotraModel.FK__ecards__card_cho__32AB8735" />
         <AssociationConnector Association="aqsmalhotraModel.FK__ecards__person_i__31B762FC" />
         <AssociationConnector Association="aqsmalhotraModel.FK__Users__person_id__2BFE89A6" />
+        <EntityTypeShape EntityType="aqsmalhotraModel.Application" Width="1.5" PointX="7.25" PointY="11.875" />
+        <EntityTypeShape EntityType="aqsmalhotraModel.Event" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="aqsmalhotraModel.Job_Postings" Width="1.5" PointX="5" PointY="12.125" />
+        <AssociationConnector Association="aqsmalhotraModel.FK_APPLICATION_JOB" />
+        <AssociationConnector Association="aqsmalhotraModel.FK_JOB_DEPARTMENT" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

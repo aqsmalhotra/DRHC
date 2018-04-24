@@ -104,5 +104,48 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Applications">
+      <EntityTypeMapping TypeName="aqsmalhotraModel.Application">
+        <MappingFragment StoreEntitySet="Applications">
+          <ScalarProperty Name="job_posting" ColumnName="job_posting" />
+          <ScalarProperty Name="app_submission_date" ColumnName="app_submission_date" />
+          <ScalarProperty Name="app_comments" ColumnName="app_comments" />
+          <ScalarProperty Name="app_email" ColumnName="app_email" />
+          <ScalarProperty Name="app_phone" ColumnName="app_phone" />
+          <ScalarProperty Name="app_postal_code" ColumnName="app_postal_code" />
+          <ScalarProperty Name="app_province" ColumnName="app_province" />
+          <ScalarProperty Name="app_city" ColumnName="app_city" />
+          <ScalarProperty Name="app_address" ColumnName="app_address" />
+          <ScalarProperty Name="app_last_name" ColumnName="app_last_name" />
+          <ScalarProperty Name="app_first_name" ColumnName="app_first_name" />
+          <ScalarProperty Name="app_id" ColumnName="app_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="aqsmalhotraModel.Event">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="ev_end_date" ColumnName="ev_end_date" />
+          <ScalarProperty Name="ev_start_date" ColumnName="ev_start_date" />
+          <ScalarProperty Name="ev_description" ColumnName="ev_description" />
+          <ScalarProperty Name="ev_title" ColumnName="ev_title" />
+          <ScalarProperty Name="ev_id" ColumnName="ev_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Job_Postings">
+      <EntityTypeMapping TypeName="aqsmalhotraModel.Job_Postings">
+        <MappingFragment StoreEntitySet="Job_Postings">
+          <ScalarProperty Name="dept" ColumnName="dept" />
+          <ScalarProperty Name="job_closing_date" ColumnName="job_closing_date" />
+          <ScalarProperty Name="job_posted_date" ColumnName="job_posted_date" />
+          <ScalarProperty Name="job_openings" ColumnName="job_openings" />
+          <ScalarProperty Name="job_type" ColumnName="job_type" />
+          <ScalarProperty Name="job_description" ColumnName="job_description" />
+          <ScalarProperty Name="job_title" ColumnName="job_title" />
+          <ScalarProperty Name="job_id" ColumnName="job_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

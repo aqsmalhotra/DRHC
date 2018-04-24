@@ -5,6 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="aqsmalhotraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="app_id" />
+          </Key>
+          <Property Name="app_id" Type="int" Nullable="false" />
+          <Property Name="app_first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="app_last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="app_address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="app_city" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="app_province" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="app_postal_code" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="app_phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="app_email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="app_comments" Type="varchar" MaxLength="500" />
+          <Property Name="app_submission_date" Type="date" />
+          <Property Name="job_posting" Type="int" />
+        </EntityType>
         <EntityType Name="Articles">
           <Key>
             <PropertyRef Name="Id" />
@@ -62,6 +79,29 @@
           <Property Name="person_id" Type="int" Nullable="false" />
           <Property Name="card_choice" Type="int" Nullable="false" />
           <Property Name="card_message" Type="varchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="ev_id" />
+          </Key>
+          <Property Name="ev_id" Type="int" Nullable="false" />
+          <Property Name="ev_title" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ev_description" Type="varchar(max)" Nullable="false" />
+          <Property Name="ev_start_date" Type="date" />
+          <Property Name="ev_end_date" Type="date" />
+        </EntityType>
+        <EntityType Name="Job_Postings">
+          <Key>
+            <PropertyRef Name="job_id" />
+          </Key>
+          <Property Name="job_id" Type="int" Nullable="false" />
+          <Property Name="job_title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="job_description" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="job_type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="job_openings" Type="int" />
+          <Property Name="job_posted_date" Type="date" />
+          <Property Name="job_closing_date" Type="date" />
+          <Property Name="dept" Type="int" />
         </EntityType>
         <EntityType Name="persons">
           <Key>
@@ -159,6 +199,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_APPLICATION_JOB">
+          <End Role="Job_Postings" Type="Self.Job_Postings" Multiplicity="0..1" />
+          <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job_Postings">
+              <PropertyRef Name="job_id" />
+            </Principal>
+            <Dependent Role="Applications">
+              <PropertyRef Name="job_posting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_comments_articles">
           <End Role="Articles" Type="Self.Articles" Multiplicity="1" />
           <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
@@ -183,6 +235,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_JOB_DEPARTMENT">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="Job_Postings" Type="Self.Job_Postings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Job_Postings">
+              <PropertyRef Name="dept" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Staff_Members_Departments">
           <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
           <End Role="Staff_Members" Type="Self.Staff_Members" Multiplicity="*" />
@@ -196,12 +260,15 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="aqsmalhotraModelStoreContainer">
+          <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="card_choices" EntityType="Self.card_choices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ecards" EntityType="Self.ecards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job_Postings" EntityType="Self.Job_Postings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="persons" EntityType="Self.persons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff_Members" EntityType="Self.Staff_Members" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -225,6 +292,10 @@
             <End Role="persons" EntitySet="persons" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_APPLICATION_JOB" Association="Self.FK_APPLICATION_JOB">
+            <End Role="Job_Postings" EntitySet="Job_Postings" />
+            <End Role="Applications" EntitySet="Applications" />
+          </AssociationSet>
           <AssociationSet Name="fk_comments_articles" Association="Self.fk_comments_articles">
             <End Role="Articles" EntitySet="Articles" />
             <End Role="Comments" EntitySet="Comments" />
@@ -232,6 +303,10 @@
           <AssociationSet Name="fk_comments_users" Association="Self.fk_comments_users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JOB_DEPARTMENT" Association="Self.FK_JOB_DEPARTMENT">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Job_Postings" EntitySet="Job_Postings" />
           </AssociationSet>
           <AssociationSet Name="FK_Staff_Members_Departments" Association="Self.FK_Staff_Members_Departments">
             <End Role="Departments" EntitySet="Departments" />
@@ -287,6 +362,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Staff_Members" Relationship="aqsmalhotraModel.FK_Staff_Members_Departments" FromRole="Department" ToRole="Staff_Members" />
+          <NavigationProperty Name="Job_Postings" Relationship="aqsmalhotraModel.FK_JOB_DEPARTMENT" FromRole="Department" ToRole="Job_Postings" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -391,6 +467,17 @@
             <End Role="person" EntitySet="persons" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Applications" EntityType="aqsmalhotraModel.Application" />
+          <EntitySet Name="Events" EntityType="aqsmalhotraModel.Event" />
+          <EntitySet Name="Job_Postings" EntityType="aqsmalhotraModel.Job_Postings" />
+          <AssociationSet Name="FK_APPLICATION_JOB" Association="aqsmalhotraModel.FK_APPLICATION_JOB">
+            <End Role="Job_Postings" EntitySet="Job_Postings" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JOB_DEPARTMENT" Association="aqsmalhotraModel.FK_JOB_DEPARTMENT">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Job_Postings" EntitySet="Job_Postings" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Staff_Members">
           <Key>
@@ -488,6 +575,73 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="app_id" />
+          </Key>
+          <Property Name="app_id" Type="Int32" Nullable="false" />
+          <Property Name="app_first_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="app_last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="app_address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="app_city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="app_province" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="app_postal_code" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="app_phone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="app_email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="app_comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="app_submission_date" Type="DateTime" Precision="0" />
+          <Property Name="job_posting" Type="Int32" />
+          <NavigationProperty Name="Job_Postings" Relationship="aqsmalhotraModel.FK_APPLICATION_JOB" FromRole="Application" ToRole="Job_Postings" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="ev_id" />
+          </Key>
+          <Property Name="ev_id" Type="Int32" Nullable="false" />
+          <Property Name="ev_title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ev_description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ev_start_date" Type="DateTime" Precision="0" />
+          <Property Name="ev_end_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Job_Postings">
+          <Key>
+            <PropertyRef Name="job_id" />
+          </Key>
+          <Property Name="job_id" Type="Int32" Nullable="false" />
+          <Property Name="job_title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="job_description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="job_type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="job_openings" Type="Int32" />
+          <Property Name="job_posted_date" Type="DateTime" Precision="0" />
+          <Property Name="job_closing_date" Type="DateTime" Precision="0" />
+          <Property Name="dept" Type="Int32" />
+          <NavigationProperty Name="Applications" Relationship="aqsmalhotraModel.FK_APPLICATION_JOB" FromRole="Job_Postings" ToRole="Application" />
+          <NavigationProperty Name="Department" Relationship="aqsmalhotraModel.FK_JOB_DEPARTMENT" FromRole="Job_Postings" ToRole="Department" />
+        </EntityType>
+        <Association Name="FK_APPLICATION_JOB">
+          <End Type="aqsmalhotraModel.Job_Postings" Role="Job_Postings" Multiplicity="0..1" />
+          <End Type="aqsmalhotraModel.Application" Role="Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job_Postings">
+              <PropertyRef Name="job_id" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="job_posting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JOB_DEPARTMENT">
+          <End Type="aqsmalhotraModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="aqsmalhotraModel.Job_Postings" Role="Job_Postings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Job_Postings">
+              <PropertyRef Name="dept" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -597,6 +751,49 @@
                 <ScalarProperty Name="middle_name" ColumnName="middle_name" />
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="aqsmalhotraModel.Application">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="job_posting" ColumnName="job_posting" />
+                <ScalarProperty Name="app_submission_date" ColumnName="app_submission_date" />
+                <ScalarProperty Name="app_comments" ColumnName="app_comments" />
+                <ScalarProperty Name="app_email" ColumnName="app_email" />
+                <ScalarProperty Name="app_phone" ColumnName="app_phone" />
+                <ScalarProperty Name="app_postal_code" ColumnName="app_postal_code" />
+                <ScalarProperty Name="app_province" ColumnName="app_province" />
+                <ScalarProperty Name="app_city" ColumnName="app_city" />
+                <ScalarProperty Name="app_address" ColumnName="app_address" />
+                <ScalarProperty Name="app_last_name" ColumnName="app_last_name" />
+                <ScalarProperty Name="app_first_name" ColumnName="app_first_name" />
+                <ScalarProperty Name="app_id" ColumnName="app_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="aqsmalhotraModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="ev_end_date" ColumnName="ev_end_date" />
+                <ScalarProperty Name="ev_start_date" ColumnName="ev_start_date" />
+                <ScalarProperty Name="ev_description" ColumnName="ev_description" />
+                <ScalarProperty Name="ev_title" ColumnName="ev_title" />
+                <ScalarProperty Name="ev_id" ColumnName="ev_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Job_Postings">
+            <EntityTypeMapping TypeName="aqsmalhotraModel.Job_Postings">
+              <MappingFragment StoreEntitySet="Job_Postings">
+                <ScalarProperty Name="dept" ColumnName="dept" />
+                <ScalarProperty Name="job_closing_date" ColumnName="job_closing_date" />
+                <ScalarProperty Name="job_posted_date" ColumnName="job_posted_date" />
+                <ScalarProperty Name="job_openings" ColumnName="job_openings" />
+                <ScalarProperty Name="job_type" ColumnName="job_type" />
+                <ScalarProperty Name="job_description" ColumnName="job_description" />
+                <ScalarProperty Name="job_title" ColumnName="job_title" />
+                <ScalarProperty Name="job_id" ColumnName="job_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

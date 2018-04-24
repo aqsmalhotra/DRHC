@@ -1,0 +1,70 @@
+﻿@model IEnumerable<FAQCheckpoint2.Models.Job_Postings>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.job_title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_openings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_posted_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_closing_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_openings)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_posted_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_closing_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.job_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.job_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.job_id })
+        </td>
+    </tr>
+}
+
+</table>
