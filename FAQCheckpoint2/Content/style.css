@@ -560,3 +560,13 @@ input.search-submit {
 input.search-text::-webkit-search-cancel-button {
     cursor: pointer;
 }
+.contact.contact__form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.contact .label-thankyou {
+    margin: 1.5rem auto;
+    display: block;
+}

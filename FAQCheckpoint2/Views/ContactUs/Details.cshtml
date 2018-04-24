@@ -1,0 +1,72 @@
+﻿@model FAQCheckpoint2.Models.Contact_messages
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid contact">
+    <div class="feature-event p-4">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / Contact Us / Details</span>
+                    <h2 class="mb-2 mt-3">Customer message</h2>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Message)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Message)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Subject)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Subject)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Reg_date)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Reg_date)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Phone)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Phone)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
