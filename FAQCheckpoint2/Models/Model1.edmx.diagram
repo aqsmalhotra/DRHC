@@ -16,6 +16,12 @@
         <AssociationConnector Association="aqsmalhotraModel.fk_comments_users" ManuallyRouted="false" />
         <EntityTypeShape EntityType="aqsmalhotraModel.Staff_Members" Width="1.5" PointX="5.375" PointY="4.75" />
         <AssociationConnector Association="aqsmalhotraModel.FK_Staff_Members_Departments" />
+        <EntityTypeShape EntityType="aqsmalhotraModel.card_choices" Width="1.5" PointX="3.375" PointY="9.125" />
+        <EntityTypeShape EntityType="aqsmalhotraModel.ecard" Width="1.5" PointX="1.125" PointY="9" />
+        <EntityTypeShape EntityType="aqsmalhotraModel.person" Width="1.5" PointX="0.75" PointY="4.5" />
+        <AssociationConnector Association="aqsmalhotraModel.FK__ecards__card_cho__32AB8735" />
+        <AssociationConnector Association="aqsmalhotraModel.FK__ecards__person_i__31B762FC" />
+        <AssociationConnector Association="aqsmalhotraModel.FK__Users__person_id__2BFE89A6" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

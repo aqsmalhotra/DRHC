@@ -1,0 +1,75 @@
+﻿@model FAQCheckpoint2.Models.ecard
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ecard</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.sender_first_name, "Sender", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.sender_first_name)
+                @Html.HiddenFor(model => model.sender_last_name)
+
+                @Html.DisplayFor(model => model.sender_first_name) @Html.DisplayFor(model => model.sender_last_name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sender_email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.sender_email)
+                @Html.DisplayFor(model => model.sender_email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sender_first_name, "Recipient", htmlAttributes: new { @class = "control-label col-md-2 text-right" })
+
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.person_id)
+                @Html.DisplayFor(model => model.person.first_name) @Html.DisplayFor(model => model.person.last_name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.card_choice, "card_choice", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("card_choice", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.card_choice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.card_message, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.card_message, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.card_message, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

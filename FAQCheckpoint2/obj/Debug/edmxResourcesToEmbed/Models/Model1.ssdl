@@ -15,6 +15,13 @@
     <Property Name="Timestamp_published" Type="datetime" />
     <Property Name="Timestamp_publiched" Type="datetime2" Precision="7" />
   </EntityType>
+  <EntityType Name="card_choices">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="choice" Type="varchar" MaxLength="20" />
+  </EntityType>
   <EntityType Name="Categories">
     <Key>
       <PropertyRef Name="Id" />
@@ -39,6 +46,31 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="ecards">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sender_first_name" Type="varchar" MaxLength="30" />
+    <Property Name="sender_last_name" Type="varchar" MaxLength="30" />
+    <Property Name="sender_email" Type="varchar" MaxLength="100" />
+    <Property Name="person_id" Type="int" Nullable="false" />
+    <Property Name="card_choice" Type="int" Nullable="false" />
+    <Property Name="card_message" Type="varchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="persons">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="middle_name" Type="varchar" MaxLength="20" />
+    <Property Name="last_name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="gender" Type="varchar" MaxLength="10" />
+    <Property Name="health_card" Type="varchar" MaxLength="12" />
+    <Property Name="date_of_birth" Type="date" />
+  </EntityType>
   <EntityType Name="Staff_Members">
     <Key>
       <PropertyRef Name="Id" />
@@ -60,6 +92,7 @@
     <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="varchar" MaxLength="32" Nullable="false" />
     <Property Name="Role_id" Type="int" Nullable="false" />
+    <Property Name="person_id" Type="int" />
   </EntityType>
   <Association Name="articles_fk_categories">
     <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
@@ -82,6 +115,42 @@
       </Principal>
       <Dependent Role="Articles">
         <PropertyRef Name="Author_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ecards__card_cho__32AB8735">
+    <End Role="card_choices" Type="Self.card_choices" Multiplicity="1" />
+    <End Role="ecards" Type="Self.ecards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="card_choices">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ecards">
+        <PropertyRef Name="card_choice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ecards__person_i__31B762FC">
+    <End Role="persons" Type="Self.persons" Multiplicity="1" />
+    <End Role="ecards" Type="Self.ecards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="persons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ecards">
+        <PropertyRef Name="person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__person_id__2BFE89A6">
+    <End Role="persons" Type="Self.persons" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="persons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="person_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -123,9 +192,12 @@
   </Association>
   <EntityContainer Name="aqsmalhotraModelStoreContainer">
     <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="card_choices" EntityType="Self.card_choices" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ecards" EntityType="Self.ecards" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="persons" EntityType="Self.persons" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Staff_Members" EntityType="Self.Staff_Members" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="articles_fk_categories" Association="Self.articles_fk_categories">
@@ -135,6 +207,18 @@
     <AssociationSet Name="articles_fk_users" Association="Self.articles_fk_users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Articles" EntitySet="Articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ecards__card_cho__32AB8735" Association="Self.FK__ecards__card_cho__32AB8735">
+      <End Role="card_choices" EntitySet="card_choices" />
+      <End Role="ecards" EntitySet="ecards" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ecards__person_i__31B762FC" Association="Self.FK__ecards__person_i__31B762FC">
+      <End Role="persons" EntitySet="persons" />
+      <End Role="ecards" EntitySet="ecards" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__person_id__2BFE89A6" Association="Self.FK__Users__person_id__2BFE89A6">
+      <End Role="persons" EntitySet="persons" />
+      <End Role="Users" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="fk_comments_articles" Association="Self.fk_comments_articles">
       <End Role="Articles" EntitySet="Articles" />

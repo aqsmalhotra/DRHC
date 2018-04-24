@@ -162,8 +162,11 @@
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\ecardsController.cs" />
     <Compile Include="Controllers\FAQsController.cs" />
+    <Compile Include="Controllers\peopleController.cs" />
     <Compile Include="Controllers\Staff_MembersController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VolunteersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -174,6 +177,9 @@
     <Compile Include="Models\Article.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\card_choices.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -181,6 +187,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Department.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ecard.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FAQ.cs" />
@@ -201,6 +210,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\MyRoleProvider.cs" />
+    <Compile Include="Models\person.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Staff_Members.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -385,6 +397,17 @@
     <Content Include="Views\Staff_Members\Details.cshtml" />
     <Content Include="Views\Staff_Members\Edit.cshtml" />
     <Content Include="Views\Staff_Members\Index.cshtml" />
+    <Content Include="Views\people\Create.cshtml" />
+    <Content Include="Views\people\Delete.cshtml" />
+    <Content Include="Views\people\Details.cshtml" />
+    <Content Include="Views\people\Edit.cshtml" />
+    <Content Include="Views\people\Index.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\ecards\Create.cshtml" />
+    <Content Include="Views\ecards\Delete.cshtml" />
+    <Content Include="Views\ecards\Details.cshtml" />
+    <Content Include="Views\ecards\Edit.cshtml" />
+    <Content Include="Views\ecards\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

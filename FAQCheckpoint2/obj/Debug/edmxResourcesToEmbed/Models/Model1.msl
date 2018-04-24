@@ -47,6 +47,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="aqsmalhotraModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
@@ -65,6 +66,41 @@
           <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
           <ScalarProperty Name="First_Name" ColumnName="First_Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="card_choices">
+      <EntityTypeMapping TypeName="aqsmalhotraModel.card_choices">
+        <MappingFragment StoreEntitySet="card_choices">
+          <ScalarProperty Name="choice" ColumnName="choice" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ecards">
+      <EntityTypeMapping TypeName="aqsmalhotraModel.ecard">
+        <MappingFragment StoreEntitySet="ecards">
+          <ScalarProperty Name="card_message" ColumnName="card_message" />
+          <ScalarProperty Name="card_choice" ColumnName="card_choice" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="sender_email" ColumnName="sender_email" />
+          <ScalarProperty Name="sender_last_name" ColumnName="sender_last_name" />
+          <ScalarProperty Name="sender_first_name" ColumnName="sender_first_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="persons">
+      <EntityTypeMapping TypeName="aqsmalhotraModel.person">
+        <MappingFragment StoreEntitySet="persons">
+          <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+          <ScalarProperty Name="health_card" ColumnName="health_card" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
