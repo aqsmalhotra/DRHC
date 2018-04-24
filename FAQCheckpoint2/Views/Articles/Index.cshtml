@@ -3,80 +3,80 @@
 @Styles.Render("~/Content/stylesheets/Articles/index.css")
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-
-<div class="col-sx-12">
-    <div class="row">
-        <div class="col-sm-12 col-md-6">
-            <h2>News Articles</h2>
-            @if (User.IsInRole("admin"))
+<div class="container">
+    <div class="col-sx-12">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h2>News Articles</h2>
+                @if (User.IsInRole("admin"))
             {
-                @Html.ActionLink("Create New", "Create")
-            }
+                    @Html.ActionLink("Create New", "Create")
+                }
 
-        </div>
-        <div class="col-sm-12 col-md-6">
-            <label class="">Search:</label>
-            <input id="search-bar" class="form-control" placeholder="Search" />
-            <button id="seach" onclick="search()">Search</button>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div id="article_list" class="col-sm-9">
-        @if (Model.Count() == 0)
-        {
-            <p>Sorry, no articles were found.</p>
-        }
-        @foreach (FAQCheckpoint2.Models.Article item in Model)
-        {
-            <a href="/Articles/Details/@item.Id">
-                <div class="row shadow">
-                    <div class="article-image col-sm-4">
-                        <img src="@Url.Content("~/images/Articles/" + item.Id + "/" + item.image_url)" alt="Flag image for @item.Title" class="image-prev" />
-                    </div>
-                    <div class="col-sm-8 article-content">
-                        @if (item.Timestamp_publiched == null || item.Timestamp_publiched > DateTime.Now)
-                        {
-                            <span>Not published!</span>
-                        }
-                        <div class="col-sm-12">
-                            <label>@item.Title</label>
-                        </div>
-                        <div class="col-sm-12">
-                            <span>By: @item.User.Username</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        }
-    </div>
-    <div class="col-sm-3 hidden-xs aside-content">
-        <div class=" shadow">
-            <div class="col-sm-12">
-                <h4>Trending News</h4>
             </div>
-            @foreach (FAQCheckpoint2.Models.Article item in ViewBag.Trending)
+            <div class="col-sm-12 col-md-6">
+                <label class="">Search:</label>
+                <input id="search-bar" class="form-control" placeholder="Search" />
+                <button id="seach" onclick="search()">Search</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="article_list" class="col-sm-9">
+            @if (Model.Count() == 0)
+            {
+                <p>Sorry, no articles were found.</p>
+            }
+            @foreach (FAQCheckpoint2.Models.Article item in Model)
             {
                 <a href="/Articles/Details/@item.Id">
-                    <div class="row">
-                        <div class="col-sm-4 article-image">
+                    <div class="row shadow">
+                        <div class="article-image col-sm-4">
                             <img src="@Url.Content("~/images/Articles/" + item.Id + "/" + item.image_url)" alt="Flag image for @item.Title" class="image-prev" />
                         </div>
-                        <div class="col-sm-8">
-                            @item.Title
+                        <div class="col-sm-8 article-content">
+                            @if (item.Timestamp_publiched == null || item.Timestamp_publiched > DateTime.Now)
+                            {
+                                <span>Not published!</span>
+                            }
+                            <div class="col-sm-12">
+                                <label>@item.Title</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <span>By: @item.User.Username</span>
+                            </div>
                         </div>
                     </div>
                 </a>
             }
+        </div>
+        <div class="col-sm-3 hidden-xs aside-content">
+            <div class=" shadow">
+                <div class="col-sm-12">
+                    <h4>Trending News</h4>
+                </div>
+                @foreach (FAQCheckpoint2.Models.Article item in ViewBag.Trending)
+            {
+                    <a href="/Articles/Details/@item.Id">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                @item.Title (@item.clicks views)
+                                <hr />
+                            </div>
+                            
+                        </div>
+                    </a>
+                }
+
+            </div>
 
         </div>
-
     </div>
 </div>
-
 
 
 
