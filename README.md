@@ -9,3 +9,11 @@ Aqs
 Feature #1: http://drhchumbercollege.azurewebsites.net/FAQs  
 Feature #2: http://drhchumbercollege.azurewebsites.net/Volunteers
 
+Azure Credentials
+N01249822@humbermail.ca
+Trojanhorse786
+
+DB 
+aqsm2011
+46261509Aqs
+
