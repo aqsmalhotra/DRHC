@@ -69,7 +69,7 @@ namespace FAQCheckpoint2.Controllers
                         user.Password = passwordInput;
                         user.Role_id = 3;
                         db.Users.Add(user);
-                        return RedirectToAction("Details", user.person_id);
+                        return RedirectToAction("Details/"+user.person_id.ToString(), user.person_id);
                         //return RedirectToAction("Index");
                     }
                     ViewBag.passwordErrorMsg = "Passwords must match.";
