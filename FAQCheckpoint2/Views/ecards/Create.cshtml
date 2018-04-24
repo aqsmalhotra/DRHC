@@ -4,101 +4,110 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <h2>Create</h2>
 
-<h2>Create</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h4>ecard</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.sender_first_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (Session["username"] != null)
+                    {
+                        @Html.HiddenFor(model => model.sender_first_name, new { @Value = Convert.ToString(Session["firstName"]) })
+                        @Html.DisplayName(Convert.ToString(Session["firstName"]))
+                    }
+                    else
+                    {
+                        @Html.EditorFor(model => model.sender_first_name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.sender_first_name, "", new { @class = "text-danger" })
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.sender_last_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (Session["username"] != null)
+                    {
+                        @Html.HiddenFor(model => model.sender_last_name, new { @Value = Convert.ToString(Session["lastName"]) })
+                        @Html.DisplayName(Convert.ToString(Session["lastName"]))
+                    }
+                    else
+                    {
+                        @Html.EditorFor(model => model.sender_last_name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.sender_last_name, "", new { @class = "text-danger" })
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.sender_email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (Session["username"] != null)
+                    {
+                        @Html.HiddenFor(model => model.sender_email, new { @Value = Convert.ToString(Session["email"]) })
+                        @Html.DisplayName(Convert.ToString(Session["email"]))
+                    }
+                    else
+                    {
+                        @Html.EditorFor(model => model.sender_email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.sender_email, "", new { @class = "text-danger" })
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.person.first_name, "Recipient First Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("recipFirstName", "", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.person_id, "", new { @class = "text-danger" })
+
+                    <p class="text-danger">@ViewBag.fNameError</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.person.last_name, "Recipient Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("recipLastName", "", new { @class = "form-control" })
+                    <p class="text-danger">@ViewBag.lNameError</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.card_choice, "card_choice", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("card_choice", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.card_choice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.card_message, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.card_message, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.card_message, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
     
-<div class="form-horizontal">
-    <h4>ecard</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-            @Html.LabelFor(model => model.sender_first_name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @if (Session["username"] != null)
-                {
-                @Html.HiddenFor(model => model.sender_first_name, new {@Value = Convert.ToString(Session["firstName"])})
-                @Html.DisplayName(Convert.ToString(Session["firstName"]))
-                } else {
-                @Html.EditorFor(model => model.sender_first_name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.sender_first_name, "", new { @class = "text-danger" })
-                }
-            </div>
-        </div>
+    }
 
-    <div class="form-group">
-            @Html.LabelFor(model => model.sender_last_name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @if (Session["username"] != null)
-                {
-                @Html.HiddenFor(model => model.sender_last_name, new {@Value = Convert.ToString(Session["lastName"])})
-                @Html.DisplayName(Convert.ToString(Session["lastName"]))
-                } else {
-                @Html.EditorFor(model => model.sender_last_name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.sender_last_name, "", new { @class = "text-danger" })
-                }
-            </div>
-        </div>
-
-    <div class="form-group">
-            @Html.LabelFor(model => model.sender_email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @if (Session["username"] != null)
-                {
-                @Html.HiddenFor(model => model.sender_email, new {@Value = Convert.ToString(Session["email"])})
-                @Html.DisplayName(Convert.ToString(Session["email"]))
-                } else {
-                @Html.EditorFor(model => model.sender_email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.sender_email, "", new { @class = "text-danger" })
-                }
-            </div>
-        </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.person.first_name, "Recipient First Name", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBox("recipFirstName", "", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.person_id, "", new { @class = "text-danger" })
-
-            <p class="text-danger">@ViewBag.fNameError</p>
-        </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.person.last_name, "Recipient Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBox("recipLastName", "", new { @class = "form-control" })
-            <p class="text-danger">@ViewBag.lNameError</p>
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.card_choice, "card_choice", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("card_choice", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.card_choice, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.card_message, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.card_message, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.card_message, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
