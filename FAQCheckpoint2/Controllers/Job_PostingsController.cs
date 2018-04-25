@@ -44,13 +44,13 @@ namespace FAQCheckpoint2.Controllers
                 if (id == null)
                 {
                     //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    RedirectToAction("index");
+                    RedirectToAction("Admin");
                 }
                 Job_Postings job_Postings = db.Job_Postings.Find(id);
                 if (job_Postings == null)
                 {
                     //return HttpNotFound();
-                    RedirectToAction("index");
+                    RedirectToAction("Admin");
                 }
                 return View(job_Postings);
             }
@@ -93,7 +93,7 @@ namespace FAQCheckpoint2.Controllers
                     job_Postings.job_posted_date = DateTime.Today;
                     db.Job_Postings.Add(job_Postings);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Admin");
                 }
 
                 ViewBag.dept = new SelectList(db.Departments, "Id", "Name", job_Postings.dept);
@@ -115,13 +115,13 @@ namespace FAQCheckpoint2.Controllers
                 if (id == null)
                 {
                     //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    RedirectToAction("index");
+                    RedirectToAction("Admin");
                 }
                 Job_Postings job_Postings = db.Job_Postings.Find(id);
                 if (job_Postings == null)
                 {
                     //return HttpNotFound();
-                    RedirectToAction("index");
+                    RedirectToAction("Admin");
                 }
                 ViewBag.dept = new SelectList(db.Departments, "Id", "Name", job_Postings.dept);
                 return View(job_Postings);
@@ -147,7 +147,7 @@ namespace FAQCheckpoint2.Controllers
                 {
                     db.Entry(job_Postings).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Admin");
                 }
                 ViewBag.dept = new SelectList(db.Departments, "Id", "Name", job_Postings.dept);
                 return View(job_Postings);
@@ -168,13 +168,13 @@ namespace FAQCheckpoint2.Controllers
                 if (id == null)
                 {
                     //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Admin");
                 }
                 Job_Postings job_Postings = db.Job_Postings.Find(id);
                 if (job_Postings == null)
                 {
                     //return HttpNotFound();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Admin");
                 }
                 return View(job_Postings);
             }
@@ -197,7 +197,7 @@ namespace FAQCheckpoint2.Controllers
                 Job_Postings job_Postings = db.Job_Postings.Find(id);
                 db.Job_Postings.Remove(job_Postings);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             catch (Exception e)
             {

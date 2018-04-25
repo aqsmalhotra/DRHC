@@ -5,73 +5,93 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container-fluid">
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / careers / info</span>
+                    <h1 class="admin-head">Details</h1>
+                    <p>This page contains all the information related to the selected job posting.</p>
+                    <hr />
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.job_title)*@
+                                <label class="bolden">Job Title</label>
+                            </dt>
 
-<div>
-    <h4>Job_Postings</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.job_title)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.job_title)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.job_title)
-        </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.job_description)*@
+                                <label class="bolden">Description</label>
+                            </dt>
 
-        <dt>
-            <span class="multiline">
-                @Html.DisplayNameFor(model => model.job_description)
-            </span>
-        </dt>
+                            <dd>
+                                <div class="multiline">
+                                    @Html.DisplayFor(model => model.job_description)
+                                </div>
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.job_description)
-        </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.job_type)*@
+                                <label class="bolden">Type</label>
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.job_type)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.job_type)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.job_type)
-        </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.job_openings)*@
+                                <label class="bolden">Openings</label>
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.job_openings)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.job_openings)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.job_openings)
-        </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.job_posted_date)*@
+                                <label class="bolden">Posted Date</label>
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.job_posted_date)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.job_posted_date)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.job_posted_date)
-        </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.job_closing_date)*@
+                                <label class="bolden">Closing Date</label>
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.job_closing_date)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.job_closing_date)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.job_closing_date)
-        </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.Department.Name)*@
+                                <label class="bolden">Department</label>
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Department.Name)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Department.Name)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Department.Name)
-        </dd>
-
-    </dl>
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.job_id }, htmlAttributes: new { @class = "btn btn-success" })
+                        @Html.ActionLink("Back to List", "Admin", "Job_Postings", htmlAttributes: new { @class = "btn btn-primary btn-back" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.job_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

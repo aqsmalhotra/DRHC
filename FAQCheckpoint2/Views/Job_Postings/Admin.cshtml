@@ -18,31 +18,37 @@
                     <h1 class="admin-head">Careers Management</h1>
                     <p>Welcome to the admin section of DRHC Careers Repository.</p>
                     <button type="button" class="btn btn-success">
-                        @Html.ActionLink("ADD NEW JON POSTING", "Create")
+                        @Html.ActionLink("ADD NEW JOB POSTING", "Create")
                     </button>
-                    @*<div>
-                        <form action="#" method="post" role="search" id="faq-seach-frm" class="search-form">
-                            <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
-                            <input type="search" name="search" id="search" class="search-text" placeholder="Search question..." autocomplete="off">
-                        </form>
-                    </div>*@
+                    <div>
+                        @*<form action="#" method="post" role="search" id="faq-seach-frm" class="search-form">
+                                <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
+                                <input type="search" name="search" id="search" class="search-text" placeholder="Search question..." autocomplete="off">
+                            </form>*@
+                    </div>
+                    <br />
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.job_title)
+                                    @*@Html.DisplayNameFor(model => model.job_title)*@
+                                    Job Title
                                 </th>
-                                <th>
+                                @*<th>
                                     @Html.DisplayNameFor(model => model.job_type)
-                                </th>
-                                <th>
+                                                                    Type
+                                                                </th>*@
+                                @*<th>
                                     @Html.DisplayNameFor(model => model.job_openings)
+                                                                    Openings
+                                                                </th>*@
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.job_closing_date)*@
+                                    Closing Date
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.job_closing_date)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Department.Name)
+                                    @*@Html.DisplayNameFor(model => model.Department.Name)*@
+                                    Department
                                 </th>
                                 <th>
                                     Action
@@ -57,12 +63,12 @@
                                     <td class="text-left">
                                         @Html.DisplayFor(modelItem => item.job_title)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.job_type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.job_openings)
-                                    </td>
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.job_type)
+                                        </td>*@
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.job_openings)
+                                        </td>*@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.job_closing_date)
                                     </td>
