@@ -21,6 +21,12 @@ namespace FAQCheckpoint2.Controllers
             return View(applications.ToList());
         }
 
+        public ActionResult Apps(int posting)
+        {
+            var apps = db.Applications.Where(m => m.job_posting == posting).ToList();
+            return View("~/Views/Application/Index.cshtml", apps);
+        }
+
         // GET: Applications/Details/5
         public ActionResult Details(int? id)
         {
@@ -37,8 +43,9 @@ namespace FAQCheckpoint2.Controllers
         }
 
         // GET: Applications/Create
-        public ActionResult Create()
+        public ActionResult Create(int posting)
         {
+            ViewBag.posting = posting;
             ViewBag.job_posting = new SelectList(db.Job_Postings, "job_id", "job_title");
             return View();
         }
@@ -52,9 +59,11 @@ namespace FAQCheckpoint2.Controllers
         {
             if (ModelState.IsValid)
             {
+                application.app_submission_date = DateTime.Today;
                 db.Applications.Add(application);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return RedirectToAction("index", "Job_Postings", new { area = "" });
             }
 
             ViewBag.job_posting = new SelectList(db.Job_Postings, "job_id", "job_title", application.job_posting);
