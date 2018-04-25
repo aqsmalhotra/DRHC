@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FAQCheckpoint2.Models;
+using System.Net.Mail;
 
 namespace FAQCheckpoint2.Controllers
 {
@@ -62,6 +63,27 @@ namespace FAQCheckpoint2.Controllers
                 application.app_submission_date = DateTime.Today;
                 db.Applications.Add(application);
                 db.SaveChanges();
+
+                var fname = application.app_first_name;
+                var lname = application.app_last_name;
+                var title = db.Job_Postings.Find(application.job_posting).job_title;
+
+                //Send verification email
+                var message = "Dear " + fname + " " + lname + ". ";
+                message += "This letter is to inform you that we have received your application. ";
+                message += "We appreciate your interest in Dryden Regional Health Center and the position of " + title + " for which you applied. ";
+                message += "We will be reviewing your application and if you are selected for an interview, you can expect a phone call from us shortly. ";
+                message += "Thank you, again, for your interest. We do appreciate the time that you invested in this application.";
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                MailMessage myMail = new MailMessage();
+                smtp.EnableSsl = true;
+                smtp.Port = 587;
+                smtp.Credentials = new NetworkCredential("TestahTest123@gmail.com",
+                   "MahPass!");
+                smtp.Send("TestahTest123@gmail.com", application.app_email,
+                   "Email Subject", message);
+
                 //return RedirectToAction("Index");
                 return RedirectToAction("index", "Job_Postings", new { area = "" });
             }
