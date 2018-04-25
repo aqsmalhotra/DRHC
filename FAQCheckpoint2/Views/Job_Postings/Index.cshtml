@@ -52,13 +52,14 @@
                                     <div class="accordion">
                                         <a href="">@Html.DisplayFor(modelItem => item.job_title)</a>
                                         <div class="content">
-                                            <p>ID: @Html.DisplayFor(modelItem => item.job_id)</p> @*To Be Removed*@
+                                            @*<p>ID: @Html.DisplayFor(modelItem => item.job_id)</p>*@
                                             <p>@Html.DisplayFor(modelItem => item.job_description)</p>
-                                            <p>@Html.DisplayFor(modelItem => item.job_type)</p>
-                                            <p>Openings: @Html.DisplayFor(modelItem => item.job_openings)</p>
-                                            <p>Posted: @Html.DisplayFor(modelItem => item.job_posted_date)</p>
+                                            <p><div class="bolden d-inline-block">Department:</div> @Html.DisplayFor(modelItem => item.Department.Name)</p>
+                                            <p><div class="bolden d-inline-block">Job Type:</div> @Html.DisplayFor(modelItem => item.job_type)</p>
+                                            <p><div class="bolden d-inline-block">Openings:</div> @Html.DisplayFor(modelItem => item.job_openings)</p>
+                                            <p><div class="bolden d-inline-block">Posted:</div> @Html.DisplayFor(modelItem => item.job_posted_date)</p>
                                             <p>
-                                                Deadline:
+                                                <div class="bolden d-inline-block">Deadline:</div>
                                                 @if (item.job_closing_date != null)
                                                 {
                                                     @Html.DisplayFor(modelItem => item.job_closing_date)
@@ -67,10 +68,10 @@
                                                 {
                                                     <span>TBD</span>
                                                 }
-
                                             </p>
-                                            <p>Department: @Html.DisplayFor(modelItem => item.Department.Name)</p>
-                                            <p>@Html.ActionLink("Apply", "Create", new { Controller = "Applications", action = "Create", posting = item.job_id })</p>
+                                            <p>@Html.ActionLink("Apply", "Create", new { Controller = "Applications", action = "Create", posting = item.job_id }, htmlAttributes: new { @class = "btn btn-primary btn-sm apply" })
+                                            
+                                            </p>
                                         </div>
                                     </div>
                                 }

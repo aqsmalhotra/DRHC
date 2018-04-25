@@ -5,112 +5,130 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Job_Postings</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.job_id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.job_title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.job_title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.job_title, "", new { @class = "text-danger" })
+<div class="container-fluid">
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
             </div>
-        </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / careers / edit</span>
+                    <h1 class="admin-head">Edit Careers</h1>
+                    <p>
+                        This section will allow you to update details of the specific job posting you've selected.
+                    </p>
+                    <hr />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.job_description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.job_description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.job_description, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.job_type, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.job_type, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.job_type, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.job_id)
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.job_title, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <label class="control-label col-md-2">Job Title</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.job_title, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.job_title, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.job_description, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <label class="control-label col-md-2">Description</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.job_description, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.job_description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.job_type, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.job_type, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.job_type, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>*@
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.job_type, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <label class="control-label col-md-2">Type</label>
+                                <div class="col-md-10">
+                                    @if (Model.job_type == "Full Time")
+                {
+                                        <label>@Html.RadioButtonFor(model => model.job_type, "Full Time", new { Checked = "checked" }) Full Time</label><br/>
+                                    }
+                                    else
+                                    {
+                                        <label>@Html.RadioButtonFor(model => model.job_type, "Full Time") Full Time</label><br />
+                                    }
+                                    @if (Model.job_type == "Part Time")
+                {
+                                        <label>@Html.RadioButtonFor(model => model.job_type, "Part Time", new { Checked = "checked" }) Part Time</label><br />
+                                    }
+                                    else
+                                    {
+                                        <label>@Html.RadioButtonFor(model => model.job_type, "Part Time") Part Time</label><br />
+                                    }
+                                    @if (Model.job_type == "Casual")
+                {
+                                        <label>@Html.RadioButtonFor(model => model.job_type, "Casual", new { Checked = "checked" }) Casual</label>
+                                    }
+                                    else
+                                    {
+                                        <label>@Html.RadioButtonFor(model => model.job_type, "Casual") Casual</label>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.job_openings, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <label class="control-label col-md-2">Openings</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.job_openings, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.job_openings, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.job_posted_date, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.job_posted_date, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.job_posted_date, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>*@
+
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.job_closing_date, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <label class="control-label col-md-2">Closing Date</label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.job_closing_date, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.job_closing_date, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.dept, "dept", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("dept", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.dept, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>*@
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Update" class="btn btn-success" />
+                                    @Html.ActionLink("Back to List", "Admin", "Job_Postings", htmlAttributes: new { @class = "btn btn-primary btn-back" })
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
-            </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.job_type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @if (Model.job_type == "Full Time")
-                {
-                    <label>@Html.RadioButtonFor(model => model.job_type, "Full Time", new { Checked = "checked" }) Full Time</label>
-                }
-                else
-                {
-                    <label>@Html.RadioButtonFor(model => model.job_type, "Full Time") Full Time</label>
-                }
-                @if (Model.job_type == "Part Time")
-                {
-                    <label>@Html.RadioButtonFor(model => model.job_type, "Part Time", new { Checked = "checked" }) Part Time</label>
-                }
-                else
-                {
-                    <label>@Html.RadioButtonFor(model => model.job_type, "Part Time") Part Time</label>
-                }
-                @if (Model.job_type == "Casual")
-                {
-                    <label>@Html.RadioButtonFor(model => model.job_type, "Casual", new { Checked = "checked" }) Casual</label>
-                }
-                else
-                {
-                    <label>@Html.RadioButtonFor(model => model.job_type, "Casual") Casual</label>
-                }
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.job_openings, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.job_openings, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.job_openings, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.job_posted_date, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.job_posted_date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.job_posted_date, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.job_closing_date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.job_closing_date, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                @Html.ValidationMessageFor(model => model.job_closing_date, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.dept, "dept", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("dept", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.dept, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
