@@ -184,6 +184,7 @@
     <Compile Include="Models\Article.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Buddy_Article.cs" />
     <Compile Include="Models\card_choices.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
