@@ -146,6 +146,7 @@ namespace FAQCheckpoint2.Controllers
                 if (ModelState.IsValid)
                 {
                     db.Entry(job_Postings).State = EntityState.Modified;
+
                     db.SaveChanges();
                     return RedirectToAction("Admin");
                 }
