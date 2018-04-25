@@ -11,7 +11,8 @@ namespace FAQCheckpoint2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Job_Postings
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,10 +26,18 @@ namespace FAQCheckpoint2.Models
         public string job_description { get; set; }
         public string job_type { get; set; }
         public Nullable<int> job_openings { get; set; }
+
+        [Display(Name = "Posted Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> job_posted_date { get; set; }
+
+        [Display(Name = "Closing Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> job_closing_date { get; set; }
+
         public Nullable<int> dept { get; set; }
-    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Applications { get; set; }
         public virtual Department Department { get; set; }

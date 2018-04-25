@@ -5,109 +5,90 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<div class="container-fluid">
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / applications / delete</span>
+                    <h1 class="admin-head">Delete Application</h1>
+                    <p>Are you sure you want to delete this application?</p>
+                    <hr />
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.Job_Postings.job_title)*@
+                                <label class="bolden">Applied Position</label>
+                            </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Application</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.app_first_name)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Job_Postings.job_title)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.app_first_name)
-        </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_first_name) @Html.DisplayNameFor(model => model.app_last_name)*@
+                                <label class="bolden">Name</label>
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.app_last_name)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.app_first_name) @Html.DisplayFor(model => model.app_last_name)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.app_last_name)
-        </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_phone)*@
+                                <label class="bolden">Phone</label>
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.app_address)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.app_phone)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.app_address)
-        </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_email)*@
+                                <label class="bolden">Email</label>
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.app_city)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.app_email)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.app_city)
-        </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_comments)*@
+                                <label class="bolden">Comments</label>
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.app_province)
-        </dt>
+                            <dd>
+                                <div class="multiline">
+                                    @Html.DisplayFor(model => model.app_comments)
+                                </div>
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.app_province)
-        </dd>
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_submission_date)*@
+                                <label class="bolden">Submission Date</label>
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.app_postal_code)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.app_submission_date)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.app_postal_code)
-        </dd>
+                        </dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.app_phone)
-        </dt>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.app_phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.app_email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.app_email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.app_comments)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.app_comments)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.app_submission_date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.app_submission_date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Job_Postings.job_title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Job_Postings.job_title)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                                @Html.ActionLink("Back to List", "Index", "Applications", htmlAttributes: new { @class = "btn btn-primary btn-back" })
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
-    }
+    </div>
 </div>
