@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="app_id" />
           </Key>
-          <Property Name="app_id" Type="int" Nullable="false" />
+          <Property Name="app_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="app_first_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="app_last_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="app_address" Type="varchar" MaxLength="100" Nullable="false" />
@@ -84,7 +84,7 @@
           <Key>
             <PropertyRef Name="ev_id" />
           </Key>
-          <Property Name="ev_id" Type="int" Nullable="false" />
+          <Property Name="ev_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ev_title" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="ev_description" Type="varchar(max)" Nullable="false" />
           <Property Name="ev_start_date" Type="date" />
@@ -94,7 +94,7 @@
           <Key>
             <PropertyRef Name="job_id" />
           </Key>
-          <Property Name="job_id" Type="int" Nullable="false" />
+          <Property Name="job_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="job_title" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="job_description" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="job_type" Type="varchar" MaxLength="10" Nullable="false" />
