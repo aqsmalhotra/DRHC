@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQs - DRHC Hospital Project</title>
+    <title>DRHC Humber Hospital | Team 4</title>
     @Styles.Render("~/Content/themes/base/css")
     <link rel='stylesheet prefetch' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
     @Styles.Render("~/Content/fontawesome-all.min.css")
@@ -22,10 +22,33 @@
 </head>
 <body>
     <header>
+        <div class="top-heading" style="background-color:#F5F5F5;">
+        <div class="row">
+            <div class="col-lg-3">
+                <a class="navbar-brand" href="@Url.Action("Index","FAQs")">
+                    <img class="site-logo" src="~/images/logo.png" alt="drhc logo">
+                </a>
+            </div>
+            <div class="col-lg-3">
+                <div class="helpline" style="margin-top:30px; font-size: 20px;">
+                    <strong>Call:</strong> <span style="color:#716AB7;">1807-223-8200</span>
+                </div>
+            </div>
+            <div class="col-lg-4 search-home">
+                <form action="#" method="post" role="search" id="faq-seach-frm" class="">
+                    <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
+                    <input type="search" name="search" id="search" class="search-text" placeholder="Search" autocomplete="off">
+                </form>
+            </div>
+            <div class="col-lg-2 donate-btn">
+               <button class="btn btn-success" style="margin-top:20px; margin-right:20px;">DONATE</button>
+            </div>
+        </div>
+       
+        </div>
+
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="@Url.Action("Index","FAQs")">
-                <img class="site-logo" src="~/images/logo.png" alt="drhc logo">
-            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -35,17 +58,98 @@
                         <a class="nav-link" href="@Url.Action("Index","FAQs")">HOME</a>
                     </li>
                     <li class="nav-item nav-parent">
-                        <a class="nav-link" href="#">SERVICE</a>
+                        <a class="nav-link" href="#">SERVICES&nbsp;&nbsp;<i class="fas fa-angle-down"></i></a>
+                        <ul class="nav-child">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Emergency</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Tests</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Laboratory</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Programs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Expectant Moms</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item nav-parent">
-                        <a class="nav-link" href="#">PROGRAMS</a>
+                        <a class="nav-link" href="#">PATIENTS & VISITORS&nbsp;&nbsp;<i class="fas fa-angle-down"></i></a>
+                        <ul class="nav-child">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Visitors</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Accessibility</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Food Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Patient Relations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Planning Your Stay</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Short Stays</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Visiting the Hospital</a>
+                            </li>
+                        </ul>
                     </li>
+
                     <li class="nav-item nav-parent">
-                        <a class="nav-link" href="#">JOIN OUR TEAM</a>
+                        <a class="nav-link" href="#">JOIN OUR TEAM&nbsp;&nbsp;<i class="fas fa-angle-down"></i></a>
+                        <ul class="nav-child">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Application Form</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Job Postings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Physician Recruitment</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Why DRHC</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Volunteer Program</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">CONTACT</a>
+
+
+                    <li class="nav-item nav-parent">
+                        <a class="nav-link">ABOUT DRHC&nbsp;&nbsp;<i class="fas fa-angle-down"></i></a>
+                        <ul class="nav-child">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Community Partners</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Meet The Board</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Strategic Plan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Why DRHC</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Volunteer Program</a>
+                            </li>
+                        </ul>
                     </li>
+
+
+
+
                 </ul>
             </div>
         </nav>
@@ -53,70 +157,81 @@
     <div class="container-fluid">
         @RenderBody()
     </div>
-    <footer>
+    <footer id="footer">
         <div class="footer-nav">
             <div class="row">
-                <div class="col-lg-2">
+
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                    <a href="@Url.Action("Index","FAQs")">
+                        <img src="~/images/logo.png" alt="drhc logo" style="max-width:150px; height:auto;">
+                    </a>
+                </div>
+
+
+
+                <div class="col-lg-2 col-md-2 col-sm-12">
                     <h2>SERVICES</h2>
                     <ul>
                         <li><a href="#">Emergency</a></li>
-                        <li><a href="#">Food Services</a></li>
-                        <li><a href="#">Oncology</a></li>
+                        <li><a href="#">Tests</a></li>
+                        <li><a href="#">Laboratory</a></li>
+                        <li><a href="#">Programs</a></li>
+                        <li><a href="#">Expectant Moms</a></li>
                     </ul>
                 </div>
 
-                <div class="col-lg-2">
-                    <h2>PROGRAMS</h2>
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                    <h2>PATIENTS & VISITORS</h2>
                     <ul>
-                        <li><a href="#">Palliative Care</a></li>
-                        <li><a href="#">Spiritual Care</a></li>
-                        <li><a href="#">Rehabilitation</a></li>
-                        <li><a href="#">Mental Health</a></li>
+                        <li><a href="../Users/Login">Patient Login</a></li>
+                        <li><a href="#">Visitors</a></li>
+                        <li><a href="../ecards/Index">Ecards</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                        <li><a href="#">Food Services</a></li>
+                        <li><a href="#">Patient Relations</a></li>
+                        <li><a href="#">Planning Your Stay</a></li>
+                        <li><a href="#">Short Stays</a></li>
+                        <li><a href="#">Visiting The Hospital</a></li>
                     </ul>
                 </div>
 
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-2 col-sm-12">
                     <h2>JOIN OUR TEAM</h2>
                     <ul>
-                        <li><a href="#">Why DRHC</a></li>
+                        <li><a href="#">Application Form</a></li>
                         <li><a href="#">Job Postings</a></li>
-                        <li><a href="#">Volunteer Program</a></li>
                         <li><a href="#">Physician Recruitment</a></li>
+                        <li><a href="#">Volunteer Program</a></li>
+
                     </ul>
                 </div>
 
-                <div class="col-lg-2">
-                    <h2>ABOUT</h2>
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                    <h2>ABOUT DRHC</h2>
                     <ul>
-                        <li><a href="#">Meet The Board</a></li>
-                        <li><a href="@Url.Action("Index","FAQs")">FAQs</a></li>
-                        <li><a href="#">Public Reports</a></li>
-                        <li><a href="#">Strategic Plan</a></li>
-                        <li><a href="#">Patient Relations</a></li>
                         <li><a href="#">Community Partners</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-2">
-                    <h2>CONTACT</h2>
-                    <ul>
-                        <li><a href="#">Physician Recruitement</a></li>
-                        <li><a href="#">Employment Opportunities</a></li>
-                        <li><a href="#">Work With Us</a></li>
-                        <li><a href="#">How To Apply</a></li>
+                        <li><a href="#">Meet The Board</a></li>
+                        <li><a href="#">Strategic Plan</a></li>
+                        <li><a href="#">Why DRHC</a></li>
                         <li><a href="#">Volunteer Program</a></li>
                     </ul>
                 </div>
 
-                <div class="col-lg-2">
-                    <a href="@Url.Action("Login","Accounts")" class="btn btn-warning">STAFF LOGIN</a>
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                    <p>58 Goodall St, Dryden, ON P8N 2Z6</p>
+                    <p>Call: 1807-223-8200</p>
                 </div>
             </div>
             <span class="disclaimer">THIS IS NOT A REAL HOSPITAL - JUST A COLLEGE PROJECT</span>
         </div>
     </footer>
-    <div id="backToTop">
-        <a href="#"><i class="fas fa-caret-up"></i></a>
-    </div>
+
+    <script>
+        $(function () {
+            $('body').on('click', '.nav-parent', function () {
+                $(this).children('.nav-child').slideToggle(500);
+            });
+        });
+    </script>
 </body>
 </html>

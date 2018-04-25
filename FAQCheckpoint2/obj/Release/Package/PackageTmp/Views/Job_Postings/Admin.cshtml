@@ -1,0 +1,92 @@
+﻿@model IEnumerable<FAQCheckpoint2.Models.Job_Postings>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / careers</span>
+                    <h1 class="admin-head">Careers Management</h1>
+                    <p>Welcome to the admin section of DRHC Careers Repository.</p>
+                    <button type="button" class="btn btn-success">
+                        @Html.ActionLink("ADD NEW JOB POSTING", "Create")
+                    </button>
+                    <div>
+                        @*<form action="#" method="post" role="search" id="faq-seach-frm" class="search-form">
+                                <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
+                                <input type="search" name="search" id="search" class="search-text" placeholder="Search question..." autocomplete="off">
+                            </form>*@
+                    </div>
+                    <br />
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.job_title)*@
+                                    Job Title
+                                </th>
+                                @*<th>
+                                    @Html.DisplayNameFor(model => model.job_type)
+                                                                    Type
+                                                                </th>*@
+                                @*<th>
+                                    @Html.DisplayNameFor(model => model.job_openings)
+                                                                    Openings
+                                                                </th>*@
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.job_closing_date)*@
+                                    Closing Date
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.Department.Name)*@
+                                    Department
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-left">
+                                        @Html.DisplayFor(modelItem => item.job_title)
+                                    </td>
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.job_type)
+                                        </td>*@
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.job_openings)
+                                        </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.job_closing_date)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Department.Name)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.job_id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Details", "Details", new { id = item.job_id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.job_id }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

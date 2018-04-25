@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="aqsmalhotraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Timestamp_created" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Category_id" Type="Int32" Nullable="false" />
+    <Property Name="Author_id" Type="Int32" Nullable="false" />
+    <Property Name="clicks" Type="Int32" />
+    <Property Name="image_url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Timestamp_published" Type="DateTime" Precision="3" />
+    <Property Name="Timestamp_publiched" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Category" Relationship="Self.articles_fk_categories" FromRole="Articles" ToRole="Categories" />
+    <NavigationProperty Name="User" Relationship="Self.articles_fk_users" FromRole="Articles" ToRole="Users" />
+    <NavigationProperty Name="Comments" Relationship="Self.fk_comments_articles" FromRole="Articles" ToRole="Comments" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Articles" Relationship="Self.articles_fk_categories" FromRole="Categories" ToRole="Articles" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date_created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Body" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Author_id" Type="Int32" Nullable="false" />
+    <Property Name="Article_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Article" Relationship="Self.fk_comments_articles" FromRole="Comments" ToRole="Articles" />
+    <NavigationProperty Name="User" Relationship="Self.fk_comments_users" FromRole="Comments" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Staff_Members" Relationship="aqsmalhotraModel.FK_Staff_Members_Departments" FromRole="Department" ToRole="Staff_Members" />
+    <NavigationProperty Name="Job_Postings" Relationship="aqsmalhotraModel.FK_JOB_DEPARTMENT" FromRole="Department" ToRole="Job_Postings" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Role_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Articles" Relationship="Self.articles_fk_users" FromRole="Users" ToRole="Articles" />
+    <NavigationProperty Name="Comments" Relationship="Self.fk_comments_users" FromRole="Users" ToRole="Comments" />
+    <Property Name="person_id" Type="Int32" />
+    <NavigationProperty Name="person" Relationship="aqsmalhotraModel.FK__Users__person_id__2BFE89A6" FromRole="User" ToRole="person" />
+  </EntityType>
+  <Association Name="articles_fk_categories">
+    <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+    <End Role="Articles" Type="Self.Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Articles">
+        <PropertyRef Name="Category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="articles_fk_users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Articles" Type="Self.Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Articles">
+        <PropertyRef Name="Author_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_comments_articles">
+    <End Role="Articles" Type="Self.Article" Multiplicity="1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Articles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="Article_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_comments_users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="Author_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="aqsmalhotraEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Articles" EntityType="Self.Article" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="articles_fk_categories" Association="Self.articles_fk_categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Articles" EntitySet="Articles" />
+    </AssociationSet>
+    <AssociationSet Name="articles_fk_users" Association="Self.articles_fk_users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Articles" EntitySet="Articles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_comments_articles" Association="Self.fk_comments_articles">
+      <End Role="Articles" EntitySet="Articles" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="fk_comments_users" Association="Self.fk_comments_users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <EntitySet Name="Staff_Members" EntityType="aqsmalhotraModel.Staff_Members" />
+    <AssociationSet Name="FK_Staff_Members_Departments" Association="aqsmalhotraModel.FK_Staff_Members_Departments">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Staff_Members" EntitySet="Staff_Members" />
+    </AssociationSet>
+    <EntitySet Name="card_choices" EntityType="aqsmalhotraModel.card_choices" />
+    <EntitySet Name="ecards" EntityType="aqsmalhotraModel.ecard" />
+    <EntitySet Name="persons" EntityType="aqsmalhotraModel.person" />
+    <AssociationSet Name="FK__ecards__card_cho__32AB8735" Association="aqsmalhotraModel.FK__ecards__card_cho__32AB8735">
+      <End Role="card_choices" EntitySet="card_choices" />
+      <End Role="ecard" EntitySet="ecards" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ecards__person_i__31B762FC" Association="aqsmalhotraModel.FK__ecards__person_i__31B762FC">
+      <End Role="person" EntitySet="persons" />
+      <End Role="ecard" EntitySet="ecards" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__person_id__2BFE89A6" Association="aqsmalhotraModel.FK__Users__person_id__2BFE89A6">
+      <End Role="person" EntitySet="persons" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Applications" EntityType="aqsmalhotraModel.Application" />
+    <EntitySet Name="Events" EntityType="aqsmalhotraModel.Event" />
+    <EntitySet Name="Job_Postings" EntityType="aqsmalhotraModel.Job_Postings" />
+    <AssociationSet Name="FK_APPLICATION_JOB" Association="aqsmalhotraModel.FK_APPLICATION_JOB">
+      <End Role="Job_Postings" EntitySet="Job_Postings" />
+      <End Role="Application" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JOB_DEPARTMENT" Association="aqsmalhotraModel.FK_JOB_DEPARTMENT">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Job_Postings" EntitySet="Job_Postings" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Staff_Members">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Breaf_Bio" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="Working_From" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Created_At" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Image_Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Department_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="aqsmalhotraModel.FK_Staff_Members_Departments" FromRole="Staff_Members" ToRole="Department" />
+  </EntityType>
+  <Association Name="FK_Staff_Members_Departments">
+    <End Type="aqsmalhotraModel.Department" Role="Department" Multiplicity="1" />
+    <End Type="aqsmalhotraModel.Staff_Members" Role="Staff_Members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Staff_Members">
+        <PropertyRef Name="Department_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="card_choices">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="choice" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ecards" Relationship="aqsmalhotraModel.FK__ecards__card_cho__32AB8735" FromRole="card_choices" ToRole="ecard" />
+  </EntityType>
+  <EntityType Name="ecard">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sender_first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="sender_last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="sender_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="person_id" Type="Int32" Nullable="false" />
+    <Property Name="card_choice" Type="Int32" Nullable="false" />
+    <Property Name="card_message" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="card_choices" Relationship="aqsmalhotraModel.FK__ecards__card_cho__32AB8735" FromRole="ecard" ToRole="card_choices" />
+    <NavigationProperty Name="person" Relationship="aqsmalhotraModel.FK__ecards__person_i__31B762FC" FromRole="ecard" ToRole="person" />
+  </EntityType>
+  <EntityType Name="person">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="middle_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="last_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="health_card" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ecards" Relationship="aqsmalhotraModel.FK__ecards__person_i__31B762FC" FromRole="person" ToRole="ecard" />
+    <NavigationProperty Name="Users" Relationship="aqsmalhotraModel.FK__Users__person_id__2BFE89A6" FromRole="person" ToRole="User" />
+    <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+  </EntityType>
+  <Association Name="FK__ecards__card_cho__32AB8735">
+    <End Type="aqsmalhotraModel.card_choices" Role="card_choices" Multiplicity="1" />
+    <End Type="aqsmalhotraModel.ecard" Role="ecard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="card_choices">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ecard">
+        <PropertyRef Name="card_choice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ecards__person_i__31B762FC">
+    <End Type="aqsmalhotraModel.person" Role="person" Multiplicity="1" />
+    <End Type="aqsmalhotraModel.ecard" Role="ecard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="person">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ecard">
+        <PropertyRef Name="person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__person_id__2BFE89A6">
+    <End Type="aqsmalhotraModel.person" Role="person" Multiplicity="0..1" />
+    <End Type="aqsmalhotraModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="person">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="app_id" />
+    </Key>
+    <Property Name="app_id" Type="Int32" Nullable="false" />
+    <Property Name="app_first_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="app_last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="app_address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="app_city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="app_province" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="app_postal_code" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="app_phone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="app_email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="app_comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="app_submission_date" Type="DateTime" Precision="0" />
+    <Property Name="job_posting" Type="Int32" />
+    <NavigationProperty Name="Job_Postings" Relationship="aqsmalhotraModel.FK_APPLICATION_JOB" FromRole="Application" ToRole="Job_Postings" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="ev_id" />
+    </Key>
+    <Property Name="ev_id" Type="Int32" Nullable="false" />
+    <Property Name="ev_title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ev_description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ev_start_date" Type="DateTime" Precision="0" />
+    <Property Name="ev_end_date" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Job_Postings">
+    <Key>
+      <PropertyRef Name="job_id" />
+    </Key>
+    <Property Name="job_id" Type="Int32" Nullable="false" />
+    <Property Name="job_title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="job_description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="job_type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="job_openings" Type="Int32" />
+    <Property Name="job_posted_date" Type="DateTime" Precision="0" />
+    <Property Name="job_closing_date" Type="DateTime" Precision="0" />
+    <Property Name="dept" Type="Int32" />
+    <NavigationProperty Name="Applications" Relationship="aqsmalhotraModel.FK_APPLICATION_JOB" FromRole="Job_Postings" ToRole="Application" />
+    <NavigationProperty Name="Department" Relationship="aqsmalhotraModel.FK_JOB_DEPARTMENT" FromRole="Job_Postings" ToRole="Department" />
+  </EntityType>
+  <Association Name="FK_APPLICATION_JOB">
+    <End Type="aqsmalhotraModel.Job_Postings" Role="Job_Postings" Multiplicity="0..1" />
+    <End Type="aqsmalhotraModel.Application" Role="Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job_Postings">
+        <PropertyRef Name="job_id" />
+      </Principal>
+      <Dependent Role="Application">
+        <PropertyRef Name="job_posting" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JOB_DEPARTMENT">
+    <End Type="aqsmalhotraModel.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="aqsmalhotraModel.Job_Postings" Role="Job_Postings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Job_Postings">
+        <PropertyRef Name="dept" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

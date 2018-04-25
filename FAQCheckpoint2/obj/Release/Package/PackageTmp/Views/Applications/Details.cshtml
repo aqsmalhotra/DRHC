@@ -1,0 +1,124 @@
+﻿@model FAQCheckpoint2.Models.Application
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / applications / info</span>
+                    <h1 class="admin-head">Details</h1>
+                    <p>This page contains all the information related to the selected application.</p>
+                    <hr />
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.Job_Postings.job_title)*@
+                                <label class="bolden">Applied Position</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Job_Postings.job_title)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_first_name) @Html.DisplayNameFor(model => model.app_last_name)*@
+                                <label class="bolden">Name</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.app_first_name) @Html.DisplayFor(model => model.app_last_name)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_address)*@
+                                <label class="bolden">Address</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.app_address)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_city)*@
+                                <label class="bolden">City</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.app_city)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_province)*@
+                                <label class="bolden">Province</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.app_province)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_postal_code)*@
+                                <label class="bolden">Postal Code</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.app_postal_code)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_phone)*@
+                                <label class="bolden">Phone</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.app_phone)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_email)*@
+                                <label class="bolden">Email</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.app_email)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_comments)*@
+                                <label class="bolden">Comments</label>
+                            </dt>
+
+                            <dd>
+                                <div class="multiline">
+                                    @Html.DisplayFor(model => model.app_comments)
+                                </div>
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.app_submission_date)*@
+                                <label class="bolden">Submission Date</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.app_submission_date)
+                            </dd>
+
+                        </dl>
+                    </div>
+                    <p>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = Model.app_id }, htmlAttributes: new { @class = "btn btn-success" })*@
+                        @Html.ActionLink("Back to List", "Index", "Applications", htmlAttributes: new { @class = "btn btn-primary btn-back" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

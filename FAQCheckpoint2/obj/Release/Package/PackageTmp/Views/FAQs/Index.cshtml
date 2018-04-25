@@ -5,16 +5,6 @@
 }
 
 <div class="faq-banner">
-    <div class="headliner">
-        <div class="headliner-content">
-            <h1>We are here to help</h1>
-            <p class="related">
-                Need to know about parking? billing? policies? find answers to most frequently
-                asked questions in the section below!
-                <a class="gold-btn" href="#desc">CHECK IT OUT&nbsp;<i class="fas fa-angle-right arrow"></i></a>
-            </p>
-        </div>
-    </div>
 </div>
 <div class="container">
     <div class="feature-event">
@@ -22,7 +12,7 @@
             <div class="col-regular">
                 <div class="feature-content">
                     <span><i class="fas fa-home"></i> / about / faqs</span>
-                    <h2 id="desc">Frequently Asked Questions</h2>
+                    <h1>Frequently Asked Questions</h1>
                     <p>
                         Here is a list of most frequently asked questions (FAQs)
                         about DRHC. We have covered a range
@@ -32,19 +22,19 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-12">
                            
-    <form action="#" method="post" role="search" id="faq-seach-frm" class="search-form">
-        <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
-        <input type="search" name="search" id="search" class="search-text" placeholder="Search question..." autocomplete="off">
-    </form>
+                    <form action="#" method="post" role="search" id="faq-seach-frm" class="search-form">
+                      <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
+                       <input type="search" name="search" id="search" class="search-text" placeholder="Search question..." autocomplete="off">
+                    </form>
 
                             <ul class="list-group">
-                                @foreach (var item in ViewBag.services as SelectList)
-        {
-                        <a href="#"><li class="list-group-item faq_cat">@item.Value</li></a>
-}
+                                @foreach (var item in ViewBag.services as SelectList) {
+                                <a href="#"><li class="list-group-item faq_cat">@item.Value</li></a>
+                                }
                             </ul>
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-12">
+                        
+                        <div class="col-lg-8 col-md-8 col-sm-12"><br />
                             <div class="accordion" id="search-results">
                                 @foreach (var item in Model)
                                 {

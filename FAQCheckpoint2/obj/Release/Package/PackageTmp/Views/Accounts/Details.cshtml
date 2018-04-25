@@ -13,54 +13,60 @@
                 @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
             </div>
             <div class="col-lg-9 col-md-9 col-sm-12">
-                <span><i class="fas fa-home"></i> / dashboard / accounts/ account information</span>
-                <h2>Account Information</h2>
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.fullname)
-                    </dt>
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / accounts/ user information</span>
+                    <h1 class="admin-head">User Information</h1>
+                    <p>
+                        This section will allow you to view details of the specific administrative user staff or admin, you've selected.
+                    </p>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.fullname)
+                        </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.fullname)
-                    </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.fullname)
+                        </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.username)
-                    </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.username)
+                        </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.username)
-                    </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.username)
+                        </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.password)
-                    </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.password)
+                        </dt>
 
-                    <dd>
-                        **********
-                    </dd>
+                        <dd>
+                            **********
+                        </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.email)
-                    </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.email)
+                        </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.email)
-                    </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.email)
+                        </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.role)
-                    </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.role)
+                        </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.role)
-                    </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.role)
+                        </dd>
 
-                </dl>
-                <p>
-                    @Html.ActionLink("Update", "Edit", new { id = Model.id }, htmlAttributes: new { @class = "btn btn-success" })
-                    @Html.ActionLink("Go Back", "Index", "Accounts", htmlAttributes: new { @class = "btn btn-primary" })
-                </p>
+                    </dl>
+                    <p>
+                        @Html.ActionLink("Update", "Edit", new { id = Model.id }, htmlAttributes: new { @class = "btn btn-success" })
+                        @Html.ActionLink("Go Back", "Index", "Accounts", htmlAttributes: new { @class = "btn btn-primary" })
+                    </p>
+                </div>
             </div>
         </div>
     </div>

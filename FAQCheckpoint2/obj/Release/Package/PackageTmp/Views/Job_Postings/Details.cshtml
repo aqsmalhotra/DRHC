@@ -1,0 +1,97 @@
+﻿@model FAQCheckpoint2.Models.Job_Postings
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / careers / info</span>
+                    <h1 class="admin-head">Details</h1>
+                    <p>This page contains all the information related to the selected job posting.</p>
+                    <hr />
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.job_title)*@
+                                <label class="bolden">Job Title</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.job_title)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.job_description)*@
+                                <label class="bolden">Description</label>
+                            </dt>
+
+                            <dd>
+                                <div class="multiline">
+                                    @Html.DisplayFor(model => model.job_description)
+                                </div>
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.job_type)*@
+                                <label class="bolden">Type</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.job_type)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.job_openings)*@
+                                <label class="bolden">Openings</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.job_openings)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.job_posted_date)*@
+                                <label class="bolden">Posted Date</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.job_posted_date)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.job_closing_date)*@
+                                <label class="bolden">Closing Date</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.job_closing_date)
+                            </dd>
+
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.Department.Name)*@
+                                <label class="bolden">Department</label>
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Department.Name)
+                            </dd>
+
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.job_id }, htmlAttributes: new { @class = "btn btn-success" })
+                        @Html.ActionLink("Back to List", "Admin", "Job_Postings", htmlAttributes: new { @class = "btn btn-primary btn-back" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<FAQCheckpoint2.Models.Application>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / applications</span>
+                    <h1 class="admin-head">Applications Management</h1>
+                    <p>Welcome to the admin section of DRHC Applications Repository.</p>
+                    @*<button type="button" class="btn btn-success">
+                            @Html.ActionLink("ADD NEW JON POSTING", "Create")
+                        </button>*@
+                    @*<div>
+                            <form action="#" method="post" role="search" id="faq-seach-frm" class="search-form">
+                                <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
+                                <input type="search" name="search" id="search" class="search-text" placeholder="Search question..." autocomplete="off">
+                            </form>
+                        </div>*@
+                    @if (Model.Count() == 0)
+                    {
+                        <div>No applications</div>
+                    }
+                    else
+                    {
+                        <table class="table table-striped">
+                            <tr>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.app_first_name)*@
+                                    @*@Html.DisplayNameFor(model => model.app_last_name)*@
+                                    Name
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.app_email)*@
+                                    Email
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.Job_Postings.job_title)*@
+                                    Job Posting
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.app_first_name) @Html.DisplayFor(modelItem => item.app_last_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.app_email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Job_Postings.job_title)
+                                    </td>
+                                    <td>
+                                        @*@Html.ActionLink("Edit", "Edit", new { id = item.app_id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })*@
+                                        @Html.ActionLink("Details", "Details", new { id = item.app_id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.app_id }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

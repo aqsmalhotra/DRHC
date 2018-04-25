@@ -1,0 +1,136 @@
+﻿@model FAQCheckpoint2.Models.person
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+<div style="border-bottom: 3px solid black;"><h1>Welcome to DRHC!</h1></div>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <p>@ViewBag.ErrorMsg</p>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-md-2 text-right">Username *</label>
+            <div class="col-md-10">
+                @Html.TextBox("usernameInput", "", new { @class = "form-control" })
+                <p>@ViewBag.userErrorMsg</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <label class="col-md-2 text-right">Password *</label>
+            <div class="col-md-10">
+                @Html.TextBox("passwordInput", "", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <label class="col-md-2 text-right">Confirm Password *</label>
+            <div class="col-md-10">
+                @Html.TextBox("passwordConfirmInput", "", new { @class = "form-control" })
+                <p>@ViewBag.passwordErrorMsg</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            @Html.LabelFor(model => model.first_name, htmlAttributes: new { @class = "control-label col-md-2 text-right" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.first_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.first_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-2 text-right">Middle Name <i>(optional)</i>:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.middle_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.middle_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            @Html.LabelFor(model => model.last_name, htmlAttributes: new { @class = "control-label col-md-2 text-right" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.last_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2 text-right" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            @Html.LabelFor(model => model.date_of_birth, htmlAttributes: new { @class = "control-label col-md-2 text-right" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.date_of_birth, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.date_of_birth, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2 text-right" })
+            <div class="col-md-10">
+                @Html.RadioButtonFor(model => model.gender, "Male") Male
+                @Html.RadioButtonFor(model => model.gender, "Female") Female
+                @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            @Html.LabelFor(model => model.health_card, htmlAttributes: new { @class = "control-label col-md-2 text-right" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.health_card, new { htmlAttributes = new { @class = "form-control", @maxlength = "12" } })
+                @Html.ValidationMessageFor(model => model.health_card, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <p><i>* = Required</i></p>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12 text-right">
+            <input type="submit" value="Sign Up" class="btn btn-info" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Log In", "../Users/Login")
+</div>
+</div>
+<script type="text/javascript">
+    $(function () { 
+       $('.datepicker').datepicker();
+    });
+</script>
