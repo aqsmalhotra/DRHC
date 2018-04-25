@@ -5,7 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-    <h2>Create</h2>
+    <span><i class="fas fa-home"></i> / contact / ecards / send</span>
+    <h2>Send an Ecard</h2>
 
     @using (Html.BeginForm())
     {
@@ -103,11 +104,11 @@
                 </div>
             </div>
         </div>
-    
+
     }
 
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
-    </div>
+</div>
 

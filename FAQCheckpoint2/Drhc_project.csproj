@@ -413,7 +413,6 @@
     <Content Include="Views\Staff_Members\Index.cshtml" />
     <Content Include="Views\people\Create.cshtml" />
     <Content Include="Views\people\Details.cshtml" />
-    <Content Include="Views\people\Edit.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
     <Content Include="Views\ecards\Create.cshtml" />
     <Content Include="Views\ecards\Delete.cshtml" />

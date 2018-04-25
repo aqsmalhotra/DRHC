@@ -4,39 +4,13 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Details</h2>
-
+<span><i class="fas fa-home"></i> / user / profile</span>
 <div>
-    <h4>person</h4>
+    <h2>@Html.DisplayFor(model => model.first_name)  @Html.DisplayFor(model => model.middle_name) @Html.DisplayFor(model => model.last_name)</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.first_name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.first_name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.middle_name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.middle_name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.last_name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.last_name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
+            Email:
         </dt>
 
         <dd>
@@ -44,24 +18,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.gender)
+            Gender:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.gender)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.health_card)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.health_card)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }, htmlAttributes: new { @class="btn btn-info"})
 </p>
