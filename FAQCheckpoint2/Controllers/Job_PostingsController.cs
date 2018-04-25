@@ -17,6 +17,21 @@ namespace FAQCheckpoint2.Controllers
         // GET: Job_Postings
         public ActionResult Index()
         {
+            try
+            {
+                var job_Postings = db.Job_Postings.Include(j => j.Department);
+                return View(job_Postings.ToList());
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+        }
+
+        // GET: Job_Postings
+        public ActionResult Admin()
+        {
             var job_Postings = db.Job_Postings.Include(j => j.Department);
             return View(job_Postings.ToList());
         }
@@ -24,23 +39,43 @@ namespace FAQCheckpoint2.Controllers
         // GET: Job_Postings/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    RedirectToAction("index");
+                }
+                Job_Postings job_Postings = db.Job_Postings.Find(id);
+                if (job_Postings == null)
+                {
+                    //return HttpNotFound();
+                    RedirectToAction("index");
+                }
+                return View(job_Postings);
             }
-            Job_Postings job_Postings = db.Job_Postings.Find(id);
-            if (job_Postings == null)
+            catch (Exception e)
             {
-                return HttpNotFound();
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
             }
-            return View(job_Postings);
         }
 
         // GET: Job_Postings/Create
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Create()
         {
-            ViewBag.dept = new SelectList(db.Departments, "Id", "Name");
-            return View();
+            try
+            {
+                ViewBag.dept = new SelectList(db.Departments, "Id", "Name");
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+
         }
 
         // POST: Job_Postings/Create
@@ -48,33 +83,54 @@ namespace FAQCheckpoint2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Create([Bind(Include = "job_id,job_title,job_description,job_type,job_openings,job_posted_date,job_closing_date,dept")] Job_Postings job_Postings)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Job_Postings.Add(job_Postings);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    job_Postings.job_posted_date = DateTime.Today;
+                    db.Job_Postings.Add(job_Postings);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.dept = new SelectList(db.Departments, "Id", "Name", job_Postings.dept);
-            return View(job_Postings);
+                ViewBag.dept = new SelectList(db.Departments, "Id", "Name", job_Postings.dept);
+                return View(job_Postings);
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         // GET: Job_Postings/Edit/5
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    RedirectToAction("index");
+                }
+                Job_Postings job_Postings = db.Job_Postings.Find(id);
+                if (job_Postings == null)
+                {
+                    //return HttpNotFound();
+                    RedirectToAction("index");
+                }
+                ViewBag.dept = new SelectList(db.Departments, "Id", "Name", job_Postings.dept);
+                return View(job_Postings);
             }
-            Job_Postings job_Postings = db.Job_Postings.Find(id);
-            if (job_Postings == null)
+            catch (Exception e)
             {
-                return HttpNotFound();
+                ViewBag.ExceptionMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
             }
-            ViewBag.dept = new SelectList(db.Departments, "Id", "Name", job_Postings.dept);
-            return View(job_Postings);
         }
 
         // POST: Job_Postings/Edit/5
@@ -82,42 +138,72 @@ namespace FAQCheckpoint2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Edit([Bind(Include = "job_id,job_title,job_description,job_type,job_openings,job_posted_date,job_closing_date,dept")] Job_Postings job_Postings)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(job_Postings).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(job_Postings).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.dept = new SelectList(db.Departments, "Id", "Name", job_Postings.dept);
+                return View(job_Postings);
             }
-            ViewBag.dept = new SelectList(db.Departments, "Id", "Name", job_Postings.dept);
-            return View(job_Postings);
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         // GET: Job_Postings/Delete/5
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction("Index");
+                }
+                Job_Postings job_Postings = db.Job_Postings.Find(id);
+                if (job_Postings == null)
+                {
+                    //return HttpNotFound();
+                    return RedirectToAction("Index");
+                }
+                return View(job_Postings);
             }
-            Job_Postings job_Postings = db.Job_Postings.Find(id);
-            if (job_Postings == null)
+            catch (Exception e)
             {
-                return HttpNotFound();
+                ViewBag.ExceptionMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
             }
-            return View(job_Postings);
         }
 
         // POST: Job_Postings/Delete/5
+        [Authorize(Roles = "admin,staff")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Job_Postings job_Postings = db.Job_Postings.Find(id);
-            db.Job_Postings.Remove(job_Postings);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.Applications.RemoveRange(db.Applications.Where(m => m.job_posting == id));
+                Job_Postings job_Postings = db.Job_Postings.Find(id);
+                db.Job_Postings.Remove(job_Postings);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ExceptionMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         protected override void Dispose(bool disposing)

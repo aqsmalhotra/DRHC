@@ -13,15 +13,17 @@
     
     <div class="form-horizontal">
         <h4>Application</h4>
+        @ViewBag.posting
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+
+        @*<div class="form-group">
             @Html.LabelFor(model => model.app_id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.app_id, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.app_id, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.app_first_name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -90,25 +92,29 @@
         <div class="form-group">
             @Html.LabelFor(model => model.app_comments, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.app_comments, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.app_comments, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.app_comments, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.app_submission_date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.app_submission_date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.app_submission_date, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.job_posting, "job_posting", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("job_posting", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.job_posting, "", new { @class = "text-danger" })
             </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.job_posting, new { @Value = @ViewBag.posting })
         </div>
 
         <div class="form-group">
@@ -120,5 +126,12 @@
 }
 
 <div>
+   @if (User.Identity.IsAuthenticated)
+   {
     @Html.ActionLink("Back to List", "Index")
+   }
+   else
+   {
+    @Html.ActionLink("Back", "Index", new { Controller = "Job_Postings", action = "Index" })
+   }
 </div>
