@@ -167,6 +167,7 @@
     <Compile Include="Controllers\ecardsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\FAQsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Job_PostingsController.cs" />
     <Compile Include="Controllers\peopleController.cs" />
     <Compile Include="Controllers\Staff_MembersController.cs" />

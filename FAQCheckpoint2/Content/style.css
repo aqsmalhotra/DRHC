@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css?family=Roboto');
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 html {
@@ -40,17 +40,16 @@ a, a:link, a:visited, a:active {
 
 
 .site-logo {
-    max-width: 59px;
+    max-width: 200px;
 }
 
+a.nav-link {
+    width: 200px !important;
+}
 
 header {
     position: relative;
 }
-
-.navbar-light .navbar-nav .nav-link {
-}
-
 
 
 .logo {
@@ -58,13 +57,13 @@ header {
     text-align: left;
 }
 
-    .logo img {
-        width: 100px;
-        position: relative;
-        left: 30%;
-        right: 50%;
-        padding-top: .4em;
-    }
+.logo img {
+    width: 100px;
+    position: relative;
+    left: 30%;
+    right: 50%;
+    padding-top: .4em;
+}
 
 
 .feature-event {
@@ -72,14 +71,14 @@ header {
     position: relative;
 }
 
-    .feature-event span {
-        color: #A451A7;
-        font-weight: 100;
-    }
+.feature-event span {
+    color: #A451A7;
+    font-weight: 100;
+}
 
-    .feature-event .feature-content {
-        padding: 1em;
-    }
+.feature-event .feature-content {
+    padding: 1em;
+}
 
 
 
@@ -105,7 +104,7 @@ header {
 
 
 footer {
-    background-color: #daf4fd;
+    background-color: #F5F5F5;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -225,6 +224,7 @@ footer {
         width: 100% !important;
         text-align: left !important;
     }
+
 }
 
 @media only screen and (max-width: 768px) { /*TABLET SIZE */
@@ -257,7 +257,7 @@ footer {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 466px;
+    height: 450px;
     position: relative;
 }
 
@@ -297,6 +297,7 @@ footer {
     .headliner {
         height: 205px;
     }
+
 }
 
 .col-regular {
@@ -365,13 +366,6 @@ footer {
         border: 1px solid #03b5d2;
     }
 
-.accordion .apply {
-}
-
-    .accordion .apply::after {
-        content: none;
-    }
-
 .accordion .content {
     opacity: 0;
     padding: 0 1rem;
@@ -384,7 +378,7 @@ footer {
     transition: all 0.2s ease 0.15s;
 }
 
-    .accordion .content p {
+.accordion .content p {
         font-size: 1rem;
         font-weight: 400;
     }
@@ -399,19 +393,19 @@ footer {
         transition: all 0.35s ease 0.15s;
     }
 
-
+  
 
 .faq_cat {
     background-color: #f8f8f8 !important;
 }
 
-    .faq_cat:hover {
-        background-color: #d05061 !important;
-    }
+.faq_cat:hover {
+    background-color: #d05061 !important;
+}
 
-    .faq_cat:hover {
-        color: #fefefe !important;
-    }
+.faq_cat:hover {
+    color: #fefefe !important;
+}
 
 .faq_help {
     padding-top: 0.5em !important;
@@ -470,10 +464,10 @@ footer {
     margin-bottom: 10px;
 }
 
-    .login-btn:hover {
-        background: #0e7ea2;
-        border: 1px solid #A451A7;
-    }
+.login-btn:hover {
+    background: #0e7ea2;      
+    border: 1px solid #A451A7;
+}
 
 .error {
     text-align: center;
@@ -564,7 +558,6 @@ input.search-submit {
 input.search-text::-webkit-search-cancel-button {
     cursor: pointer;
 }
-
 .contact.contact__form {
     max-width: 500px;
     margin: 0 auto;
@@ -576,19 +569,61 @@ input.search-text::-webkit-search-cancel-button {
     display: block;
 }
 
-.apply {
-    color:black;
+
+
+/*OVERIDE BOOTSTRAP NAV*/
+
+.navbar-nav {
+    width: 100%;
+    justify-content:space-between;
 }
 
-.apply:hover {
-    color: black;
+
+    .navbar-nav .nav-item {
+        flex: 1 1 0;
+    }
+
+
+.nav-parent {
+
 }
 
-.bolden {
-    font-weight: bolder;
+.nav-child {
+    position: absolute;
+    z-index: 999;
+    background-color: #f4fcff;
+    padding: 0;
+    display:none;
 }
 
-.multiline {
-    white-space: pre-line;
+    .nav-child li {
+        border-bottom: 1px solid #dedede;
+    }
+
+    .nav-child li a {
+        text-align:left;
+    }
+
+.nav-parent:hover .nav-child{
+    
+}
+
+
+@media only screen and (max-width: 992px) {
+    .nav-child {
+        position:relative;
+    }
+    .donate-btn {
+        display: none;
+    }
+
+    .helpline {
+        display: none;
+    }
+
+    .search-home {
+        display: none;
+    }
+
 }
 
