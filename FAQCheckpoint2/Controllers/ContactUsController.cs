@@ -125,7 +125,7 @@ namespace FAQCheckpoint2.Controllers
             }
 
 
-            return RedirectToAction("List");
+            return RedirectToAction("Admin");
         }
 
         [HttpGet]
@@ -134,7 +134,7 @@ namespace FAQCheckpoint2.Controllers
         {
             if (id==null)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("Admin");
             }
 
             try
@@ -158,7 +158,7 @@ namespace FAQCheckpoint2.Controllers
                 Contact_messages message = db.contactMessages.Find(id);
                 db.contactMessages.Remove(message);
                 db.SaveChanges();
-                return RedirectToAction("List");
+                return RedirectToAction("Admin");
             }
             catch (SqlException sqlException)
             {
