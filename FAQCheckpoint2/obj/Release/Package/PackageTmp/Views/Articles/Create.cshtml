@@ -24,10 +24,9 @@
 
                 <hr />
 
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Create", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
-
 
                     <div class="form-horizontal" id="EditView">
                         <h4>Article</h4>

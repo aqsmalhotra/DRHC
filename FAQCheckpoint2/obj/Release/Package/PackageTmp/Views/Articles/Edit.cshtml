@@ -4,109 +4,97 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-
-@using (Html.BeginForm("Edit", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.Timestamp_created)
-    @Html.HiddenFor(model => model.Author_id)
-    @Html.HiddenFor(model => model.image_url)
-    <div class="form-horizontal" id="EditView">
-        <h4>Article</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
+<div class="feature-event">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12">
+            @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
         </div>
+        <div class="col-lg-9 col-md-9 col-sm-12">
+            <div class="feature-content">
+                <span><i class="fas fa-home"></i> / dashboard / articles / create</span>
+                <h1 class="admin-head">Edit AN ARTICLE</h1>
+                <p>Follow your will.</p>
+                <p>
+                    <ol></ol>
+                <p>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-
-                @Html.TextAreaFor(model => model.Body, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Timestamp_publiched, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Timestamp_publiched, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Timestamp_publiched, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <hr />
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.image_url, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="file" id="file" class="" />
-                @Html.DisplayFor(model => model.image_url)
-                @Html.ValidationMessageFor(model => model.image_url, "", new { @class = "text-danger" })
-                @if (Model.image_url != null && Model.image_url != "")
+                    @using (Html.BeginForm("Edit", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.Timestamp_created)
+                        @Html.HiddenFor(model => model.Author_id)
+                        @Html.HiddenFor(model => model.image_url)
+                        <div class="form-horizontal" id="EditView">
+                            <h4>Article</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+
+                                    @Html.TextAreaFor(model => model.Body, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Timestamp_publiched, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Timestamp_publiched, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Timestamp_publiched, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.image_url, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <input type="file" name="file" id="file" class="" />
+                                    @Html.DisplayFor(model => model.image_url)
+                                    @Html.ValidationMessageFor(model => model.image_url, "", new { @class = "text-danger" })
+                                    @if (Model.image_url != null && Model.image_url != "")
                 {
-                    @Html.ActionLink("Remove image", "DeleteImage", new { id = Model.Id })
-                    
-                }
-            </div>
-        </div>
+                                        @Html.ActionLink("Remove image", "DeleteImage", new { id = Model.Id })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Category_id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Category_id, new SelectList(ViewBag.Categories, "Id", "Name"), new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Category_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Category_id, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.Category_id, new SelectList(ViewBag.Categories, "Id", "Name"), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Category_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-4">
-                <input type="submit" value="Save" class="btn btn-default" />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-4">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
+                                <div class="col-md-offset-2 col-md-4">
+                                    <input onclick="preview()" value="Preview" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
             </div>
-            <div class="col-md-offset-2 col-md-4">
-                <input onclick="preview()" value="Preview" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-<div id="PreviewView" class="col-xs-12">
-    <div class="col-md-offset-2 col-md-4">
-        <input onclick="unpreview()" value="Return" class="btn btn-default" />
-    </div>
-    <div class="col-xs-12 col-md-9">
-        <div class="col-xs-12 shadow">
-            <div>
-                <div>
-                    <h1 id="title_preview"></h1>
-                </div>
-                <div>
-                    <div><span id="published_date"></span></div>
-                    <div><span>By: YourUsername</span></div>
-                </div>
-            </div>
-
-            <div id="image_containter">
-                <img src="~/Content/images/article.svg" alt="Article Image" />
-            </div>
-            <div id="body_preview">
-                <p></p>
-            </div>
-        </div>
-    </div>
-    <div>
-
-        <div class="col-md-3 hidden-sm aside-content shadow">
-            <h4>Trending News</h4>
         </div>
     </div>
 </div>
+
 
 
 <div>

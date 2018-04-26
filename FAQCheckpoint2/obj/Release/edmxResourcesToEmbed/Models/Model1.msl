@@ -1,38 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="aqsmalhotraModelStoreContainer" CdmEntityContainer="aqsmalhotraEntities">
-    <EntitySetMapping Name="Articles">
-      <EntityTypeMapping TypeName="aqsmalhotraModel.Article">
-        <MappingFragment StoreEntitySet="Articles">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Body" ColumnName="Body" />
-          <ScalarProperty Name="Timestamp_created" ColumnName="Timestamp_created" />
-          <ScalarProperty Name="Category_id" ColumnName="Category_id" />
-          <ScalarProperty Name="Author_id" ColumnName="Author_id" />
-          <ScalarProperty Name="clicks" ColumnName="clicks" />
-          <ScalarProperty Name="image_url" ColumnName="image_url" />
-          <ScalarProperty Name="Timestamp_published" ColumnName="Timestamp_published" />
-          <ScalarProperty Name="Timestamp_publiched" ColumnName="Timestamp_publiched" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Categories">
       <EntityTypeMapping TypeName="aqsmalhotraModel.Category">
         <MappingFragment StoreEntitySet="Categories">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Comments">
-      <EntityTypeMapping TypeName="aqsmalhotraModel.Comment">
-        <MappingFragment StoreEntitySet="Comments">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Date_created" ColumnName="Date_created" />
-          <ScalarProperty Name="Body" ColumnName="Body" />
-          <ScalarProperty Name="Author_id" ColumnName="Author_id" />
-          <ScalarProperty Name="Article_id" ColumnName="Article_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -144,6 +117,45 @@
           <ScalarProperty Name="job_description" ColumnName="job_description" />
           <ScalarProperty Name="job_title" ColumnName="job_title" />
           <ScalarProperty Name="job_id" ColumnName="job_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="faq_users">
+      <EntityTypeMapping TypeName="aqsmalhotraModel.faq_users">
+        <MappingFragment StoreEntitySet="faq_users">
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="fullname" ColumnName="fullname" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Articles">
+      <EntityTypeMapping TypeName="aqsmalhotraModel.Article">
+        <MappingFragment StoreEntitySet="Articles">
+          <ScalarProperty Name="Timestamp_publiched" ColumnName="Timestamp_publiched" />
+          <ScalarProperty Name="Timestamp_published" ColumnName="Timestamp_published" />
+          <ScalarProperty Name="image_url" ColumnName="image_url" />
+          <ScalarProperty Name="clicks" ColumnName="clicks" />
+          <ScalarProperty Name="Author_id" ColumnName="Author_id" />
+          <ScalarProperty Name="Category_id" ColumnName="Category_id" />
+          <ScalarProperty Name="Timestamp_created" ColumnName="Timestamp_created" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="aqsmalhotraModel.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="Article_id" ColumnName="Article_id" />
+          <ScalarProperty Name="Author_id" ColumnName="Author_id" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Date_created" ColumnName="Date_created" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

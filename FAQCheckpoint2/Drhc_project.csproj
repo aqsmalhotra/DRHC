@@ -305,9 +305,6 @@
     <Content Include="fonts\slick.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\style.css" />
-    <Content Include="images\Articles\1027\2017-09-09 %281%29.png" />
-    <Content Include="images\Articles\19\spaghettis.jpg" />
-    <Content Include="images\Articles\24\2017-08-20 %281%29.png" />
     <Content Include="images\Articles\27\2017-08-20.png" />
     <Content Include="images\Articles\2\2017-09-09 %282%29.png" />
     <Content Include="images\aside1.jpg" />
@@ -350,6 +347,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\dhrc1 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Drhcproject2018 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\VKABLA - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\faq.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
@@ -465,6 +463,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\Articles\1027\" />
+    <Folder Include="images\Articles\19\" />
+    <Folder Include="images\Articles\24\" />
     <Folder Include="NewFolder1\" />
     <Folder Include="resumes\" />
   </ItemGroup>
