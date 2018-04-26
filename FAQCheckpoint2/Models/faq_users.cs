@@ -12,25 +12,22 @@ namespace FAQCheckpoint2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Job_Postings
+    public partial class faq_users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Job_Postings()
+        public faq_users()
         {
-            this.Applications = new HashSet<Application>();
+            this.Articles = new HashSet<Article>();
         }
     
-        public int job_id { get; set; }
-        public string job_title { get; set; }
-        public string job_description { get; set; }
-        public string job_type { get; set; }
-        public Nullable<int> job_openings { get; set; }
-        public Nullable<System.DateTime> job_posted_date { get; set; }
-        public Nullable<System.DateTime> job_closing_date { get; set; }
-        public Nullable<int> dept { get; set; }
+        public int id { get; set; }
+        public string fullname { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public string email { get; set; }
+        public string role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Application> Applications { get; set; }
-        public virtual Department Department { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

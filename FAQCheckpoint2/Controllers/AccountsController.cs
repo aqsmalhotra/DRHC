@@ -124,7 +124,7 @@ namespace FAQCheckpoint2.Controllers
                 if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(users.username, false);
-
+                    Session["id"] = user.id;
                     return RedirectToAction("Index");
                 }
                 else

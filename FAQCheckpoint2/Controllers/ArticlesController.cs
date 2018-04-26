@@ -33,7 +33,8 @@ namespace FAQCheckpoint2.Controllers
             {
                 List<Article> articles = Article.GetSearchResult(search, (User.IsInRole("admin") || User.IsInRole("staff")), page, out totalPages);
 
-                ViewBag.Trending = Article.GetTrending();
+                //ViewBag.Trending = Article.GetTrending();
+                ViewBag.Categories = db.Categories.ToList();
                 ViewBag.Pages = totalPages;
 
                 return View(articles);
@@ -105,6 +106,7 @@ namespace FAQCheckpoint2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Body,Timestamp_created,Timestamp_publiched,Category_id,Author_id")] Article article, HttpPostedFileBase file)
         {
+            article.Author_id = Convert.ToInt32(Session["id"]);
             if (ModelState.IsValid)
             {
                 try
@@ -329,6 +331,36 @@ namespace FAQCheckpoint2.Controllers
             }
 
             return RedirectToAction("Details", new { id = article.Id });
+        }
+
+        //AJAX!!!
+        [HttpPost]
+        public ActionResult Search(FormCollection frm) //search by question
+        {
+            try
+            {
+                int totalNews = 0;
+                string search = "";
+                List<Article> f;
+                if (frm["category"] != null)
+                {
+                    search = frm["category"];
+                    f = Article.GetCategoryResult(search, (User.IsInRole("admin") || User.IsInRole("staff")), 1, out totalNews);
+                }
+                else
+                {
+                    if (frm["search"] != null)
+                        search = frm["search"];
+                    f = Article.GetSearchResult(search, (User.IsInRole("admin") || User.IsInRole("staff")), 1, out totalNews);
+                }
+                return PartialView("~/Views/Articles/View.cshtml", f);
+            }
+            catch (Exception e)
+            {
+
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
 
         protected override void Dispose(bool disposing)

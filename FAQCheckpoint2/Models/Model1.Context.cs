@@ -25,7 +25,6 @@ namespace FAQCheckpoint2.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
@@ -37,5 +36,7 @@ namespace FAQCheckpoint2.Models
         public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<Job_Postings> Job_Postings { get; set; }
+        public virtual DbSet<faq_users> faq_users { get; set; }
+        public virtual DbSet<Article> Articles { get; set; }
     }
 }

@@ -90,6 +90,17 @@
           <Property Name="ev_start_date" Type="date" />
           <Property Name="ev_end_date" Type="date" />
         </EntityType>
+        <EntityType Name="faq_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fullname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="128" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="Job_Postings">
           <Key>
             <PropertyRef Name="job_id" />
@@ -152,11 +163,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="articles_fk_users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="faq_users" Type="Self.faq_users" Multiplicity="1" />
           <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
+            <Principal Role="faq_users">
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Articles">
               <PropertyRef Name="Author_id" />
@@ -268,6 +279,7 @@
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ecards" EntityType="Self.ecards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="faq_users" EntityType="Self.faq_users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job_Postings" EntityType="Self.Job_Postings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="persons" EntityType="Self.persons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff_Members" EntityType="Self.Staff_Members" Schema="dbo" store:Type="Tables" />
@@ -277,7 +289,7 @@
             <End Role="Articles" EntitySet="Articles" />
           </AssociationSet>
           <AssociationSet Name="articles_fk_users" Association="Self.articles_fk_users">
-            <End Role="Users" EntitySet="Users" />
+            <End Role="faq_users" EntitySet="faq_users" />
             <End Role="Articles" EntitySet="Articles" />
           </AssociationSet>
           <AssociationSet Name="FK__ecards__card_cho__32AB8735" Association="Self.FK__ecards__card_cho__32AB8735">
@@ -317,31 +329,13 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="aqsmalhotraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Article">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Timestamp_created" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Category_id" Type="Int32" Nullable="false" />
-          <Property Name="Author_id" Type="Int32" Nullable="false" />
-          <Property Name="clicks" Type="Int32" />
-          <Property Name="image_url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Timestamp_published" Type="DateTime" Precision="3" />
-          <Property Name="Timestamp_publiched" Type="DateTime" Precision="7" />
-          <NavigationProperty Name="Category" Relationship="Self.articles_fk_categories" FromRole="Articles" ToRole="Categories" />
-          <NavigationProperty Name="User" Relationship="Self.articles_fk_users" FromRole="Articles" ToRole="Users" />
-          <NavigationProperty Name="Comments" Relationship="Self.fk_comments_articles" FromRole="Articles" ToRole="Comments" />
-        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Articles" Relationship="Self.articles_fk_categories" FromRole="Categories" ToRole="Articles" />
+          <NavigationProperty Name="Articles" Relationship="aqsmalhotraModel.articles_fk_categories" FromRole="Category" ToRole="Article" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -352,8 +346,8 @@
           <Property Name="Body" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Author_id" Type="Int32" Nullable="false" />
           <Property Name="Article_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Article" Relationship="Self.fk_comments_articles" FromRole="Comments" ToRole="Articles" />
           <NavigationProperty Name="User" Relationship="Self.fk_comments_users" FromRole="Comments" ToRole="Users" />
+          <NavigationProperty Name="Article" Relationship="aqsmalhotraModel.fk_comments_articles" FromRole="Comment" ToRole="Article" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -372,47 +366,10 @@
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Role_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Articles" Relationship="Self.articles_fk_users" FromRole="Users" ToRole="Articles" />
           <NavigationProperty Name="Comments" Relationship="Self.fk_comments_users" FromRole="Users" ToRole="Comments" />
           <Property Name="person_id" Type="Int32" />
           <NavigationProperty Name="person" Relationship="aqsmalhotraModel.FK__Users__person_id__2BFE89A6" FromRole="User" ToRole="person" />
         </EntityType>
-        <Association Name="articles_fk_categories">
-          <End Role="Categories" Type="Self.Category" Multiplicity="1" />
-          <End Role="Articles" Type="Self.Article" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Articles">
-              <PropertyRef Name="Category_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="articles_fk_users">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Articles" Type="Self.Article" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Articles">
-              <PropertyRef Name="Author_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_comments_articles">
-          <End Role="Articles" Type="Self.Article" Multiplicity="1" />
-          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Articles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Comments">
-              <PropertyRef Name="Article_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_comments_users">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
@@ -426,23 +383,10 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="aqsmalhotraEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Articles" EntityType="Self.Article" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="articles_fk_categories" Association="Self.articles_fk_categories">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Articles" EntitySet="Articles" />
-          </AssociationSet>
-          <AssociationSet Name="articles_fk_users" Association="Self.articles_fk_users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Articles" EntitySet="Articles" />
-          </AssociationSet>
-          <AssociationSet Name="fk_comments_articles" Association="Self.fk_comments_articles">
-            <End Role="Articles" EntitySet="Articles" />
-            <End Role="Comments" EntitySet="Comments" />
-          </AssociationSet>
           <AssociationSet Name="fk_comments_users" Association="Self.fk_comments_users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Comments" EntitySet="Comments" />
@@ -477,6 +421,20 @@
           <AssociationSet Name="FK_JOB_DEPARTMENT" Association="aqsmalhotraModel.FK_JOB_DEPARTMENT">
             <End Role="Department" EntitySet="Departments" />
             <End Role="Job_Postings" EntitySet="Job_Postings" />
+          </AssociationSet>
+          <EntitySet Name="faq_users" EntityType="aqsmalhotraModel.faq_users" />
+          <EntitySet Name="Articles" EntityType="aqsmalhotraModel.Article" />
+          <AssociationSet Name="articles_fk_categories" Association="aqsmalhotraModel.articles_fk_categories">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="articles_fk_users" Association="aqsmalhotraModel.articles_fk_users">
+            <End Role="faq_users" EntitySet="faq_users" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_comments_articles" Association="aqsmalhotraModel.fk_comments_articles">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Staff_Members">
@@ -645,28 +603,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="faq_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fullname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Articles" Relationship="aqsmalhotraModel.articles_fk_users" FromRole="faq_users" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Timestamp_created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Category_id" Type="Int32" Nullable="false" />
+          <Property Name="Author_id" Type="Int32" Nullable="false" />
+          <Property Name="clicks" Type="Int32" />
+          <Property Name="image_url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Timestamp_published" Type="DateTime" Precision="3" />
+          <Property Name="Timestamp_publiched" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Category" Relationship="aqsmalhotraModel.articles_fk_categories" FromRole="Article" ToRole="Category" />
+          <NavigationProperty Name="faq_users" Relationship="aqsmalhotraModel.articles_fk_users" FromRole="Article" ToRole="faq_users" />
+          <NavigationProperty Name="Comments" Relationship="aqsmalhotraModel.fk_comments_articles" FromRole="Article" ToRole="Comment" />
+        </EntityType>
+        <Association Name="articles_fk_categories">
+          <End Type="aqsmalhotraModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="aqsmalhotraModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="Category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="articles_fk_users">
+          <End Type="aqsmalhotraModel.faq_users" Role="faq_users" Multiplicity="1" />
+          <End Type="aqsmalhotraModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="faq_users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="Author_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_comments_articles">
+          <End Type="aqsmalhotraModel.Article" Role="Article" Multiplicity="1" />
+          <End Type="aqsmalhotraModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Article_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="aqsmalhotraModelStoreContainer" CdmEntityContainer="aqsmalhotraEntities">
-          <EntitySetMapping Name="Articles">
-            <EntityTypeMapping TypeName="aqsmalhotraModel.Article">
-              <MappingFragment StoreEntitySet="Articles">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Body" ColumnName="Body" />
-                <ScalarProperty Name="Timestamp_created" ColumnName="Timestamp_created" />
-                <ScalarProperty Name="Category_id" ColumnName="Category_id" />
-                <ScalarProperty Name="Author_id" ColumnName="Author_id" />
-                <ScalarProperty Name="clicks" ColumnName="clicks" />
-                <ScalarProperty Name="image_url" ColumnName="image_url" />
-                <ScalarProperty Name="Timestamp_published" ColumnName="Timestamp_published" />
-                <ScalarProperty Name="Timestamp_publiched" ColumnName="Timestamp_publiched" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="aqsmalhotraModel.Category">
               <MappingFragment StoreEntitySet="Categories">
@@ -794,6 +802,34 @@
                 <ScalarProperty Name="job_description" ColumnName="job_description" />
                 <ScalarProperty Name="job_title" ColumnName="job_title" />
                 <ScalarProperty Name="job_id" ColumnName="job_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="faq_users">
+            <EntityTypeMapping TypeName="aqsmalhotraModel.faq_users">
+              <MappingFragment StoreEntitySet="faq_users">
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="aqsmalhotraModel.Article">
+              <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="Timestamp_publiched" ColumnName="Timestamp_publiched" />
+                <ScalarProperty Name="Timestamp_published" ColumnName="Timestamp_published" />
+                <ScalarProperty Name="image_url" ColumnName="image_url" />
+                <ScalarProperty Name="clicks" ColumnName="clicks" />
+                <ScalarProperty Name="Author_id" ColumnName="Author_id" />
+                <ScalarProperty Name="Category_id" ColumnName="Category_id" />
+                <ScalarProperty Name="Timestamp_created" ColumnName="Timestamp_created" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

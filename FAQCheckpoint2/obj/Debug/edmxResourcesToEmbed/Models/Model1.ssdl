@@ -85,6 +85,17 @@
     <Property Name="ev_start_date" Type="date" />
     <Property Name="ev_end_date" Type="date" />
   </EntityType>
+  <EntityType Name="faq_users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fullname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="128" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="role" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
   <EntityType Name="Job_Postings">
     <Key>
       <PropertyRef Name="job_id" />
@@ -147,11 +158,11 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="articles_fk_users">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="faq_users" Type="Self.faq_users" Multiplicity="1" />
     <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
+      <Principal Role="faq_users">
+        <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Articles">
         <PropertyRef Name="Author_id" />
@@ -263,6 +274,7 @@
     <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ecards" EntityType="Self.ecards" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="faq_users" EntityType="Self.faq_users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Job_Postings" EntityType="Self.Job_Postings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="persons" EntityType="Self.persons" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Staff_Members" EntityType="Self.Staff_Members" Schema="dbo" store:Type="Tables" />
@@ -272,7 +284,7 @@
       <End Role="Articles" EntitySet="Articles" />
     </AssociationSet>
     <AssociationSet Name="articles_fk_users" Association="Self.articles_fk_users">
-      <End Role="Users" EntitySet="Users" />
+      <End Role="faq_users" EntitySet="faq_users" />
       <End Role="Articles" EntitySet="Articles" />
     </AssociationSet>
     <AssociationSet Name="FK__ecards__card_cho__32AB8735" Association="Self.FK__ecards__card_cho__32AB8735">

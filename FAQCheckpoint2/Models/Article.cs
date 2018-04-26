@@ -32,7 +32,7 @@ namespace FAQCheckpoint2.Models
         public Nullable<System.DateTime> Timestamp_publiched { get; set; }
     
         public virtual Category Category { get; set; }
-        public virtual User User { get; set; }
+        public virtual faq_users faq_users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
     }

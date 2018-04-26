@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -11,10 +12,17 @@ namespace FAQCheckpoint2.Models
     public partial class Article
     {
         private static aqsmalhotraEntities db = new aqsmalhotraEntities();
+        [ForeignKey("faq_users")]
+        public virtual Accounts Account { get; set; }
 
         class ArticleMetadata
         {
             //public System.DateTime Timestamp_created { get; set; }
+            [Required(ErrorMessage = "A title is required")]
+            public string Title { get; set; }
+
+            [Required(ErrorMessage = "A Body is required")]
+            public string Body { get; set; }
 
             [Display(Name = "Category")]
             public int Category_id { get; set; }
@@ -33,6 +41,7 @@ namespace FAQCheckpoint2.Models
             [Display(Name = "Date to publish")]
             public Nullable<System.DateTime> Timestamp_publiched { get; set; }
 
+            
 
         }
 
@@ -68,6 +77,29 @@ namespace FAQCheckpoint2.Models
                 return finalList.Skip(articlesPerPage * (page - 1)).Take(10).ToList();
             }
 
+        }
+
+        public static List<Article> GetCategoryResult(string search, bool admin, int page, out int totalNews)
+        {
+            totalNews = 0;
+            int articlesPerPage = 10;
+            var articles = db.Articles.Where(a => a.Category.Name.Contains(search)).OrderByDescending(a => a.Timestamp_publiched).ThenByDescending(a => a.Timestamp_publiched);
+
+
+            if (!admin)
+            {
+                var finalList = articles.Where(a => a.Timestamp_publiched < DateTime.Now);
+                var final2 = finalList;
+                totalNews = final2.Count() / articlesPerPage;
+                return finalList.Skip(articlesPerPage * (page - 1)).Take(10).ToList();
+            }
+            else
+            {
+                var finalList = articles;
+                var final2 = finalList;
+                totalNews = final2.Count() / articlesPerPage;
+                return finalList.Skip(articlesPerPage * (page - 1)).Take(10).ToList();
+            }
         }
 
         public Article addDefaults(int AuthorId)

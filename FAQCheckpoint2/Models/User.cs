@@ -17,7 +17,6 @@ namespace FAQCheckpoint2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.Articles = new HashSet<Article>();
             this.Comments = new HashSet<Comment>();
         }
     
@@ -27,8 +26,6 @@ namespace FAQCheckpoint2.Models
         public int Role_id { get; set; }
         public Nullable<int> person_id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Article> Articles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual person person { get; set; }
