@@ -47,6 +47,10 @@ a.nav-link {
     width: 200px !important;
 }
 
+li ul li a.nav-link {
+    text-align: left !important;
+}
+
 header {
     position: relative;
 }
