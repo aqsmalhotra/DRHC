@@ -1,7 +1,11 @@
 ﻿@model IEnumerable<FAQCheckpoint2.Models.Article>
 @if (Model.Count() == 0)
-{
-    <p>Sorry, no articles were found.</p>
+{   
+    <div class="row col-sm-12">
+        <p>Sorry, no articles were found.</p>
+        <p> Please try with another text input.</p>
+    </div>
+    
 }
 @foreach (FAQCheckpoint2.Models.Article item in Model)
 {

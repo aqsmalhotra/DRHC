@@ -13,13 +13,7 @@
                 <div class="col-regular">
                     <div class="feature-content">
                         <span><i class="fas fa-home"></i> / about / Articles</span>
-                        <h1>Frequently Asked Questions</h1>
-                        <p>
-                            Here is a list of most frequently asked questions (FAQs)
-                            about DRHC. We have covered a range
-                            of aspects like health policies, visitation, patient care,
-                            general rules etc.
-                        </p>
+                        <h1>Newsfeed</h1>
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-12">
 
@@ -69,9 +63,9 @@ else
                             @Html.ActionLink("ADD NEW ARTICLE", "Create")
                         </button>
                         <div>
-                            <form action="#" method="post" role="search" id="faq-seach-frm" class="search-form">
+                            <form action="#" method="post" role="search" id="articles-seach-frm" class="search-form">
                                 <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
-                                <input type="search" name="search" id="search" class="search-text" placeholder="Search article..." autocomplete="off">
+                                <input type="search" name="search" id="articlesearch" class="search-text" placeholder="Search articles..." autocomplete="off">
                             </form>
                         </div>
                         <table class="table table-striped">
@@ -92,27 +86,8 @@ else
                                 </tr>
                             </thead>
 
-                            <tbody id="search-results">
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td class="text-left">
-                                            @Html.DisplayFor(modelItem => item.Title)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Category.Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Timestamp_publiched)
-                                        </td>
-                                        <td>
-
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
-                                            @Html.ActionLink("Details", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
-                                        </td>
-                                    </tr>
-                                }
+                            <tbody id="article_list">
+                                @Html.Partial("~\\Views\\Articles\\IndexAdminList.cshtml", Model)
                             </tbody>
 
                         </table>
@@ -146,20 +121,16 @@ else
 
         $("#articles-seach-frm").submit(function (event) {
             var search = $("#articlesearch").val();
-            if (search == null || search == "") {
-                alert("Please enter text to search...");
-            } else {
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("Search", "Articles")',
-                    data: { search: search },
-                    success: function (data) {
-                        $("#article_list").html(data);
-                        console.log(data);
-                    },
-                    error: function (data) { console.log("hola");}
-                });
-            }
+            
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Search", "Articles")',
+                data: { search: search },
+                success: function (data) {
+                    $("#article_list").html(data);
+                }
+            });
+            
             event.preventDefault();
         });
 

@@ -130,6 +130,9 @@
                         <a class="nav-link">ABOUT DRHC&nbsp;&nbsp;<i class="fas fa-angle-down"></i></a>
                         <ul class="nav-child">
                             <li class="nav-item">
+                                @(Html.ActionLink("Newsfeed", "Index", "Articles", null, new { @class = "nav-link" }))
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="#">Community Partners</a>
                             </li>
                             <li class="nav-item">
@@ -209,6 +212,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-12">
                     <h2>ABOUT DRHC</h2>
                     <ul>
+                        <li>@(Html.ActionLink("Newsfeed", "Index", "Articles", null, new { @class = "" }))</li>
                         <li><a href="#">Community Partners</a></li>
                         <li><a href="#">Meet The Board</a></li>
                         <li><a href="#">Strategic Plan</a></li>

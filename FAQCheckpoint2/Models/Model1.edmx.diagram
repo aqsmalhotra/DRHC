@@ -6,10 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="fd670410e59b4ee6922e889ba7eb34a3" Name="Diagram1">
         <EntityTypeShape EntityType="aqsmalhotraModel.Category" Width="1.5" PointX="3.375" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="aqsmalhotraModel.Comment" Width="1.5" PointX="7.125" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="aqsmalhotraModel.Department" Width="1.5" PointX="7.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="aqsmalhotraModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="aqsmalhotraModel.fk_comments_users" ManuallyRouted="false" />
         <EntityTypeShape EntityType="aqsmalhotraModel.Staff_Members" Width="1.5" PointX="11.75" PointY="7.375" />
         <AssociationConnector Association="aqsmalhotraModel.FK_Staff_Members_Departments" />
         <EntityTypeShape EntityType="aqsmalhotraModel.card_choices" Width="1.5" PointX="3.75" PointY="8.75" />
@@ -27,7 +25,9 @@
         <EntityTypeShape EntityType="aqsmalhotraModel.Article" Width="1.5" PointX="8.375" PointY="3.625" />
         <AssociationConnector Association="aqsmalhotraModel.articles_fk_categories" />
         <AssociationConnector Association="aqsmalhotraModel.articles_fk_users" />
+        <EntityTypeShape EntityType="aqsmalhotraModel.Comment" Width="1.5" PointX="5.625" PointY="3.75" />
         <AssociationConnector Association="aqsmalhotraModel.fk_comments_articles" />
+        <AssociationConnector Association="aqsmalhotraModel.fk_comments_users" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

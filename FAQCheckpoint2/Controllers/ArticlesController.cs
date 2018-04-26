@@ -353,7 +353,15 @@ namespace FAQCheckpoint2.Controllers
                         search = frm["search"];
                     f = Article.GetSearchResult(search, (User.IsInRole("admin") || User.IsInRole("staff")), 1, out totalNews);
                 }
-                return PartialView("~/Views/Articles/View.cshtml", f);
+                if (User.IsInRole("admin") || User.IsInRole("staff"))
+                {
+                    return PartialView("~/Views/articles/IndexAdminList.cshtml",f); 
+                }
+                else
+                {
+                    return PartialView("~/Views/Articles/View.cshtml", f);
+                }
+                
             }
             catch (Exception e)
             {

@@ -24,7 +24,7 @@
 
                 <hr />
 
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Create", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
 

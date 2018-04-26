@@ -20,7 +20,7 @@ namespace FAQCheckpoint2.Models
         public int Author_id { get; set; }
         public int Article_id { get; set; }
     
-        public virtual User User { get; set; }
         public virtual Article Article { get; set; }
+        public virtual faq_users faq_users { get; set; }
     }
 }

@@ -85,30 +85,29 @@ namespace FAQCheckpoint2.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-
-                    try
+            try
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    if(User.IsInRole("admin"))
                     {
-                        if (User.Identity.IsAuthenticated)
-                        {
-                            if(User.IsInRole("admin"))
-                            {
-                                return RedirectToAction("Index","Accounts");
-                            }
-                            else
-                            {
-                                return RedirectToAction("Admin","FAQs");
-                            }
-                        }
-                        else
-                        {
-                            return View();
-                        }
+                        return RedirectToAction("Index","Accounts");
                     }
-                    catch (Exception e)
+                    else
                     {
-
-                        ViewBag.ExceptionMessage = e.Message;
+                        return RedirectToAction("Admin","FAQs");
                     }
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch (Exception e)
+            {
+
+                ViewBag.ExceptionMessage = e.Message;
+            }
             return View("~/Views/Errors/Details.cshtml");
 
         }
@@ -125,7 +124,16 @@ namespace FAQCheckpoint2.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(users.username, false);
                     Session["id"] = user.id;
-                    return RedirectToAction("Index");
+                    string url = Request.QueryString["ReturnUrl"];
+                    if(url!= null && Url.IsLocalUrl(url))
+                    {
+                        return Redirect(url);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    
                 }
                 else
                 {

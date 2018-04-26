@@ -18,6 +18,7 @@ namespace FAQCheckpoint2.Models
         public faq_users()
         {
             this.Articles = new HashSet<Article>();
+            this.Comments = new HashSet<Comment>();
         }
     
         public int id { get; set; }
@@ -29,5 +30,7 @@ namespace FAQCheckpoint2.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Article> Articles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

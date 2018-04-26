@@ -26,7 +26,6 @@ namespace FAQCheckpoint2.Models
         }
     
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Staff_Members> Staff_Members { get; set; }
@@ -38,5 +37,6 @@ namespace FAQCheckpoint2.Models
         public virtual DbSet<Job_Postings> Job_Postings { get; set; }
         public virtual DbSet<faq_users> faq_users { get; set; }
         public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
     }
 }

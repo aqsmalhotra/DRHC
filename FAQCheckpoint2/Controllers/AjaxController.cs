@@ -68,7 +68,7 @@ namespace FAQCheckpoint2.Controllers
                 var comments = db.Comments.Where(x => x.Article_id == id)
                     .Select(x => new
                     {
-                        Username = x.User.Username,
+                        Username = x.faq_users.username,
                         x.Body
                     });
                 return Json(new Dictionary<string, object>

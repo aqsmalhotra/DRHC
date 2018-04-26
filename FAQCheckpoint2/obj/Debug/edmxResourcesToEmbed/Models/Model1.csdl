@@ -8,18 +8,6 @@
     <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Articles" Relationship="aqsmalhotraModel.articles_fk_categories" FromRole="Category" ToRole="Article" />
   </EntityType>
-  <EntityType Name="Comment">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Date_created" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Body" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Author_id" Type="Int32" Nullable="false" />
-    <Property Name="Article_id" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="User" Relationship="Self.fk_comments_users" FromRole="Comments" ToRole="Users" />
-    <NavigationProperty Name="Article" Relationship="aqsmalhotraModel.fk_comments_articles" FromRole="Comment" ToRole="Article" />
-  </EntityType>
   <EntityType Name="Department">
     <Key>
       <PropertyRef Name="Id" />
@@ -37,31 +25,13 @@
     <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Role_id" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Comments" Relationship="Self.fk_comments_users" FromRole="Users" ToRole="Comments" />
     <Property Name="person_id" Type="Int32" />
     <NavigationProperty Name="person" Relationship="aqsmalhotraModel.FK__Users__person_id__2BFE89A6" FromRole="User" ToRole="person" />
   </EntityType>
-  <Association Name="fk_comments_users">
-    <End Role="Users" Type="Self.User" Multiplicity="1" />
-    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Comments">
-        <PropertyRef Name="Author_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="aqsmalhotraEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Categories" EntityType="Self.Category" />
-    <EntitySet Name="Comments" EntityType="Self.Comment" />
     <EntitySet Name="Departments" EntityType="Self.Department" />
     <EntitySet Name="Users" EntityType="Self.User" />
-    <AssociationSet Name="fk_comments_users" Association="Self.fk_comments_users">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Comments" EntitySet="Comments" />
-    </AssociationSet>
     <EntitySet Name="Staff_Members" EntityType="aqsmalhotraModel.Staff_Members" />
     <AssociationSet Name="FK_Staff_Members_Departments" Association="aqsmalhotraModel.FK_Staff_Members_Departments">
       <End Role="Department" EntitySet="Departments" />
@@ -103,8 +73,13 @@
       <End Role="faq_users" EntitySet="faq_users" />
       <End Role="Article" EntitySet="Articles" />
     </AssociationSet>
+    <EntitySet Name="Comments" EntityType="aqsmalhotraModel.Comment" />
     <AssociationSet Name="fk_comments_articles" Association="aqsmalhotraModel.fk_comments_articles">
       <End Role="Article" EntitySet="Articles" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="fk_comments_users" Association="aqsmalhotraModel.fk_comments_users">
+      <End Role="faq_users" EntitySet="faq_users" />
       <End Role="Comment" EntitySet="Comments" />
     </AssociationSet>
   </EntityContainer>
@@ -285,6 +260,7 @@
     <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="role" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Articles" Relationship="aqsmalhotraModel.articles_fk_users" FromRole="faq_users" ToRole="Article" />
+    <NavigationProperty Name="Comments" Relationship="aqsmalhotraModel.fk_comments_users" FromRole="faq_users" ToRole="Comment" />
   </EntityType>
   <EntityType Name="Article">
     <Key>
@@ -328,6 +304,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date_created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Body" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Author_id" Type="Int32" Nullable="false" />
+    <Property Name="Article_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Article" Relationship="aqsmalhotraModel.fk_comments_articles" FromRole="Comment" ToRole="Article" />
+    <NavigationProperty Name="faq_users" Relationship="aqsmalhotraModel.fk_comments_users" FromRole="Comment" ToRole="faq_users" />
+  </EntityType>
   <Association Name="fk_comments_articles">
     <End Type="aqsmalhotraModel.Article" Role="Article" Multiplicity="1" />
     <End Type="aqsmalhotraModel.Comment" Role="Comment" Multiplicity="*" />
@@ -337,6 +325,18 @@
       </Principal>
       <Dependent Role="Comment">
         <PropertyRef Name="Article_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_comments_users">
+    <End Type="aqsmalhotraModel.faq_users" Role="faq_users" Multiplicity="1" />
+    <End Type="aqsmalhotraModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="faq_users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="Author_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

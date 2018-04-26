@@ -461,6 +461,7 @@
     <Content Include="Views\ContactUs\_Search_By_Name_Ajax.cshtml" />
     <Content Include="Views\Job_Postings\Admin.cshtml" />
     <Content Include="Views\Articles\View.cshtml" />
+    <Content Include="Views\Articles\IndexAdminList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

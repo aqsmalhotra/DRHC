@@ -230,11 +230,11 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_comments_users">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="faq_users" Type="Self.faq_users" Multiplicity="1" />
     <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
+      <Principal Role="faq_users">
+        <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Comments">
         <PropertyRef Name="Author_id" />
@@ -308,7 +308,7 @@
       <End Role="Comments" EntitySet="Comments" />
     </AssociationSet>
     <AssociationSet Name="fk_comments_users" Association="Self.fk_comments_users">
-      <End Role="Users" EntitySet="Users" />
+      <End Role="faq_users" EntitySet="faq_users" />
       <End Role="Comments" EntitySet="Comments" />
     </AssociationSet>
     <AssociationSet Name="FK_JOB_DEPARTMENT" Association="Self.FK_JOB_DEPARTMENT">

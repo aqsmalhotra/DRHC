@@ -9,17 +9,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Comments">
-      <EntityTypeMapping TypeName="aqsmalhotraModel.Comment">
-        <MappingFragment StoreEntitySet="Comments">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Date_created" ColumnName="Date_created" />
-          <ScalarProperty Name="Body" ColumnName="Body" />
-          <ScalarProperty Name="Author_id" ColumnName="Author_id" />
-          <ScalarProperty Name="Article_id" ColumnName="Article_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Departments">
       <EntityTypeMapping TypeName="aqsmalhotraModel.Department">
         <MappingFragment StoreEntitySet="Departments">
@@ -155,6 +144,17 @@
           <ScalarProperty Name="Timestamp_created" ColumnName="Timestamp_created" />
           <ScalarProperty Name="Body" ColumnName="Body" />
           <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="aqsmalhotraModel.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="Article_id" ColumnName="Article_id" />
+          <ScalarProperty Name="Author_id" ColumnName="Author_id" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Date_created" ColumnName="Date_created" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
