@@ -11,7 +11,8 @@ namespace FAQCheckpoint2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class person
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,14 +21,27 @@ namespace FAQCheckpoint2.Models
             this.ecards = new HashSet<ecard>();
             this.Users = new HashSet<User>();
         }
-    
+        [Key]
         public int id { get; set; }
+        [Display(Name ="First Name")]
+        [Required(ErrorMessage = "First name must be provided.")]
         public string first_name { get; set; }
+        [Display(Name = "Middle Name (optional)")]
         public string middle_name { get; set; }
+        [Display(Name = "Last Name")]
+        [Required(ErrorMessage = "Last name must be provided.")]
         public string last_name { get; set; }
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Email must be provided")]
+        [EmailAddress]
         public string email { get; set; }
+        [Display(Name = "Gender")]
+        [Required(ErrorMessage = "Gender must be picked.")]
         public string gender { get; set; }
+        [Display(Name = "Health Card")]
+        [Required(ErrorMessage = "Please enter your health card.")]
         public string health_card { get; set; }
+        [Display(Name = "Date of Birth")]
         public Nullable<System.DateTime> date_of_birth { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

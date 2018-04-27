@@ -186,7 +186,12 @@
                 <div class="col-lg-2 col-md-2 col-sm-12">
                     <h2>PATIENTS & VISITORS</h2>
                     <ul>
+                        @if (Session["username"] == null) {
                         <li><a href="../Users/Login">Patient Login</a></li>
+                        } else
+                        {
+                            <li><a href="../Users/Logout">Patient Logout</a></li>
+                        }
                         <li><a href="#">Visitors</a></li>
                         <li><a href="../ecards/Index">Ecards</a></li>
                         <li><a href="#">Accessibility</a></li>

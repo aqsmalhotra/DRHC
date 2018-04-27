@@ -117,6 +117,8 @@ namespace FAQCheckpoint2.Controllers
                         return RedirectToAction("Index");
                     }
                 }
+                ViewBag.lNameError = "There are no people from the hospital with this name.";
+                ViewBag.card_choice = new SelectList(db.card_choices, "id", "choice");
                 return View(ecard);
             }
             catch (Exception e)
