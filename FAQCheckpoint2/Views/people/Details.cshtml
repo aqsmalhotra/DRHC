@@ -4,28 +4,40 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<span><i class="fas fa-home"></i> / user / profile</span>
-<div>
-    <h2>@Html.DisplayFor(model => model.first_name)  @Html.DisplayFor(model => model.middle_name) @Html.DisplayFor(model => model.last_name)</h2>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Email:
-        </dt>
+<div class="container-fluid contact">
+    <div class="feature-event p-4">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / user / profile</span>
+                    <div>
+                        <h2>@Html.DisplayFor(model => model.first_name)  @Html.DisplayFor(model => model.middle_name) @Html.DisplayFor(model => model.last_name)</h2>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                Email:
+                            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+                            <dd>
+                                @Html.DisplayFor(model => model.email)
+                            </dd>
 
-        <dt>
-            Gender:
-        </dt>
+                            <dt>
+                                Gender:
+                            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.gender)
-        </dd>
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }, htmlAttributes: new { @class="btn btn-info"})
-</p>
+                            <dd>
+                                @Html.DisplayFor(model => model.gender)
+                            </dd>
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.id }, htmlAttributes: new { @class = "btn btn-info" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>

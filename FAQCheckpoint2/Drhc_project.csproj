@@ -348,6 +348,7 @@
     <None Include="Properties\PublishProfiles\dhrc1 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Drhcproject2018 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\VKABLA - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\vongs-aspfinal - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\faq.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
@@ -460,6 +461,7 @@
     <Content Include="Views\Job_Postings\Admin.cshtml" />
     <Content Include="Views\Articles\View.cshtml" />
     <Content Include="Views\Articles\IndexAdminList.cshtml" />
+    <Content Include="Views\people\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

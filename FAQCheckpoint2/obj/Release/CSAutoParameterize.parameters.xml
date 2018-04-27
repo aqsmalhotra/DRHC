@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="HospitalContext-Web.config Connection String" description="HospitalContext Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:aqsmal.database.windows.net,1433;Initial Catalog=aqsmalhotra;Persist Security Info=False;User ID=aqsm2011;Password=46261509Aqs;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\dfmon\\git\\DRHC\\FAQCheckpoint2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='HospitalContext']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="\\\\Mac\\Home\\Documents\\GitHub\\DRHC\\FAQCheckpoint2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='HospitalContext']/@connectionString" />
   </parameter>
   <parameter name="aqsmalhotraEntities-Web.config Connection String" description="aqsmalhotraEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tcp:aqsmal.database.windows.net,1433;initial catalog=aqsmalhotra;persist security info=False;user id=aqsm2011;password=46261509Aqs;multipleactiveresultsets=False;connect timeout=30;encrypt=True;trustservercertificate=False;App=EntityFramework&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\dfmon\\git\\DRHC\\FAQCheckpoint2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='aqsmalhotraEntities']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="\\\\Mac\\Home\\Documents\\GitHub\\DRHC\\FAQCheckpoint2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='aqsmalhotraEntities']/@connectionString" />
   </parameter>
 </parameters>

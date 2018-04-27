@@ -85,6 +85,37 @@ namespace FAQCheckpoint2.Controllers
             return View(person);
         }
 
+        // GET: Events/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            person person = db.persons.Find(id);
+            if (person == null)
+            {
+                return HttpNotFound();
+            }
+            return View(person);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "id,first_name,middle_name,last_name,email,gender,health_card")] person person)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(person).State = EntityState.Modified;
+                db.SaveChanges();
+
+                var person_id = Session["id"];
+
+                return RedirectToAction("Details/" + person_id.ToString(), person_id);
+            }
+            return View(person);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
