@@ -465,6 +465,7 @@
     <Content Include="Views\people\Edit.cshtml" />
     <Content Include="Views\Staff_Members\Admin.cshtml" />
     <Content Include="Views\Staff_Members\IndexAdminList.cshtml" />
+    <Content Include="Views\Staff_Members\IndexList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

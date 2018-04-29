@@ -1,0 +1,30 @@
+﻿@model IEnumerable<FAQCheckpoint2.Models.Staff_Members>
+@foreach (var item in Model)
+{
+    <a href="/Staff_Members/Details/@item.Id">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => item.First_Name):
+                    @Html.DisplayFor(modelItem => item.First_Name)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => item.Last_Name):
+                    @Html.DisplayFor(modelItem => item.Last_Name)
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => item.Working_From):
+                    @Html.DisplayFor(modelItem => item.SimpleDate)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => item.Department_Id):
+                    @Html.DisplayFor(modelItem => item.Department.Name)
+                </div>
+            </div>
+        </div>
+    </a>
+<hr />
+
+}

@@ -39,7 +39,6 @@ namespace FAQCheckpoint2.Controllers
             try
             {
                 var staff_Members = db.Staff_Members.Include(s => s.Department);
-                ViewBag.Departments = db.Departments;
                 return View(staff_Members.ToList());
             }
             catch (Exception genericException)
