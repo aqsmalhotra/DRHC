@@ -22,6 +22,7 @@ namespace FAQCheckpoint2.Controllers
             try
             {
                 var staff_Members = db.Staff_Members.Include(s => s.Department);
+                ViewBag.Departments = db.Departments;
                 return View(staff_Members.ToList());
             }
             catch(Exception genericException)
@@ -31,6 +32,21 @@ namespace FAQCheckpoint2.Controllers
             }
             
             
+        }
+
+        public ActionResult Admin()
+        {
+            try
+            {
+                var staff_Members = db.Staff_Members.Include(s => s.Department);
+                ViewBag.Departments = db.Departments;
+                return View(staff_Members.ToList());
+            }
+            catch (Exception genericException)
+            {
+                ViewBag.ExceptionMessage = genericException.Message;
+                return View("~/Views/Error/Admin.cshtml");
+            }
         }
 
         // GET: Staff_Members/Details/5

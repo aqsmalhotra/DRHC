@@ -185,6 +185,7 @@
     <Compile Include="Models\Article.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Buddy_Staff_Member.cs" />
     <Compile Include="Models\Buddy_Article.cs" />
     <Compile Include="Models\card_choices.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -462,6 +463,8 @@
     <Content Include="Views\Articles\View.cshtml" />
     <Content Include="Views\Articles\IndexAdminList.cshtml" />
     <Content Include="Views\people\Edit.cshtml" />
+    <Content Include="Views\Staff_Members\Admin.cshtml" />
+    <Content Include="Views\Staff_Members\IndexAdminList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

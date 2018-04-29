@@ -139,6 +139,9 @@
                                 <a class="nav-link" href="#">Meet The Board</a>
                             </li>
                             <li class="nav-item">
+                                @(Html.ActionLink("Meet our Doctors","Index","Staff_Members", null, new { @class = "nav-link"}))
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="#">Strategic Plan</a>
                             </li>
                             <li class="nav-item">
@@ -220,6 +223,7 @@
                         <li>@(Html.ActionLink("Newsfeed", "Index", "Articles", null, new { @class = "" }))</li>
                         <li><a href="#">Community Partners</a></li>
                         <li><a href="#">Meet The Board</a></li>
+                        <li>@(Html.ActionLink("Meet our Doctors", "Index", "Staff_Members", null, new { @class = "" }))</li>
                         <li><a href="#">Strategic Plan</a></li>
                         <li><a href="#">Why DRHC</a></li>
                         <li><a href="#">Volunteer Program</a></li>

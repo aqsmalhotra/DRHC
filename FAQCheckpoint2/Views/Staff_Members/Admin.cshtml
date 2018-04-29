@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FAQCheckpoint2.Models.Staff_Members>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / Staff Members</span>
+                    <h1 class="admin-head">Staff Members Management</h1>
+                    <p>Welcome to the admin section of DRHC Staff Members Repository.</p>
+                    <button type="button" class="btn btn-success">
+                        @Html.ActionLink("ADD NEW STAFF MEMBER", "Create")
+                    </button>
+                    <div>
+                        <form action="#" method="post" role="search" id="articles-seach-frm" class="search-form">
+                            <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
+                            <input type="search" name="search" id="staffsearch" class="search-text" placeholder="Search staff members..." autocomplete="off">
+                        </form>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FullName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Department)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Working_From)
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="article_list">
+                            @Html.Partial("~\\Views\\Staff_Members\\IndexAdminList.cshtml", Model)
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
