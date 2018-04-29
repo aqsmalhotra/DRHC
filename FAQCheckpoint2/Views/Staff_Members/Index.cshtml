@@ -22,39 +22,43 @@
                                 <input type="search" name="search" id="searchStaff" class="search-text" placeholder="Search question..." autocomplete="off">
                             </form>
                             <ul class="list-group">
-                            @foreach (var item in ViewBag.Departments){
-                             <a href="#"><li class="list-group-item staff_dep">@item.Name</li></a>     
-                            }
+                                @foreach (var item in ViewBag.Departments)
+                                {
+                                    <a href="#"><li class="list-group-item staff_dep">@item.Name</li></a>
+                                }
                             </ul>
                         </div>
 
                         <div class="col-lg-8 col-md-8 col-sm-12">
                             <br />
 
-                           
-                                <div id="Staff_Members_List">
-                                    @Html.Partial("~\\Views\\Staff_Members\\IndexList.cshtml",Model)
 
-                                    
-                                </div>
+                            <div id="Staff_Members_List">
+                                @Html.Partial("~\\Views\\Staff_Members\\IndexList.cshtml", Model)
+
+
                             </div>
-
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 <script type="text/javascript">
     $(function () {
 
         $("ul.list-group .staff_dep").on('click', function () {
             var dep = $(this).text();
+            var admin = "@(User.IsInRole("admin")||User.IsInRole("staff"))";
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("SearchByDep", "Staff_Members")',
-                data: { deparment: dep },
+                url: '@Url.Action("Search", "Staff_Members")',
+                data: {
+                    department: dep
+                },
                 success: function (data) {
                     $("#Staff_Members_List").html(data);
                 }
@@ -64,12 +68,15 @@
 
         $("#staff-seach-frm").submit(function (event) {
             var search = $("#searchStaff").val();
+            var admin = "@(User.IsInRole("admin")||User.IsInRole("staff"))";
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("Search_By_Question", "FAQs")',
-                data: { search: search },
+                url: '@Url.Action("Search", "Staff_Members")',
+                data: {
+                    search: search
+                },
                 success: function (data) {
-                    $("#search-results").html(data);
+                    $("#Staff_Members_List").html(data);
                 }
             });
             event.preventDefault();
@@ -77,7 +84,7 @@
     });
 </script>
 <style>
-    #Staff_Members_List a{
-        color:inherit;
+    #Staff_Members_List a {
+        color: inherit;
     }
 </style>

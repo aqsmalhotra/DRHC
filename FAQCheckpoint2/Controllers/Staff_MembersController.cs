@@ -25,13 +25,13 @@ namespace FAQCheckpoint2.Controllers
                 ViewBag.Departments = db.Departments;
                 return View(staff_Members.ToList());
             }
-            catch(Exception genericException)
+            catch (Exception genericException)
             {
                 ViewBag.ExceptionMessage = genericException.Message;
                 return View("~/Views/Error/Index.cshtml");
             }
-            
-            
+
+
         }
 
         public ActionResult Admin()
@@ -64,7 +64,7 @@ namespace FAQCheckpoint2.Controllers
                 }
                 return View(staff_Members);
             }
-            catch(Exception genericException) 
+            catch (Exception genericException)
             {
                 ViewBag.ExceptionMessage = genericException.Message;
                 return View("~/Views/Error/Index.cshtml");
@@ -101,24 +101,24 @@ namespace FAQCheckpoint2.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     //Gets the filename of the file
-                    fileName = Path.GetFileName(file.FileName);
+                    fileName = Path.GetFileName(file.FileName).Replace(" ", "");
                 }
 
                 //Assigning filename to the model property
                 staff_Members.Image_Url = fileName;
 
-                try { 
+                try
+                {
                     db.Staff_Members.Add(staff_Members);
                     db.SaveChanges();
+                    //Find the path in the server to store the images then add in a directory with the custom directory
+                    //Locally, this path is different than the eventual path on another server so this follows a path
+                    string path = Path.Combine(Server.MapPath("~/Images/Staff_Members/" + staff_Members.Id + "/"));
+
+                    //C# requires you to create the directory. The server responds by creating directories that don't exist on top of the directories that do exist
+                    Directory.CreateDirectory(path);
                     if (fileName != "")
                     {
-                        //Find the path in the server to store the images then add in a directory with the custom directory
-                        //Locally, this path is different than the eventual path on another server so this follows a path
-                        string path = Path.Combine(Server.MapPath("~/Images/Staff_Members/" + staff_Members.Id + "/"));
-
-                        //C# requires you to create the directory. The server responds by creating directories that don't exist on top of the directories that do exist
-                        Directory.CreateDirectory(path);
-
                         path = Path.Combine(Server.MapPath("~/Images/Staff_Members/" + staff_Members.Id + "/"), fileName);
                         file.SaveAs(path);
                     }
@@ -135,13 +135,13 @@ namespace FAQCheckpoint2.Controllers
                 ViewBag.Department_Id = new SelectList(db.Departments, "Id", "Name", staff_Members.Department_Id);
                 return View(staff_Members);
             }
-            catch(Exception genericException)
+            catch (Exception genericException)
             {
                 ViewBag.ExceptionMessage = genericException.Message;
                 return View("~/View/Error/Index.cshtml");
             }
-            
-            
+
+
         }
 
         // GET: Staff_Members/Edit/5
@@ -161,13 +161,13 @@ namespace FAQCheckpoint2.Controllers
                 ViewBag.Department_Id = new SelectList(db.Departments, "Id", "Name", staff_Members.Department_Id);
                 return View(staff_Members);
             }
-            catch(Exception genericException)
+            catch (Exception genericException)
             {
                 ViewBag.ExceptionMessage = genericException.Message;
                 return View("~/View/Error/Index.cshtml");
             }
-            
-            
+
+
         }
 
         // POST: Staff_Members/Edit/5
@@ -179,7 +179,7 @@ namespace FAQCheckpoint2.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(file!=null && file.ContentLength > 0)
+                if (file != null && file.ContentLength > 0)
                 {
                     staff_Members.Image_Url = Path.GetFileName(file.FileName);
                     //Create the path if it didn't exist previously
@@ -208,7 +208,7 @@ namespace FAQCheckpoint2.Controllers
                     return View("~/View/Error/Index.cshtml");
                 }
 
-            }      
+            }
             try
             {
                 ViewBag.Department_Id = new SelectList(db.Departments, "Id", "Name", staff_Members.Department_Id);
@@ -239,7 +239,7 @@ namespace FAQCheckpoint2.Controllers
                 return View(staff_Members);
 
             }
-            catch(Exception genericException)
+            catch (Exception genericException)
             {
                 ViewBag.ExceptionMessage = genericException.Message;
                 return View("~/View/Error/Index.cshtml");
@@ -256,19 +256,19 @@ namespace FAQCheckpoint2.Controllers
                 Staff_Members staff_Members = db.Staff_Members.Find(id);
                 db.Staff_Members.Remove(staff_Members);
                 db.SaveChanges();
-                DirectoryInfo dirInfo = new DirectoryInfo(Request.MapPath("~/Images/Articles/" + staff_Members.Id));
+                DirectoryInfo dirInfo = new DirectoryInfo(Request.MapPath("~/images/Staff_Members/" + staff_Members.Id));
                 foreach (FileInfo fi in dirInfo.GetFiles())
                 {
                     fi.Delete();
                 }
                 return RedirectToAction("Index");
             }
-            catch(Exception genericException)
+            catch (Exception genericException)
             {
                 ViewBag.ExceptionMessage = genericException.Message;
                 return View("~/View/Error/Index.cshtml");
             }
-            
+
         }
 
         [Authorize(Roles = "admin")]
@@ -303,6 +303,45 @@ namespace FAQCheckpoint2.Controllers
             }
 
             return RedirectToAction("Details", new { id = staff_Member.Id });
+        }
+
+        public ActionResult Search(FormCollection frm)
+        {
+            try
+            {
+                int totalNews = 0;
+                string search = "";
+                List<Staff_Members> f;
+                if (frm["department"] != null)
+                {
+                    search = frm["department"];
+                    f = db.Staff_Members.Where(a => a.Department.Name == search).ToList();
+                }
+                else
+                {
+                    if (frm["search"] != null)
+                        search = frm["search"];
+                    f = db.Staff_Members.Where(a => a.Breaf_Bio.Contains(search) ||
+                                                a.Department.Name.Contains(search) ||
+                                                a.First_Name.Contains(search) ||
+                                                a.Last_Name.Contains(search)).ToList();
+                }
+                if (frm["admin"] != null)
+                {
+                    return PartialView("~/Views/Staff_Members/IndexAdminList.cshtml", f);
+                }
+                else
+                {
+                    return PartialView("~/Views/Staff_Members/IndexList.cshtml", f);
+                }
+
+            }
+            catch (Exception e)
+            {
+
+                ViewBag.ExceptionMessage = e.Message;
+            }
+            return View("~/Views/Errors/Details.cshtml");
         }
 
         protected override void Dispose(bool disposing)

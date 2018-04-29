@@ -22,6 +22,8 @@ namespace FAQCheckpoint2.Models
             [Display(Name = "Biography")]
             public string Breaf_Bio { get; set; }
             [Display(Name = "Working since")]
+            [DataType(DataType.Date)]
+            [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
             public System.DateTime Working_From { get; set; }
             public System.DateTime Created_At { get; set; }
             public string Image_Url { get; set; }

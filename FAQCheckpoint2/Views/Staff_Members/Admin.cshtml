@@ -20,9 +20,9 @@
                         @Html.ActionLink("ADD NEW STAFF MEMBER", "Create")
                     </button>
                     <div>
-                        <form action="#" method="post" role="search" id="articles-seach-frm" class="search-form">
+                        <form action="#" method="post" role="search" id="staff-seach-frm" class="search-form">
                             <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
-                            <input type="search" name="search" id="staffsearch" class="search-text" placeholder="Search staff members..." autocomplete="off">
+                            <input type="search" name="search" id="searchStaff" class="search-text" placeholder="Search staff members..." autocomplete="off">
                         </form>
                     </div>
                     <table class="table table-striped">
@@ -55,3 +55,40 @@
     </div>
 
 </div>
+<script type="text/javascript">
+    $(function () {
+
+        $("ul.list-group .staff_dep").on('click', function () {
+            var dep = $(this).text();
+            var admin = "@(User.IsInRole("admin")||User.IsInRole("staff"))";
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Search", "Staff_Members")',
+                data: {
+                    department: dep,
+                    admin: "true"
+                },
+                success: function (data) {
+                    $("#Staff_Members_List").html(data);
+                }
+            });
+            return false;
+        });
+
+        $("#staff-seach-frm").submit(function (event) {
+            var search = $("#searchStaff").val();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Search", "Staff_Members")',
+                data: {
+                    search: search,
+                    admin: "true"
+                },
+                success: function (data) {
+                    $("#article_list").html(data);
+                }
+            });
+            event.preventDefault();
+        });
+    });
+</script>

@@ -3,72 +3,85 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="container">
+    <h2>@Html.DisplayFor(model => model.FullName)</h2>
+    @if (User.IsInRole("admin") || User.IsInRole("staff"))
+    {
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+    <div>
+        <h4>Profile</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <div class="row">
+                <div id="image_container" class="col-md-4 hidden-xs">
+                    @if (!String.IsNullOrEmpty(@Model.Image_Url))
+                    {
+                        <img style="width:100%" alt="Profile image" src="~/images/Staff_Members/@Model.Id/@Model.Image_Url" />
+                    }
+                    else
+                    {
+                        <img alt="Profil image" src="~/images/Staff_Members/default/image.jpg" />
+                    }
+                    @*<dt>
+                            @Html.DisplayNameFor(model => model.Image_Url)
+                        </dt>
 
-<h2>Details</h2>
+                        <dd>
+                            @Html.DisplayFor(model => model.Image_Url)
+                        </dd>*@
+                </div>
+                <div id="information_ontainer" class="col-sm-12 col-md-8">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.First_Name)
+                    </dt>
 
-<div>
-    <h4>Staff_Members</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.First_Name)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.First_Name)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.First_Name)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Last_Name)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Last_Name)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Last_Name)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Last_Name)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Breaf_Bio)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Breaf_Bio)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Breaf_Bio)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Breaf_Bio)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Working_From)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Working_From)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SimpleDate)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Working_From)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Created_At)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Created_At)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Department.Name)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image_Url)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Department.Name)
+                    </dd>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Image_Url)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Department.Name)
-        </dt>
+        </dl>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Department.Name)
-        </dd>
 
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
