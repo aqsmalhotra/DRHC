@@ -169,6 +169,7 @@
     <Compile Include="Controllers\FAQsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Job_PostingsController.cs" />
+    <Compile Include="Controllers\MakeAppointmentController.cs" />
     <Compile Include="Controllers\peopleController.cs" />
     <Compile Include="Controllers\Staff_MembersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Models\Application.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Appointments.cs" />
     <Compile Include="Models\Article.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -467,6 +469,12 @@
     <Content Include="Views\Staff_Members\IndexAdminList.cshtml" />
     <Content Include="Views\Staff_Members\IndexList.cshtml" />
     <Content Include="Views\Events\Admin.cshtml" />
+    <Content Include="Views\MakeAppointment\Admin.cshtml" />
+    <Content Include="Views\MakeAppointment\Delete.cshtml" />
+    <Content Include="Views\MakeAppointment\Details.cshtml" />
+    <Content Include="Views\MakeAppointment\Index.cshtml" />
+    <Content Include="Views\MakeAppointment\Update.cshtml" />
+    <Content Include="Views\MakeAppointment\_Search_By_Name.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
