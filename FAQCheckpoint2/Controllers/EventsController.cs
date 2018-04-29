@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FAQCheckpoint2.Models;
+using System.Data.SqlClient;
+using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 
 namespace FAQCheckpoint2.Controllers
 {
@@ -17,39 +20,135 @@ namespace FAQCheckpoint2.Controllers
         // GET: Events
         public ActionResult Index()
         {
-            return View(db.Events.ToList());
+            try
+            {
+                return View(db.Events.ToList());
+            }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         // GET: Events
         [Authorize(Roles = "admin,staff")]
         public ActionResult Admin()
         {
-            return View(db.Events.ToList());
+            try
+            {
+                return View(db.Events.ToList());
+            }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         // GET: Events/Details/5
         [Authorize(Roles = "admin,staff")]
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                RedirectToAction("Admin");
+                if (id == null)
+                {
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    RedirectToAction("Admin");
+                }
+                Event @event = db.Events.Find(id);
+                if (@event == null)
+                {
+                    //return HttpNotFound();
+                    RedirectToAction("Admin");
+                }
+                return View(@event);
             }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
+            catch (DbUpdateException dbException)
             {
-                //return HttpNotFound();
-                RedirectToAction("Admin");
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
             }
-            return View(@event);
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         // GET: Events/Create
         [Authorize(Roles = "admin,staff")]
         public ActionResult Create()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         // POST: Events/Create
@@ -59,32 +158,80 @@ namespace FAQCheckpoint2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ev_id,ev_title,ev_description,ev_start_date,ev_end_date")] Event @event)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Events.Add(@event);
-                db.SaveChanges();
-                return RedirectToAction("Admin");
-            }
+                if (ModelState.IsValid)
+                {
+                    db.Events.Add(@event);
+                    db.SaveChanges();
+                    return RedirectToAction("Admin");
+                }
 
-            return View(@event);
+                return View(@event);
+            }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         // GET: Events/Edit/5
         [Authorize(Roles = "admin,staff")]
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            try
             {
-                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                RedirectToAction("Admin");
+                if (id == null)
+                {
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    RedirectToAction("Admin");
+                }
+                Event @event = db.Events.Find(id);
+                if (@event == null)
+                {
+                    //return HttpNotFound();
+                    RedirectToAction("Admin");
+                }
+                return View(@event);
             }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
+            catch (DbUpdateException dbException)
             {
-                //return HttpNotFound();
-                RedirectToAction("Admin");
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
             }
-            return View(@event);
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         // POST: Events/Edit/5
@@ -95,31 +242,79 @@ namespace FAQCheckpoint2.Controllers
         [Authorize(Roles = "admin,staff")]
         public ActionResult Edit([Bind(Include = "ev_id,ev_title,ev_description,ev_start_date,ev_end_date")] Event @event)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(@event).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Admin");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(@event).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Admin");
+                }
+                return View(@event);
             }
-            return View(@event);
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         // GET: Events/Delete/5
         [Authorize(Roles = "admin,staff")]
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                RedirectToAction("Admin");
+                if (id == null)
+                {
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    RedirectToAction("Admin");
+                }
+                Event @event = db.Events.Find(id);
+                if (@event == null)
+                {
+                    //return HttpNotFound();
+                    RedirectToAction("Admin");
+                }
+                return View(@event);
             }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
+            catch (DbUpdateException dbException)
             {
-                //return HttpNotFound();
-                RedirectToAction("Admin");
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
             }
-            return View(@event);
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         // POST: Events/Delete/5
@@ -128,10 +323,34 @@ namespace FAQCheckpoint2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Event @event = db.Events.Find(id);
-            db.Events.Remove(@event);
-            db.SaveChanges();
-            return RedirectToAction("Admin");
+            try
+            {
+                Event @event = db.Events.Find(id);
+                db.Events.Remove(@event);
+                db.SaveChanges();
+                return RedirectToAction("Admin");
+            }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         protected override void Dispose(bool disposing)

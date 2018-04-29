@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FAQCheckpoint2.Models;
+using System.Data.SqlClient;
+using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 
 namespace FAQCheckpoint2.Controllers
 {
@@ -22,6 +25,22 @@ namespace FAQCheckpoint2.Controllers
                 var job_Postings = db.Job_Postings.Include(j => j.Department);
                 return View(job_Postings.ToList());
             }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
             catch (Exception e)
             {
                 ViewBag.ErrorMessage = e.Message;
@@ -33,8 +52,33 @@ namespace FAQCheckpoint2.Controllers
         [Authorize(Roles = "admin,staff")]
         public ActionResult Admin()
         {
-            var job_Postings = db.Job_Postings.Include(j => j.Department);
-            return View(job_Postings.ToList());
+            try
+            {
+                var job_Postings = db.Job_Postings.Include(j => j.Department);
+                return View(job_Postings.ToList());
+
+            }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
         }
 
         // GET: Job_Postings/Details/5
@@ -56,6 +100,22 @@ namespace FAQCheckpoint2.Controllers
                 }
                 return View(job_Postings);
             }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
             catch (Exception e)
             {
                 ViewBag.ErrorMessage = e.Message;
@@ -71,6 +131,22 @@ namespace FAQCheckpoint2.Controllers
             {
                 ViewBag.dept = new SelectList(db.Departments, "Id", "Name");
                 return View();
+            }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
             }
             catch (Exception e)
             {
@@ -101,6 +177,22 @@ namespace FAQCheckpoint2.Controllers
                 ViewBag.dept = new SelectList(db.Departments, "Id", "Name", job_Postings.dept);
                 return View(job_Postings);
             }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
             catch (Exception e)
             {
                 ViewBag.ExceptionMessage = e.Message;
@@ -127,6 +219,22 @@ namespace FAQCheckpoint2.Controllers
                 }
                 ViewBag.dept = new SelectList(db.Departments, "Id", "Name", job_Postings.dept);
                 return View(job_Postings);
+            }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
             }
             catch (Exception e)
             {
@@ -155,6 +263,22 @@ namespace FAQCheckpoint2.Controllers
                 ViewBag.dept = new SelectList(db.Departments, "Id", "Name", job_Postings.dept);
                 return View(job_Postings);
             }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
             catch (Exception e)
             {
                 ViewBag.ExceptionMessage = e.Message;
@@ -181,6 +305,22 @@ namespace FAQCheckpoint2.Controllers
                 }
                 return View(job_Postings);
             }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
             catch (Exception e)
             {
                 ViewBag.ExceptionMessage = e.Message;
@@ -201,6 +341,22 @@ namespace FAQCheckpoint2.Controllers
                 db.Job_Postings.Remove(job_Postings);
                 db.SaveChanges();
                 return RedirectToAction("Admin");
+            }
+            catch (DbUpdateException dbException)
+            {
+                ViewBag.DbExceptionMessage = dbException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (EntityException entityException)
+            {
+                ViewBag.EntityExceptionMessage = entityException.InnerException.Message;
+                return View("~/Views/Errors/Details.cshtml");
+            }
+            catch (SqlException sqlException)
+            {
+                ViewBag.SqlExceptionNumber = sqlException.Number;
+                ViewBag.SqlExceptionMessage = sqlException.Message;
+                return View("~/Views/Errors/Details.cshtml");
             }
             catch (Exception e)
             {
