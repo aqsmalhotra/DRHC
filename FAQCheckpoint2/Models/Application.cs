@@ -11,22 +11,58 @@ namespace FAQCheckpoint2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Application
     {
+        [Key]
         public int app_id { get; set; }
+
+        [Display(Name = "First Name")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "First Name is required")]
         public string app_first_name { get; set; }
+
+        [Display(Name = "Last Name")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name is required")]
         public string app_last_name { get; set; }
+
+        [Display(Name = "Address")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Address is required")]
         public string app_address { get; set; }
+
+        [Display(Name = "City")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "City is required")]
         public string app_city { get; set; }
+
+        [Display(Name = "Province")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Province is required")]
         public string app_province { get; set; }
+
+        [Display(Name = "Postal Code")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Postal Code is required")]
         public string app_postal_code { get; set; }
+
+        [Display(Name = "Phone")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Phone is required")]
         public string app_phone { get; set; }
+
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Email is required")]
         public string app_email { get; set; }
+
+        [Display(Name = "Commets")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Comments is required")]
         public string app_comments { get; set; }
+
+        [Display(Name = "Submission Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> app_submission_date { get; set; }
+
+        [Display(Name = "Job Posting")]
         public Nullable<int> job_posting { get; set; }
-    
+
         public virtual Job_Postings Job_Postings { get; set; }
     }
 }

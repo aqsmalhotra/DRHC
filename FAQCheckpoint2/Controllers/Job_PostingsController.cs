@@ -30,6 +30,7 @@ namespace FAQCheckpoint2.Controllers
         }
 
         // GET: Job_Postings
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Admin()
         {
             var job_Postings = db.Job_Postings.Include(j => j.Department);
@@ -37,6 +38,7 @@ namespace FAQCheckpoint2.Controllers
         }
 
         // GET: Job_Postings/Details/5
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Details(int? id)
         {
             try

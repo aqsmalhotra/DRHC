@@ -16,6 +16,7 @@ namespace FAQCheckpoint2.Controllers
         private aqsmalhotraEntities db = new aqsmalhotraEntities();
 
         // GET: Applications
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Index()
         {
             var applications = db.Applications.Include(a => a.Job_Postings);
@@ -29,16 +30,19 @@ namespace FAQCheckpoint2.Controllers
         }
 
         // GET: Applications/Details/5
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                RedirectToAction("Index");
             }
             Application application = db.Applications.Find(id);
             if (application == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(application);
         }
@@ -82,7 +86,7 @@ namespace FAQCheckpoint2.Controllers
                 smtp.Credentials = new NetworkCredential("TestahTest123@gmail.com",
                    "MahPass!");
                 smtp.Send("TestahTest123@gmail.com", application.app_email,
-                   "Email Subject", message);
+                   "DRHC Application", message);
 
                 //return RedirectToAction("Index");
                 return RedirectToAction("index", "Job_Postings", new { area = "" });
@@ -93,16 +97,19 @@ namespace FAQCheckpoint2.Controllers
         }
 
         // GET: Applications/Edit/5
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                RedirectToAction("Index");
             }
             Application application = db.Applications.Find(id);
             if (application == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             ViewBag.job_posting = new SelectList(db.Job_Postings, "job_id", "job_title", application.job_posting);
             return View(application);
@@ -113,6 +120,7 @@ namespace FAQCheckpoint2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Edit([Bind(Include = "app_id,app_first_name,app_last_name,app_address,app_city,app_province,app_postal_code,app_phone,app_email,app_comments,app_submission_date,job_posting")] Application application)
         {
             if (ModelState.IsValid)
@@ -126,21 +134,25 @@ namespace FAQCheckpoint2.Controllers
         }
 
         // GET: Applications/Delete/5
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                RedirectToAction("Index");
             }
             Application application = db.Applications.Find(id);
             if (application == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Index");
             }
             return View(application);
         }
 
         // POST: Applications/Delete/5
+        [Authorize(Roles = "admin,staff")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

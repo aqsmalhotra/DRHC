@@ -1,0 +1,74 @@
+﻿@model IEnumerable<FAQCheckpoint2.Models.Event>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / events</span>
+                    <h1 class="admin-head">Events Management</h1>
+                    <p>Welcome to the admin section of DRHC Events Repository.</p>
+                    <button type="button" class="btn btn-success">
+                        @Html.ActionLink("ADD NEW EVENT", "Create")
+                    </button>
+                    <div>
+                        @*<form action="#" method="post" role="search" id="faq-seach-frm" class="search-form">
+                                <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
+                                <input type="search" name="search" id="search" class="search-text" placeholder="Search question..." autocomplete="off">
+                            </form>*@
+                    </div>
+                    <br />
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Event Title
+                                </th>
+                                <th>
+                                    Starting Date
+                                </th>
+                                <th>
+                                    Ending Date
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-left">
+                                        @Html.DisplayFor(modelItem => item.ev_title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ev_start_date)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ev_end_date)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.ev_id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Details", "Details", new { id = item.ev_id }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.ev_id }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

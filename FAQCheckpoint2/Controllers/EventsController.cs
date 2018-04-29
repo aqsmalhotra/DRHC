@@ -20,22 +20,33 @@ namespace FAQCheckpoint2.Controllers
             return View(db.Events.ToList());
         }
 
+        // GET: Events
+        [Authorize(Roles = "admin,staff")]
+        public ActionResult Admin()
+        {
+            return View(db.Events.ToList());
+        }
+
         // GET: Events/Details/5
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                RedirectToAction("Admin");
             }
             Event @event = db.Events.Find(id);
             if (@event == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Admin");
             }
             return View(@event);
         }
 
         // GET: Events/Create
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Create()
         {
             return View();
@@ -52,23 +63,26 @@ namespace FAQCheckpoint2.Controllers
             {
                 db.Events.Add(@event);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
 
             return View(@event);
         }
 
         // GET: Events/Edit/5
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                RedirectToAction("Admin");
             }
             Event @event = db.Events.Find(id);
             if (@event == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Admin");
             }
             return View(@event);
         }
@@ -78,33 +92,38 @@ namespace FAQCheckpoint2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Edit([Bind(Include = "ev_id,ev_title,ev_description,ev_start_date,ev_end_date")] Event @event)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(@event).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             return View(@event);
         }
 
         // GET: Events/Delete/5
+        [Authorize(Roles = "admin,staff")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                RedirectToAction("Admin");
             }
             Event @event = db.Events.Find(id);
             if (@event == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                RedirectToAction("Admin");
             }
             return View(@event);
         }
 
         // POST: Events/Delete/5
+        [Authorize(Roles = "admin,staff")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -112,7 +131,7 @@ namespace FAQCheckpoint2.Controllers
             Event @event = db.Events.Find(id);
             db.Events.Remove(@event);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Admin");
         }
 
         protected override void Dispose(bool disposing)

@@ -1,51 +1,45 @@
 ﻿@model IEnumerable<FAQCheckpoint2.Models.Event>
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-                    <h2>Index</h2>
+<div class="faq-banner">
+</div>
+<div class="container">
+    <div class="feature-event">
+        <div class="row justify-content-center">
+            <div class="col-regular">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / about / events</span>
+                    <h1>Events</h1>
                     <p>
-                        @Html.ActionLink("Create New", "Create")
+                        Here is a list of most the employment opportunities currently available.
                     </p>
-                    <table class="table">
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ev_title)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ev_description)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ev_start_date)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ev_end_date)
-                            </th>
-                            <th></th>
-                        </tr>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ev_title)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ev_description)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ev_start_date)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ev_end_date)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.ev_id }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.ev_id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.ev_id })
-                                </td>
-                            </tr>
-                        }
-                    </table>
+                    <div class="row justify-content-center">
+                        <div class="col">
+                            <br />
+                            <div class="accordion">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="accordion">
+                                        <a href=""><label>@Html.DisplayFor(modelItem => item.ev_title)</label></a>
+                                        <div class="content">
+                                            <div class="bolden"><label>Description:</label></div>
+                                            <p>@Html.DisplayFor(modelItem => item.ev_description)</p>
+                                            <p><div class="bolden d-inline-block"><label>Start Date:</label></div> @Html.DisplayFor(modelItem => item.ev_start_date)</p>
+                                            <p><div class="bolden d-inline-block"><label>End Date:</label></div> @Html.DisplayFor(modelItem => item.ev_end_date)</p>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <p class="end-p">
+                        We are open 24*7 seven days a week, please contact us at +1-(807)-223-8200 for more information.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

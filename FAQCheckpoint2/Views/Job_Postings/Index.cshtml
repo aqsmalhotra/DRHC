@@ -20,47 +20,22 @@
                         We are currently looking to fill the following positions:
                     </p>
                     <div class="row justify-content-center">
-
-                        @*<div class="col-lg-4 col-md-4 col-sm-12">
-
-                                <form action="#" method="post" role="search" id="faq-seach-frm" class="search-form">
-                                    <input type="submit" value="" name="btn-search" id="btn-search" class="search-submit">
-                                    <input type="search" name="search" id="search" class="search-text" placeholder="Search question..." autocomplete="off">
-                                </form>
-
-                            </div>*@
-
-                        @*@Html.DisplayNameFor(model => model.job_title)
-
-                            @Html.DisplayNameFor(model => model.job_description)
-
-                            @Html.DisplayNameFor(model => model.job_type)
-
-                            @Html.DisplayNameFor(model => model.job_openings)
-
-                            @Html.DisplayNameFor(model => model.job_posted_date)
-
-                            @Html.DisplayNameFor(model => model.job_closing_date)
-
-                            @Html.DisplayNameFor(model => model.Department.Name)*@
-
                         <div class="col-lg-10 col-12">
                             <br />
                             <div class="accordion" id="search-results">
                                 @foreach (var item in Model)
                                 {
                                     <div class="accordion">
-                                        <a href="">@Html.DisplayFor(modelItem => item.job_title)</a>
+                                        <a href=""><label>@Html.DisplayFor(modelItem => item.job_title)</label></a>
                                         <div class="content">
-                                            @*<p>ID: @Html.DisplayFor(modelItem => item.job_id)</p>*@
-                                            <div class="bolden">Description:</div>
+                                            <div><label>@Html.DisplayNameFor(model => model.job_description):</label></div>
                                             <p>@Html.DisplayFor(modelItem => item.job_description)</p>
-                                            <p><div class="bolden d-inline-block">Department:</div> @Html.DisplayFor(modelItem => item.Department.Name)</p>
-                                            <p><div class="bolden d-inline-block">Job Type:</div> @Html.DisplayFor(modelItem => item.job_type)</p>
-                                            <p><div class="bolden d-inline-block">Openings:</div> @Html.DisplayFor(modelItem => item.job_openings)</p>
-                                            <p><div class="bolden d-inline-block">Posted:</div> @Html.DisplayFor(modelItem => item.job_posted_date)</p>
+                                            <p><div class="d-inline-block"><label>@Html.DisplayNameFor(model => model.job_description):</label></div> @Html.DisplayFor(modelItem => item.Department.Name)</p>
+                                            <p><div class="d-inline-block"><label>@Html.DisplayNameFor(model => model.job_type):</label></div> @Html.DisplayFor(modelItem => item.job_type)</p>
+                                            <p><div class="d-inline-block"><label>@Html.DisplayNameFor(model => model.job_openings):</label></div> @Html.DisplayFor(modelItem => item.job_openings)</p>
+                                            <p><div class="d-inline-block"><label>@Html.DisplayNameFor(model => model.job_posted_date):</label></div> @Html.DisplayFor(modelItem => item.job_posted_date)</p>
                                             <p>
-                                                <div class="bolden d-inline-block">Deadline:</div>
+                                                <div class="d-inline-block"><label>@Html.DisplayNameFor(model => model.job_closing_date):</label></div>
                                                 @if (item.job_closing_date != null)
                                                 {
                                                     @Html.DisplayFor(modelItem => item.job_closing_date)
@@ -70,15 +45,14 @@
                                                     <div class="d-inline-block">TBD</div>
                                                 }
                                             </p>
-                                            <p>@Html.ActionLink("Apply", "Create", new { Controller = "Applications", action = "Create", posting = item.job_id }, htmlAttributes: new { @class = "btn btn-success btn-sm apply" })
-                                            
+                                            <p>
+                                                @Html.ActionLink("Apply", "Create", new { Controller = "Applications", action = "Create", posting = item.job_id }, htmlAttributes: new { @class = "btn btn-success btn-sm apply" })
                                             </p>
                                         </div>
                                     </div>
                                 }
                             </div>
                         </div>
-
                     </div>
                     <p class="end-p">
                         We are open 24*7 seven days a week, please contact us at +1-(807)-223-8200 for more information.

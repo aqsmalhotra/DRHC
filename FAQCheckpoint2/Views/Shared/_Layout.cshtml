@@ -111,7 +111,7 @@
                                 <a class="nav-link" href="#">Application Form</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Job Postings</a>
+                                @(Html.ActionLink("Job Postings", "Index", "Job_Postings", null, new { @class = "nav-link" }))
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Physician Recruitment</a>
@@ -149,6 +149,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Volunteer Program</a>
+                            </li>
+                            <li class="nav-item">
+                                @(Html.ActionLink("Events", "Index", "Events", null, new { @class = "nav-link" }))
                             </li>
                         </ul>
                     </li>
@@ -210,7 +213,7 @@
                     <h2>JOIN OUR TEAM</h2>
                     <ul>
                         <li><a href="#">Application Form</a></li>
-                        <li><a href="#">Job Postings</a></li>
+                        <li>@(Html.ActionLink("Job Postings", "Index", "Job_Postings", null, new { @class = "" }))</li>
                         <li><a href="#">Physician Recruitment</a></li>
                         <li><a href="#">Volunteer Program</a></li>
 
@@ -227,6 +230,7 @@
                         <li><a href="#">Strategic Plan</a></li>
                         <li><a href="#">Why DRHC</a></li>
                         <li><a href="#">Volunteer Program</a></li>
+                        <li>@(Html.ActionLink("Events", "Index", "Events", null, new { @class = "" }))</li>
                     </ul>
                 </div>
 

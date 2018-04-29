@@ -11,7 +11,8 @@ namespace FAQCheckpoint2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Job_Postings
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,16 +20,40 @@ namespace FAQCheckpoint2.Models
         {
             this.Applications = new HashSet<Application>();
         }
-    
+
+        [Key]
         public int job_id { get; set; }
+
+        [Display(Name = "Job Title")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Title is required")]
         public string job_title { get; set; }
+
+        [Display(Name = "Description")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Description is required")]
         public string job_description { get; set; }
+
+        [Display(Name = "Type")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Type is required")]
         public string job_type { get; set; }
+
+        [Display(Name = "Openings")]
+        [Required(ErrorMessage = "Number of Openings is required")]
+        [Range(1, 50, ErrorMessage = "Must have at least 1 open position and no more than 50")]
         public Nullable<int> job_openings { get; set; }
+
+        [Display(Name = "Posted Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> job_posted_date { get; set; }
+
+        [Display(Name = "Closing Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> job_closing_date { get; set; }
+
+        [Display(Name = "Department")]
         public Nullable<int> dept { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Applications { get; set; }
         public virtual Department Department { get; set; }

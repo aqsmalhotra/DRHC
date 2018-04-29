@@ -5,47 +5,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container-fluid">
+    <div class="feature-event">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                @Html.Partial("~/Views/Shared/_Admin_Nav.cshtml")
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="feature-content">
+                    <span><i class="fas fa-home"></i> / dashboard / events / info</span>
+                    <h1 class="admin-head">Details</h1>
+                    <p>This page contains all the information related to the selected event.</p>
+                    <hr />
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ev_title)
+                            </dt>
 
-<div>
-    <h4>Event</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ev_title)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.ev_title)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ev_title)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ev_description)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ev_description)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.ev_description)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ev_description)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ev_start_date)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ev_start_date)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.ev_start_date)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ev_start_date)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ev_end_date)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ev_end_date)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.ev_end_date)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ev_end_date)
-        </dd>
-
-    </dl>
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.ev_id }, htmlAttributes: new { @class = "btn btn-success" })
+                        @Html.ActionLink("Back to List", "Admin", "Job_Postings", htmlAttributes: new { @class = "btn btn-primary btn-back" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ev_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

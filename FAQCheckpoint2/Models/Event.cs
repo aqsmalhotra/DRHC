@@ -11,13 +11,31 @@ namespace FAQCheckpoint2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Event
     {
+        [Key]
         public int ev_id { get; set; }
+
+        [Display(Name = "Event Title")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Title is required")]
         public string ev_title { get; set; }
+
+        [Display(Name = "Description")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Description is required")]
         public string ev_description { get; set; }
+
+        [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Start date is required")]
         public Nullable<System.DateTime> ev_start_date { get; set; }
+
+        [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "End date is required")]
         public Nullable<System.DateTime> ev_end_date { get; set; }
     }
 }
