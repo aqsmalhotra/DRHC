@@ -20,10 +20,12 @@ namespace FAQCheckpoint2.Models
 
         [Display(Name = "First Name")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "First Name is required")]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only alphabet characters allowed.")]
         public string app_first_name { get; set; }
 
         [Display(Name = "Last Name")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name is required")]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only alphabet characters allowed.")]
         public string app_last_name { get; set; }
 
         [Display(Name = "Address")]
@@ -32,18 +34,23 @@ namespace FAQCheckpoint2.Models
 
         [Display(Name = "City")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "City is required")]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only alphabet characters allowed.")]
         public string app_city { get; set; }
 
         [Display(Name = "Province")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Province is required")]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only alphabet characters allowed.")]
         public string app_province { get; set; }
 
         [Display(Name = "Postal Code")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Postal Code is required")]
+        [RegularExpression("[a-zA-Z][0-9][a-zA-Z] ?[0-9][a-zA-Z][0-9]", ErrorMessage = "Invalid postal code format (A1A1A1 or A1A 1A1).")]
         public string app_postal_code { get; set; }
 
         [Display(Name = "Phone")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Phone is required")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Only numeric characters allowed.")]
+        [Range(1, 10, ErrorMessage = "Phone number must be between 1 and 10 digits long")]
         public string app_phone { get; set; }
 
         [Display(Name = "Email")]
